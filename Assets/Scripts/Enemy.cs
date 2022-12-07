@@ -30,16 +30,15 @@ public class Enemy : Mover
     private float flipTimeStamp;
     private float flipTimer = 0.75f; //Seconds between each little flip, could be made in a serialized field if some enemies should look more "chaotic" and flipping more often
     private bool amIFlip; //Bool trigger to check if Im waiting or flip-waiting
+
     //TODO:
     //-information for battle units
     //-chasing state based on LOS detection 
 
-
-
     // Start is called before the first frame update
     void Start()
     {
-        sprite = GetComponent<SpriteRenderer>();
+        //sprite = GetComponent<SpriteRenderer>();
         startingPos = transform.position;
 
         nextDest = getRandomPos();
@@ -53,14 +52,13 @@ public class Enemy : Mover
         //Get direction
         Vector3 randDirection = new Vector3();
         randDirection = new Vector3(Random.Range(-1.00f, 1.00f), 0, Random.Range(-1.00f, 1.00f));
-        //Debug.Log("RAND_DIR IS: " + randDirection.ToString());
 
         //Get distance
         float distance = Random.Range(0.00f, roamRange);
-        //Debug.Log("RAND_DIST IS: " + distance.ToString());
+
+        //Maybe cast a ray in this direction, make sure it legal. If not, pick a new destination
 
         Vector3 randVector3 = distance * randDirection;
-        //Debug.Log("MY_POS IS: " + transform.position.ToString());
         return randVector3 + startingPos; 
 
 
@@ -74,6 +72,7 @@ public class Enemy : Mover
     }
 
     //Enemy waits for a random amount of time, also will randomlt decide to "flip around" in place
+    //TODO: flipping could probably be done more simply with Unity animator (using record and flipping maybe?)
     private void Wait()
     {
         if (amIFlip && flipTimeStamp <= Time.time)
@@ -83,10 +82,30 @@ public class Enemy : Mover
         }
     }
 
-    //TODO
+    //TODO: Chase mechanic, will probably use myDirection from Mover to raycast in a cone/FOV
+    //will need a detection range and a view angle/width (serialized fields so enemies can have different FOV cones?)
+    //might also need to alter the Movers speed so they "run" when chasing
     private void Chase()
     {
 
+    }
+
+    //Handles collisions for Enemy that run into a gameobject 
+    //Hit Jason -> commence battle scene (TODO)
+    //Hit an Obstacle, he picks a new destination to go
+    override protected void collisionHandling(GameObject hitObject) {
+
+
+        //I hit a thing
+        if (hitObject.CompareTag("Obstacle"))
+        {
+            nextDest = getRandomPos(); //Better go somewhere else
+        }
+        else if (hitObject.CompareTag("Player"))
+        {
+            Debug.Log("BATTLE COMMENCE"); //Better get Jason
+            //maybe switch scene or something here?
+        }
     }
 
     //Randomly returns a state based on serialized fields WaitChance and MoveToDestChance
@@ -127,18 +146,11 @@ public class Enemy : Mover
         switch (currState)
         {
             case State.Moving:
-                if (System.Math.Round(transform.position.x, 1) == System.Math.Round(nextDest.x, 1) &&
-                    System.Math.Round(transform.position.z, 1) == System.Math.Round(nextDest.z, 1))
+                if (System.Math.Abs(transform.position.x - nextDest.x) <= 1f &&
+                    System.Math.Abs(transform.position.z - nextDest.z) <= 1f)
                 {
                     // OKAY roam is done, now choose whether to WAIT or FLIP or ROAM again (at random)
                     //these could be made as serialized values that could be changed between enemy types
-                    /*
-                    int ellOhEllSoRandom = Random.Range(1, 11);
-                    if (ellOhEllSoRandom >= 1 && ellOhEllSoRandom < 4)
-                        SetCurrentState(State.Moving);
-                    else if (ellOhEllSoRandom >= 4 && ellOhEllSoRandom <= 11)
-                        SetCurrentState(State.Waiting);
-                    */
                     SetCurrentState(RollNextState());
                 }
                 break;
@@ -206,5 +218,10 @@ public class Enemy : Mover
     {
         CheckStateChangeConditions();
         ExecuteStateBehaviors();
+    }
+
+    private void FixedUpdate()
+    {
+
     }
 }
