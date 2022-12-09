@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : Mover
+public class OldVersionEnemy : Mover
 {
    private enum State
     {
@@ -18,11 +18,13 @@ public class Enemy : Mover
     [SerializeField] int nextState_MoveToDestChance = 50; //Chance I will decide to move
 
     [SerializeField] int waitState_FlipChance = 50; //Chances I will have a flipping wait (as opposed to normal wait)
+    [SerializeField] float detectionRange = 5f;
 
-    
     Vector3 startingPos; //Initial position enemy is placed will general area he roams
     Vector3 nextDest; 
     private State currState; //Shows what behavior enemy is currently executing
+
+    Transform target;
 
     private float waitTimeStamp; //Time stuff used for waiting behavior
     private float waitTimer;
@@ -30,6 +32,8 @@ public class Enemy : Mover
     private float flipTimeStamp;
     private float flipTimer = 0.75f; //Seconds between each little flip, could be made in a serialized field if some enemies should look more "chaotic" and flipping more often
     private bool amIFlip; //Bool trigger to check if Im waiting or flip-waiting
+
+
 
     //TODO:
     //-information for battle units
@@ -43,6 +47,8 @@ public class Enemy : Mover
 
         nextDest = getRandomPos();
         //Debug.Log("MY FINAL RAND_POS IS: " + randPos.ToString());
+
+        target = GameObject.FindWithTag("Player").transform; //define target as player
     }
 
     //Returns a random position (x, 0, z) a random distance away from starting position
@@ -71,6 +77,11 @@ public class Enemy : Mover
 
     }
 
+    private bool PlayerDetected()
+    {
+        return HelperFunctions.CheckProximity(transform.position, target.position, detectionRange);
+    }
+
     //Enemy waits for a random amount of time, also will randomlt decide to "flip around" in place
     //TODO: flipping could probably be done more simply with Unity animator (using record and flipping maybe?)
     private void Wait()
@@ -82,12 +93,19 @@ public class Enemy : Mover
         }
     }
 
+    //Helper function to set a flip timer stamp 
+    private void SetFlipTimestamp()
+    {
+        flipTimeStamp = Time.time + flipTimer;
+    }
+
     //TODO: Chase mechanic, will probably use myDirection from Mover to raycast in a cone/FOV
     //will need a detection range and a view angle/width (serialized fields so enemies can have different FOV cones?)
     //might also need to alter the Movers speed so they "run" when chasing
     private void Chase()
-    {
-
+    { 
+        nextDest = target.position;
+        Move((nextDest - transform.position).normalized);
     }
 
     //Handles collisions for Enemy that run into a gameobject 
@@ -131,18 +149,21 @@ public class Enemy : Mover
         return false;
     }
 
-    //Helper function to set a flip timer stamp 
-    private void SetFlipTimestamp()
-    {
-        flipTimeStamp = Time.time + flipTimer;
-    }
 
-    //Sets currState based on conditions
+    //changes currState based on conditions
     private void CheckStateChangeConditions()
     {
         // Check for priority interruptions (ex: I detected a player so now I must CHASE)
         // Note: checking for player will probably be a raycast or something
 
+        //Priority
+        if(PlayerDetected() == true)
+        {
+            SetCurrentState(State.Chasing);
+            Debug.Log("I, " + this.name + " see Jason!!"); 
+        }
+
+        //Switch statement to check for conditions in which Enemy should CHANGE state from what its doing right now, to something else
         switch (currState)
         {
             case State.Moving:
@@ -155,6 +176,10 @@ public class Enemy : Mover
                 }
                 break;
             case State.Chasing:
+                if (!HelperFunctions.CheckProximity(transform.position, target.position, detectionRange))
+                {
+                    SetCurrentState(State.Waiting); //Jason too far, I'll go back to hanging out (and eventually go back to my place)
+                }
                 break;
             case State.Waiting:
                 if (waitTimeStamp <= Time.time)
@@ -194,8 +219,7 @@ public class Enemy : Mover
         currState = newState;
     }
 
-    //Called in every method, just used to call the correst State methods
-    private void ExecuteStateBehaviors()
+    protected void ExecuteStateBehaviors() //Simply calls the correct method
     {
         switch (currState)
         {

@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class Player : Mover
 {
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-    
-    }
 
     //Handles collisions for Jason when he runs into an Enemy
     override protected void collisionHandling(GameObject hitObject)

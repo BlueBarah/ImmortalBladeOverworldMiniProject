@@ -6,13 +6,22 @@ public class Mover : MonoBehaviour
 {
     [SerializeField] float walkingSpeed = 8; //defualt speed for now
     [SerializeField] float ySpeed; //usually 0, could be useful for flying enemies later tho
-    protected SpriteRenderer sprite;
-    protected Transform tf;
+    public SpriteRenderer sprite { get; private set; }
+    public Transform tf { get; private set; }
+
+    public Vector3 startingPosition { get; set; }
+    public Vector3 currentPosition
+    {
+        get { return tf.position; }
+        set { tf.position = value; }
+    }
+    public Vector3 direction { get; set; }//direction mover is attempting to move (this will probably be used for LOS cone)
+
 
     //Stuff necessary for Boxcasting in front of mover to check for collisions
     protected BoxCollider coll;
     protected Vector3 height; //height of box collider
-    protected Vector3 myDirection; //direction mover is attempting to move (this will probably be used for LOS cone)
+
     private Vector3 boxExtents;
     private Vector3 boxPosition;
 
@@ -24,10 +33,6 @@ public class Mover : MonoBehaviour
     //-LOS cone for detection (probably based on movement direction)
 
     // Start is called before the first frame update
-    private void Start()
-    {
-        
-    }
 
     private void Awake()
     {
@@ -35,13 +40,22 @@ public class Mover : MonoBehaviour
         tf = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         coll = GetComponent<BoxCollider>();
+
+        startingPosition = tf.position;
         isRunning = false;
+    }
+
+    //Flip sprites Left if true, Right if false. Returns what it just flipped to
+    public bool flipSprite(bool shouldIFlipToLeft)
+    {
+        sprite.flipX = shouldIFlipToLeft;
+        return shouldIFlipToLeft;
     }
 
     virtual protected void collisionHandling(GameObject hitObject) { }
 
     //Move in the direction given, also flips sprite when moving to the left
-    protected void Move(Vector3 direction)
+    public void Move(Vector3 direction)
     {
         // Animation Conditions
         if (direction != Vector3.zero) {
@@ -63,26 +77,27 @@ public class Mover : MonoBehaviour
         //Mover is moving to right, unflip sprite
         if(direction.x > 0)
         {
-            sprite.flipX = false;
-        }else if(direction.x < 0) // Moving to left, flip sprite
+            flipSprite(false);
+        }
+        else if(direction.x < 0) // Moving to left, flip sprite
         {
-            sprite.flipX = true;
+            flipSprite(true);
         }
 
         RaycastHit boxHit; //Raycast that will hold info about any collisions it touches
         boxExtents = coll.size; //Box should be same size as collider box
         height = new Vector3(0, coll.size.y, 0); //vector3 representation of my height (based on collider box height)
-        myDirection = direction; //Direction mover is trying to go
+        this.direction = direction; //Direction mover is trying to go
         boxPosition = transform.position + height / 2; //Need to shift position of box up to match my height
 
         //A box cast the same size of collider extending in front of me in the direction Im moving
         bool somethingInMyWay = Physics.BoxCast(
-            boxPosition,  
-            boxExtents/2,
-            myDirection,
+            boxPosition,
+            boxExtents / 2,
+            this.direction,
             out boxHit,
             transform.rotation,
-            myDirection.magnitude/2,
+            this.direction.magnitude/2,
             (1 << 6) | (1 << 7) | (1 << 8)); //(1 << #) indicates ray should look for and detect that layer #, (i.e. currently detecting layers 6, 7, 8)
 
         //NOTE: may need to switch to a list of hits and iterate through to check each 
@@ -123,7 +138,7 @@ public class Mover : MonoBehaviour
 
         DrawBoxLines(boxPosition,
             boxExtents,
-            boxPosition + myDirection,
+            boxPosition + direction,
             true);
     }
 

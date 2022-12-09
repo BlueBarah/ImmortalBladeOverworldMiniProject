@@ -30,7 +30,6 @@ public class BasicEnemyAI : EnemyAI
             CheckStateConditions();
         }
     }
-
     private void CheckStateConditions() {
         switch (currentState) {
             case State.Moving:
