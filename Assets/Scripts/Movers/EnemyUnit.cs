@@ -36,14 +36,14 @@ public class EnemyUnit : Mover
             Move((enemyAI.nextPosition - enemyAI.currentPosition).normalized);
         }
     }
-    override protected void collisionHandling(GameObject hitObject) {
+    override protected void collisionHandling(RaycastHit hitObject) {
         //I hit a thing
         justCollided = true;
         // Take some time to deal with the collision before trying to move normally
         collisionTimeStamp = Time.time + 2.0f;
 
         // Try to move away if I hit an obstacle
-        if (hitObject.CompareTag("Obstacle"))
+        if (hitObject.collider.CompareTag("Obstacle"))
         {
             // Turn Blue as visual indicator
             sprite.color = new Color(0f, 0f, 255f, 1f);
@@ -52,7 +52,7 @@ public class EnemyUnit : Mover
             enemyAI.nextPosition = HelperFunctions.GetRandomPositionInRange(enemyAI.currentPosition, 5.0f);
         }
         // Stand still after hitting a player
-        else if (hitObject.CompareTag("Player"))
+        else if (hitObject.collider.CompareTag("Player"))
         {
             // Turn red as visual indicator
             sprite.color = new Color(255f, 0f, 0f, 1f);

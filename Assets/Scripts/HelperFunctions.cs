@@ -20,5 +20,4 @@ public static class HelperFunctions
             //Maybe cast a ray in this direction, make sure it legal. If not, pick a new destination
             return in_origin + (distance * randDirection);
     }
-
 }
