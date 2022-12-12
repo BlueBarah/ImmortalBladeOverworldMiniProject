@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Basic class for any Object that needs to be able to move around wwithout passing through other objects
+//NPC, Enemy, Player, all inherit from this
 public class Mover : MonoBehaviour
 {
     [SerializeField] float walkingSpeed = 8; //defualt speed for now
+    //[SerializeField] float runningSpeed = 8; 
     [SerializeField] float ySpeed; //usually 0, could be useful for flying enemies later tho
+    [SerializeField] float followRange;
     public SpriteRenderer sprite { get; private set; }
     public Transform tf { get; private set; }
+
+    public BoxCollider hitBox { get; private set; }
 
     public Vector3 startingPosition { get; set; }
     public Vector3 currentPosition
@@ -15,25 +21,25 @@ public class Mover : MonoBehaviour
         get { return tf.position; }
         set { tf.position = value; }
     }
-    public Vector3 direction { get; set; }//direction mover is attempting to move (this will probably be used for LOS cone)
+    [field: SerializeField] public Vector3 direction { get; set; } = Vector3.forward; //direction mover is attempting to move
 
+    public bool amIStuck;
 
     //Stuff necessary for Boxcasting in front of mover to check for collisions
     protected BoxCollider coll;
-    protected Vector3 height; //height of box collider
-
+    public float height
+    {
+        get { return coll.size.y; } //height of box collider
+    } 
     private Vector3 boxExtents;
     private Vector3 boxPosition;
 
     // Animation Conditions
     private Animator animator;
-    public bool isRunning { get; private set;}
-
-    //TODO:
-    //-LOS cone for detection (probably based on movement direction)
+    public bool isRunning { get; set;}
 
     // Start is called before the first frame update
-
+    //Awake called before Start
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
@@ -52,7 +58,13 @@ public class Mover : MonoBehaviour
         return shouldIFlipToLeft;
     }
 
-    virtual protected void collisionHandling(GameObject hitObject) { }
+    virtual protected void collisionHandling(RaycastHit collision) { }
+
+    //Move to a position given
+    public void MoveToPoint(Vector3 position)
+    {
+
+    }
 
     //Move in the direction given, also flips sprite when moving to the left
     public void Move(Vector3 direction)
@@ -86,12 +98,12 @@ public class Mover : MonoBehaviour
 
         RaycastHit boxHit; //Raycast that will hold info about any collisions it touches
         boxExtents = coll.size; //Box should be same size as collider box
-        height = new Vector3(0, coll.size.y, 0); //vector3 representation of my height (based on collider box height)
+        Vector3 heightVector = new Vector3(0, height, 0); //vector3 representation of my height (based on collider box height)
         this.direction = direction; //Direction mover is trying to go
-        boxPosition = transform.position + height / 2; //Need to shift position of box up to match my height
+        boxPosition = transform.position + heightVector / 2; //Need to shift position of box up to match my height
 
         //A box cast the same size of collider extending in front of me in the direction Im moving
-        bool somethingInMyWay = Physics.BoxCast(
+        amIStuck = Physics.BoxCast(
             boxPosition,
             boxExtents / 2,
             this.direction,
@@ -100,33 +112,18 @@ public class Mover : MonoBehaviour
             this.direction.magnitude/2,
             (1 << 6) | (1 << 7) | (1 << 8)); //(1 << #) indicates ray should look for and detect that layer #, (i.e. currently detecting layers 6, 7, 8)
 
-        //NOTE: may need to switch to a list of hits and iterate through to check each 
-        //In case Jason for example hits an enemy AND an obstacle at the same time
-        //NOTE2: ^ the above may be a problem without CollisionEnter, instead maybe use a child with its own collision box
-
         //Somethings in my way, need to go figure out what it is (What I do can be dependent on what I am)
-        if (somethingInMyWay)
+        if (amIStuck)
         {
-            //Debug.Log("I, " + this.name + ", Hit " + boxHit.collider.name);
-
-            //call a Movers specific hit/collision method to gether more info on hit intereaction (where battles would start for example)
-            collisionHandling(boxHit.collider.gameObject);
+            //STUCK
+            //Debug.Log("HALP IM STUCK");
+            collisionHandling(boxHit);
         }
         else
         {
             //Nothin in my way, I walk
             transform.Translate(moveDelta.x * Time.deltaTime, moveDelta.y * Time.deltaTime, moveDelta.z * Time.deltaTime);;
         }
-
-        //These movement methods all had problems
-        //transform.Translate(moveDelta.x * Time.deltaTime, moveDelta.y * Time.deltaTime, moveDelta.z * Time.deltaTime);
-        //controller.Move(direction * walkingSpeed * Time.deltaTime);
-        //rb.MovePosition(tf.position + direction * Time.deltaTime * walkingSpeed);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
 
     }
 

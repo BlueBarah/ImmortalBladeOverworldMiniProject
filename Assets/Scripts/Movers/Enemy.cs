@@ -5,6 +5,10 @@ using UnityEngine;
 
 //Enemy inherits frpm NPC which inherits from Mover
 //Wanted to distinguish between Movers that need AI and Movers that dont (Player)
+//Handles everything about an NPC that isnt specifically AI. Communicates with AI. 
+
+//battle info would probably go in here (# of units, etc)
+
 public class Enemy : NPC
 {
     public bool amIRunning;
@@ -12,49 +16,31 @@ public class Enemy : NPC
 
     private bool justCollided;
     private float collisionTimeStamp;
+    
 
     //Handles collisions for Enemy that runs into a gameobject 
     //Hit an Obstacle, he picks a new destination to go
-    override protected void collisionHandling(GameObject hitObject)
+    override protected void collisionHandling(RaycastHit collision)
     {
         justCollided = true;
         collisionTimeStamp = Time.time + 2.0f;
+        lastColliderHit = collision;
 
+        
+        //I hit a thing
+        if (lastColliderHit.collider.CompareTag("Obstacle"))
         {
-            //I hit a thing
-            if (hitObject.CompareTag("Obstacle"))
-            {
-                flashColorIndicator("Obstacle");
-                nextPosition = HelperFunctions.GetRandomPositionInRange(currentPosition, myEnemyAI.roamRange); //Better go somewhere else
-            }
-            else if (hitObject.CompareTag("Player"))
-            {
-                flashColorIndicator("Player");
-                Debug.Log("BATTLE COMMENCE"); //Better get Jason
-                                              //maybe switch scene or something here?
-            }
-        }
-    }
+            flashColorIndicator("Obstacle");
 
-    //Just a visual indicator to show certain behaviors are working
-    public void flashColorIndicator(string colliderTag)
-    {
-        switch (colliderTag)
+            //nextPosition = HelperFunctions.GetRandomPositionInRange(currentPosition, myEnemyAI.roamRange); //Better go somewhere else
+        }
+        else if (lastColliderHit.collider.CompareTag("Player"))
         {
-            case "Obstacle":
-                // Turn Blue as visual indicator
-                sprite.color = new Color(0f, 0f, 255f, 1f);
-                break;
-            case "Player":
-                // Turn red as visual indicator
-                sprite.color = new Color(255f, 0f, 0f, 1f);
-                break;
-            case "Chasing":
-                //Turn orange when Enemy chasing
-                sprite.color = Color.yellow;
-                break;
+            amIStuck = false;
+            flashColorIndicator("Player");
+            //Debug.Log("BATTLE COMMENCE"); //Better get Jason
         }
-
+        
     }
 
     //This is called by its AI whenever he stops chasing or he switches to moving
@@ -66,6 +52,7 @@ public class Enemy : NPC
         }
     }
 
+    /*
     // Update is called once per frame
     void Update()
     {
@@ -82,5 +69,6 @@ public class Enemy : NPC
         myEnemyAI.calculateAI();
 
     }
+    */
 }
 

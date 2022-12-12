@@ -15,7 +15,7 @@ MonoBehaviour:
   nextState_WaitChance: 40
   nextState_MoveToDestChance: 60
   waitState_FlipChance: 80
-  detectionRange: 5
+  detectionRange: 8.37
   roamRange: 8
   waitTimeMin: 2
   waitTimeMax: 3

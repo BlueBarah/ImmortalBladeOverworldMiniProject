@@ -6,11 +6,11 @@ public class Player : Mover
 {
 
     //Handles collisions for Jason when he runs into an Enemy
-    override protected void collisionHandling(GameObject hitObject)
+    override protected void collisionHandling(RaycastHit collision)
     {
-        if (hitObject.CompareTag("Enemy"))
+        if (collision.collider.CompareTag("Enemy"))
         {
-            Debug.Log("BATTLE COMMENCE"); //maybe switch scene or something here?
+            //start battle
         }
     }
 
