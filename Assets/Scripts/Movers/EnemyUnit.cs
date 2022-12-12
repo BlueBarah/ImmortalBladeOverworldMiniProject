@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class EnemyUnit : Mover
 {
-    [SerializeField] private EnemyAI enemyAI;
+    private IUnitAI enemyAI;
     private bool justCollided = false;
     private float collisionTimeStamp;
     // Start is called before the first frame update
     void Start()
     {
+        enemyAI = GetComponent<IUnitAI>();
         enemyAI.startingPosition = transform.position;
         enemyAI.currentPosition = transform.position;
         enemyAI.nextPosition = transform.position;
@@ -48,7 +49,7 @@ public class EnemyUnit : Mover
             sprite.color = new Color(0f, 0f, 255f, 1f);
 
             //Maybe cast a ray in this direction, make sure it legal. If not, pick a new destination
-            enemyAI.nextPosition = HelperFunctions.GetRandomPositionInRange(enemyAI.currentPosition, 2.5f);
+            enemyAI.nextPosition = HelperFunctions.GetRandomPositionInRange(enemyAI.currentPosition, 5.0f);
         }
         // Stand still after hitting a player
         else if (hitObject.CompareTag("Player"))

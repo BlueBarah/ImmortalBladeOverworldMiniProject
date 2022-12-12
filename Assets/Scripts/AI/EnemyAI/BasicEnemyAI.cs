@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Basic Enemy AI", menuName = "ScriptableObjects/EnemyAI/BasicEnemyAI")]
-public class BasicEnemyAI : EnemyAI
+public class BasicEnemyAI : MonoBehaviour, IUnitAI
 {
-    [SerializeField] LayerMask whatIsPlayer;
     [SerializeField] float detectionRange = 10.0f;
     [SerializeField] float roamRange = 5.00f; //Range enemy will roam away from starting position
     [SerializeField] int waitChance = 50;
@@ -19,8 +17,12 @@ public class BasicEnemyAI : EnemyAI
     private State currentState;
     private float waitTimeStamp;
 
+    public Vector3 nextPosition { get; set; }
+    public Vector3 startingPosition { get; set; }
+    public Vector3 currentPosition { get; set; }
+    public Transform target { get; set; }
 
-    public override void ManageState() {
+    public void ManageState() {
         // Automatically switch to Chasing if the player is detected
         //     instead of checking the state conditions normally
         if (PlayerDetected() && currentState != State.Chasing) {
@@ -113,8 +115,4 @@ public class BasicEnemyAI : EnemyAI
             return State.Moving;
         }
     }
-
-
-
-
 }
