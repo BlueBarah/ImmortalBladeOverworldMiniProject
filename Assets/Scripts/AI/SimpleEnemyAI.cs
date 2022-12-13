@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,13 +18,20 @@ public class SimpleEnemyAI : AI
 
     [field: SerializeField] float waitTimeMin { get; set; } = 1f;
     [field: SerializeField] float waitTimeMax { get; set; } = 2f;
+    [SerializeField] float fightRange = 5f;
 
     private float waitTimeStamp; //Time stuff used for waiting behavior
     private float waitTimer;
     private float flipTimeStamp;
     private float flipTimer = 0.75f; //Seconds between each little flip, could be made in a serialized field if some enemies should look more "chaotic" and flipping more often
-
     private bool amIFlip;
+
+    // Event Handler Variables
+    private bool isPlayerInFightRangeFlag = false; // Only fire the event if the flag changes
+    private bool CheckFightRange() {
+        return (PlayerDetected() || HelperFunctions.CheckProximity(currPosition, targetsPosition, fightRange));
+    }
+
     override protected void Start()
     {
         base.Start();
@@ -45,7 +53,7 @@ public class SimpleEnemyAI : AI
     //True if flipping while waiting, false if deciding to just wait
     private bool RollWaitState()
     {
-        int ellOhEllSoRandom = Random.Range(1, 101);
+        int ellOhEllSoRandom = UnityEngine.Random.Range(1, 101);
         if (waitState_FlipChance >= ellOhEllSoRandom)
             return true;
 
@@ -55,7 +63,7 @@ public class SimpleEnemyAI : AI
     //Randomly returns a state based on serialized fields WaitChance and MoveToDestChance
     protected override State RollNextState()
     {
-        int ellOhEllSoRandom = Random.Range(1, 101);
+        int ellOhEllSoRandom = UnityEngine.Random.Range(1, 101);
         if (nextState_WaitChance >= ellOhEllSoRandom)
             return State.Waiting;
         else if (nextState_WaitChance + nextState_MoveToDestChance >= ellOhEllSoRandom)
@@ -116,6 +124,13 @@ public class SimpleEnemyAI : AI
     //changes currState based on conditions
     protected override void CheckStateConditions()
     {
+        // Putting event handler here to run on Update(), maybe move to it's own function later?
+        if (CheckFightRange() != isPlayerInFightRangeFlag) {
+            isPlayerInFightRangeFlag = CheckFightRange();
+            HelperFunctions.FirePlayerInRangeEvent(this, isPlayerInFightRangeFlag, gameObject.name);
+        }
+
+
         bool playerDetected = PlayerDetected();
 
         // Check for priority interruptions (ex: I detected a player so now I must CHASE)
@@ -183,9 +198,9 @@ public class SimpleEnemyAI : AI
                 break;
             case State.Waiting:
                 amIFlip = RollWaitState(); //Randomly decide if its a flipping wait or a regular wait
-                flipTimer = Random.Range(0.33f, 1.00f);
+                flipTimer = UnityEngine.Random.Range(0.33f, 1.00f);
                 SetFlipTimestamp();
-                waitTimer = Random.Range(2, 4);
+                waitTimer = UnityEngine.Random.Range(2, 4);
                 waitTimeStamp = Time.time + waitTimer;
                 break;
             default:
