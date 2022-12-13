@@ -31,36 +31,13 @@ SpriteAtlas:
       enableAlphaDilation: 0
     secondaryTextureSettings: {}
     variantMultiplier: 1
-    packables:
-    - {fileID: 102900000, guid: 74be6c69a428f834ca3bb46b79d2a5a3, type: 3}
+    packables: []
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 21300000, guid: ff5cc183cac80f34398a25c8ed1a0bf0, type: 3}
-  - {fileID: 21300000, guid: 0fd0b7246b0eb514e8c8bc047d44cc66, type: 3}
-  - {fileID: 21300000, guid: ed74d8e409f06ff488c85f29cb0259a9, type: 3}
-  - {fileID: 21300000, guid: 7320c8658ae51464ba5833cb97e941b1, type: 3}
-  - {fileID: 21300000, guid: 22ff93367b33d704897db8390ec6ceb0, type: 3}
-  - {fileID: 21300000, guid: 848021c8d1426b14daf1276c041b47d8, type: 3}
-  - {fileID: 21300000, guid: 75b0654a555010c44b9cf673dd6ccd80, type: 3}
-  - {fileID: 21300000, guid: fb3359ae3b8f53945820eb764fe25059, type: 3}
-  - {fileID: 21300000, guid: 5a5f06de9d8d44845896ef3e615b078c, type: 3}
-  - {fileID: 21300000, guid: 6bdeb39fb2192d2498a8a1678e6d8518, type: 3}
-  - {fileID: 21300000, guid: 18fcaadf74f43fa4f8aff396c95ab576, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - Jason_Run_Left_0009
-  - Jason_Run_Left_0003
-  - Jason_Run_Left_0007
-  - Jason_Run_Left_0008
-  - Jason_Run_Left_0001
-  - Jason_Run_Left_0005
-  - Jason_Run_Left_0000
-  - Jason_Run_Left_0002
-  - Jason_Run_Left_0006
-  - Jason_Run_Left_0010
-  - Jason_Run_Left_0004
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_RenderDataMap: {}
   m_Tag: Jason_Run_Left_Atlas
   m_IsVariant: 0
