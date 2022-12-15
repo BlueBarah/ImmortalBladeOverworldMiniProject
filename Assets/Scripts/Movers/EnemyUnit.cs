@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyUnit : Mover
+public class EnemyUnit : oldMover
 {
     private IUnitAI enemyAI;
     private bool justCollided = false;

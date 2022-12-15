@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class SimpleEnemyAI : AI
 {
-    private Enemy myEnemy { get { return (Enemy)myNPC; } }
+    private oldEnemy myEnemy { get { return (oldEnemy)myNPC; } }
 
     [field: SerializeField] LayerMask whatIsPlayer;
 
@@ -87,8 +87,8 @@ public class SimpleEnemyAI : AI
         //For visualizing the cone of sight:
         //Get 2 lines from rotating the los direction of Enemy by half the decection angle
         Debug.DrawRay(currPosition, currDirection * detectionRange, Color.black);
-        Vector3 directionLineLeft = (Quaternion.AngleAxis(sightAngle / 2, Vector3.up) * myEnemy.direction * detectionRange);
-        Vector3 directionLineRight = (Quaternion.AngleAxis(-sightAngle / 2, Vector3.up) * myEnemy.direction * detectionRange);
+        Vector3 directionLineLeft = (Quaternion.AngleAxis(sightAngle / 2, Vector3.up) * myEnemy.currDirection * detectionRange);
+        Vector3 directionLineRight = (Quaternion.AngleAxis(-sightAngle / 2, Vector3.up) * myEnemy.currDirection * detectionRange);
         Debug.DrawRay(currPosition, directionLineLeft, Color.black);
         Debug.DrawRay(currPosition, directionLineRight, Color.black);
 

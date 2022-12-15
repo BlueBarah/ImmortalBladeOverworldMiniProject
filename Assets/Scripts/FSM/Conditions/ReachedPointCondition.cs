@@ -9,7 +9,7 @@ public class ReachedPointCondition : Condition
 
     public override bool CheckCondition(BaseStateMachine machine)
     {
-        return HelperFunctions.CheckProximity(machine.Mover.currPosition, machine.Mover.nextDest, tolerance);
+        return HelperFunctions.CheckProximity(machine.NPC.currPosition, machine.NPC.nextDest, tolerance);
     }
 
     public override void OnEnter(BaseStateMachine machine)

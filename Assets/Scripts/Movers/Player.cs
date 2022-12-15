@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Mover
+public class Player : oldMover
 {
 
     //Handles collisions for Jason when he runs into an Enemy

@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f026c628c9ec3ba4e8739e1129022ccd, type: 3}
-  m_Name: ActionRoam
+  m_Script: {fileID: 11500000, guid: dd148f58570106047bdf4a46e8cc7337, type: 3}
+  m_Name: StateEnemyChasing
   m_EditorClassIdentifier: 
-  roamRange: 10
+  Actions:
+  - {fileID: 11400000, guid: 336a0ef1ac561b447ae3b61a400e4e79, type: 2}
+  Transitions:
+  - {fileID: 11400000, guid: b37659556369c1c408a0785b266c86ef, type: 2}

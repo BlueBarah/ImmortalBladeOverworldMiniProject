@@ -6,13 +6,13 @@ public class Ally : NPC
 {
     override protected void collisionHandling(RaycastHit collision)
     {
-        lastColliderHit = collision;
+        //lastColliderHit = collision;
 
-        //I hit a thing
-        if (lastColliderHit.collider.CompareTag("Obstacle"))
-        {
-            flashColorIndicator("Obstacle");
+        ////I hit a thing
+        //if (lastColliderHit.collider.CompareTag("Obstacle"))
+        //{
+        //    flashColorIndicator("Obstacle");
 
-        }
+        //}
     }
 }

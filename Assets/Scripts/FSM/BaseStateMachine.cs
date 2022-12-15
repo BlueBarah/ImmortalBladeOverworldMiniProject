@@ -9,12 +9,12 @@ public class BaseStateMachine : MonoBehaviour
 
     [field: SerializeField] public BaseState CurrentState { get; set; }
 
-    public NavMover Mover;
+    public NPC NPC;
 
     private void Awake()
     {
         CurrentState = _initialState;
-        Mover = GetComponent<NavMover>();
+        NPC = GetComponent<NPC>();
 
         CurrentState.OnEnter(this);
     }
@@ -22,7 +22,9 @@ public class BaseStateMachine : MonoBehaviour
     public void ChangeCurrentState(BaseState newState)
     {
         if (newState is RemainInState)
+        {
             return;
+        }
 
         CurrentState.OnExit(this);
         CurrentState = newState;

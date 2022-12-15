@@ -5,21 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "FSM/Actions/RoamAction")]
 public class RoamAction : Action
 {
-    public float roamRange;
     Vector3 nextDest;
     Vector3 startPos;
 
     public override void Execute(BaseStateMachine machine)
     {
-        machine.Mover.nextDest = nextDest;
-        startPos = machine.Mover.startingPosition;
+        machine.NPC.nextDest = nextDest;
+        startPos = machine.NPC.startingPosition;
 
-        machine.Mover.MoveTowardsPoint(nextDest);
+        machine.NPC.MoveTowardsPoint(nextDest);
     }
 
     public override void OnEnter(BaseStateMachine machine)
     {
-        nextDest = HelperFunctions.GetRandomPositionInRange(startPos, roamRange);
+        nextDest = HelperFunctions.GetRandomPositionInRange(startPos, machine.NPC.roamRange);
     }
 
     public override void OnExit(BaseStateMachine machine)

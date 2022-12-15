@@ -9,7 +9,7 @@ public class MoveToSensorTargetAction : Action
 
     public override void Execute(BaseStateMachine machine)
     {
-        machine.Mover.MoveTowardsPoint(sensor.target.position);
+        machine.NPC.MoveTowardsPoint(sensor.target.position);
     }
 
     public override void OnEnter(BaseStateMachine machine)

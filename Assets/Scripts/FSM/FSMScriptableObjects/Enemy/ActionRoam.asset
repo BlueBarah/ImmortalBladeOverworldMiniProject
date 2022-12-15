@@ -9,10 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd148f58570106047bdf4a46e8cc7337, type: 3}
-  m_Name: StateEnemyWaiting
+  m_Script: {fileID: 11500000, guid: f026c628c9ec3ba4e8739e1129022ccd, type: 3}
+  m_Name: ActionRoam
   m_EditorClassIdentifier: 
-  Actions: []
-  Transitions:
-  - {fileID: 11400000, guid: bf9b86dbf19a2bf40b0662ac8e451a7c, type: 2}
-  - {fileID: 11400000, guid: b37659556369c1c408a0785b266c86ef, type: 2}

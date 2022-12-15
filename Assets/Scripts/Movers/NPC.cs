@@ -1,59 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-[System.Serializable]
 public class NPC : Mover
 {
-    [SerializeField] public AI myAI; //Every NPC will need some sort of AI (will vary between different types of NPC)
-    [field: SerializeField] public virtual Mover target { get; protected set; }
-    [SerializeField] public virtual Vector3 targetPosition
+
+    //NPCs, unlike the PC, all need nav agents in order to navigate environments
+    //This class handles movement specific to NPCs
+    public NavMeshAgent agent;
+    [SerializeField] public float roamRange = 10;
+
+    protected override void Start()
     {
-        get { return target.currentPosition; }
+        base.Start();
+        nextDest = getNewRandomDest();
+        agent = GetComponent<NavMeshAgent>();
     }
-
-    public Vector3 nextPosition { get; set; }
-    public RaycastHit lastColliderHit { get; protected set; }
-
-    [field: SerializeField] public float eyeLineHeight { get; set; }
-
-    // Start is called before the first frame update
-    protected virtual void Start()
+    public Vector3 getNewRandomDest()
     {
-        myAI = this.GetComponent<AI>();
-        nextPosition = startingPosition;
-        eyeLineHeight = (coll.size.y)/2;
-    }
-
-    //Just a visual indicator to show certain behaviors are working
-    public void flashColorIndicator(string indicatorString)
-    {
-        switch (indicatorString)
+        Vector3 possibleDest = HelperFunctions.GetRandomPositionInRange(startingPosition, roamRange);
+        if (NavMesh.SamplePosition(possibleDest, out NavMeshHit hit, 1f, NavMesh.AllAreas))
         {
-            case "Obstacle":
-                // Turn Blue as visual indicator
-                sprite.color = Color.blue;
-                break;
-            case "Player":
-                // Turn red as visual indicator
-                sprite.color = Color.red;
-                break;
-            case "Following":
-                //Turn yellow when Enemy chasing
-                sprite.color = Color.yellow;
-                break;
-            case "Moving":
-                sprite.color = Color.green;
-                break;
-            case "Waiting":
-                sprite.color = Color.white;
-                break;
+            return possibleDest;
         }
+        else return getNewRandomDest();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        myAI.calculateAI();
-    }
+
+
+
+
 }

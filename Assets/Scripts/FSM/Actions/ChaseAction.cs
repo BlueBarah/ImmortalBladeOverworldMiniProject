@@ -9,7 +9,7 @@ public class ChaseAction : Action
     public override void Execute(BaseStateMachine machine)
     {
         //machine.Mover.nextDest = los.lookTarget.currentPosition;
-        machine.Mover.MoveTowardsPoint(los.target.position);
+        machine.NPC.MoveTowardsPoint(los.target.position);
     }
 
     public override void OnEnter(BaseStateMachine machine)

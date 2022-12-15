@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a59cbef9dabefb4788a703552e6ac40, type: 3}
-  m_Name: TransitionWaitToRoam
+  m_Name: TransitionInitiateChase
   m_EditorClassIdentifier: 
   Conditions:
-  - {fileID: 11400000, guid: 165994437047e5d468604a35911072fa, type: 2}
-  TrueState: {fileID: 11400000, guid: 9e31ab5000be65e4e994a8e5690e88be, type: 2}
-  FalseState: {fileID: 0}
+  - {fileID: 11400000, guid: 8fefa599887e52240adcb21e7a969c4e, type: 2}
+  TrueState: {fileID: 11400000, guid: a6ca6ddee3d233b4f958862d7775c501, type: 2}
+  FalseState: {fileID: 11400000, guid: 4393acd7a35521d4499c30798b3e52ac, type: 2}

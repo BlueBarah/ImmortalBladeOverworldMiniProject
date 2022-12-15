@@ -15,7 +15,7 @@ public class TargetWithinProximityCondition : Condition
     }
     public override void OnEnter(BaseStateMachine machine)
     {
-        proximitySensor = machine.Mover.GetComponent<ProximitySensor>();
+        proximitySensor = machine.NPC.GetComponent<ProximitySensor>();
     }
 
     public override void OnExit(BaseStateMachine machine)

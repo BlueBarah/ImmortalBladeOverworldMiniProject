@@ -64,7 +64,6 @@ public class LineOfSight : Sensor
             Ray sightRay = new Ray(currPosition + shiftUp, targetsPosition - (currPosition + shiftUp));
             if (Physics.Raycast(sightRay, out sightHit, detectionRange, (1 << 7) | (1 << 8)))
             {
-                Debug.Log("I spy... " + sightHit.collider.name);
                 Debug.DrawRay(currPosition + shiftUp, (targetsPosition + targetShiftUp) - (currPosition + shiftUp), Color.red);
                 if (sightHit.collider.tag == "Player")
                 {
