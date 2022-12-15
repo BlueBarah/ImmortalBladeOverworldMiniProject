@@ -13,7 +13,13 @@ public class SimpleEnemyAI : AI
     [field: SerializeField] LayerMask whatIsPlayer;
 
     [SerializeField] float sightAngle = 20;
-    [field: SerializeField] public float detectionRange { get; set; } = 8f;
+
+    [SerializeField]
+    public float detectionRange //Distance from Jason Enemy will give up chasing
+    {
+        get { return targetRange; }
+        set { targetRange = value; }
+    }
 
     [field: SerializeField] float waitTimeMin { get; set; } = 1f;
     [field: SerializeField] float waitTimeMax { get; set; } = 2f;
@@ -36,8 +42,17 @@ public class SimpleEnemyAI : AI
         if (amIFlip && flipTimeStamp <= Time.time)
         {
             SetFlipTimestamp();
-            myEnemy.flipSprite(!myEnemy.sprite.flipX);
 
+            myEnemy.flipSprite(!myEnemy.sprite.flipX); //Invert current flip state
+
+            if (myEnemy.sprite.flipX) //Enemy is currently flipped now, he should look left
+            {
+                currDirection = Vector3.left;
+            }
+            else
+            { //Enemy not flipped 
+                currDirection = Vector3.right; //Look right
+            }
         }
     }
 
@@ -47,7 +62,10 @@ public class SimpleEnemyAI : AI
     {
         int ellOhEllSoRandom = Random.Range(1, 101);
         if (waitState_FlipChance >= ellOhEllSoRandom)
+        {
             return true;
+        }
+            
 
         return false;
     }
@@ -71,8 +89,8 @@ public class SimpleEnemyAI : AI
         Debug.DrawRay(currPosition, currDirection * detectionRange, Color.black);
         Vector3 directionLineLeft = (Quaternion.AngleAxis(sightAngle / 2, Vector3.up) * myEnemy.direction * detectionRange);
         Vector3 directionLineRight = (Quaternion.AngleAxis(-sightAngle / 2, Vector3.up) * myEnemy.direction * detectionRange);
-        Debug.DrawRay(currPosition, directionLineLeft, Color.blue);
-        Debug.DrawRay(currPosition, directionLineRight, Color.yellow);
+        Debug.DrawRay(currPosition, directionLineLeft, Color.black);
+        Debug.DrawRay(currPosition, directionLineRight, Color.black);
 
         //WORKS i think??
         //Check if Jason is within the cone of vision by both:

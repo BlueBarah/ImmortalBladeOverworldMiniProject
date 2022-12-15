@@ -9,11 +9,8 @@ public class Mover : MonoBehaviour
     [SerializeField] float walkingSpeed = 8; //defualt speed for now
     //[SerializeField] float runningSpeed = 8; 
     [SerializeField] float ySpeed; //usually 0, could be useful for flying enemies later tho
-    [SerializeField] float followRange;
     public SpriteRenderer sprite { get; private set; }
     public Transform tf { get; private set; }
-
-    public BoxCollider hitBox { get; private set; }
 
     public Vector3 startingPosition { get; set; }
     public Vector3 currentPosition
@@ -22,6 +19,7 @@ public class Mover : MonoBehaviour
         set { tf.position = value; }
     }
     [field: SerializeField] public Vector3 direction { get; set; } = Vector3.forward; //direction mover is attempting to move
+    
 
     public bool amIStuck;
 
@@ -31,6 +29,7 @@ public class Mover : MonoBehaviour
     {
         get { return coll.size.y; } //height of box collider
     } 
+
     private Vector3 boxExtents;
     private Vector3 boxPosition;
 
@@ -46,6 +45,7 @@ public class Mover : MonoBehaviour
         tf = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         coll = GetComponent<BoxCollider>();
+        
 
         startingPosition = tf.position;
         isRunning = false;
@@ -63,12 +63,17 @@ public class Mover : MonoBehaviour
     //Move to a position given
     public void MoveToPoint(Vector3 position)
     {
+        direction = (currentPosition - position).normalized;
 
+
+        Move(direction);
     }
 
     //Move in the direction given, also flips sprite when moving to the left
     public void Move(Vector3 direction)
     {
+        
+
         // Animation Conditions
         if (direction != Vector3.zero) {
             isRunning = true;

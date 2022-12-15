@@ -22,7 +22,7 @@ public class Player : Mover
         float z = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(x, 0, z);
         
-        return direction;
+        return direction.normalized;
     }
     // Update is called once per frame
     void Update()

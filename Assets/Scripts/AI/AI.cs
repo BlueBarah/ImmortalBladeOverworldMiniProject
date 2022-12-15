@@ -9,12 +9,12 @@ using UnityEngine;
 [System.Serializable]
 public abstract class AI : MonoBehaviour
 {
-
     [field: SerializeField] public int nextState_WaitChance { get; set; } = 50;
     [field: SerializeField] public int nextState_MoveToDestChance { get; set; } = 50;
     [field: SerializeField] public int waitState_FlipChance { get; set; } = 50;
     [field: SerializeField] public float roamRange { get; set; } = 10;
     public State currentState { get; set; }
+    [field: SerializeField] public float targetRange { get; set; } //Range the NPC will follow/chase a target
 
     protected Vector3 currPosition
     {

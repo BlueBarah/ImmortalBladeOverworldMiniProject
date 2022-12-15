@@ -5,7 +5,13 @@ using UnityEngine;
 
 public class AllyAI : AI
 {
-    [SerializeField] float followRange { get; set; } = 4;
+
+    [SerializeField]
+    public float followRange //Distance from Jason ally try to stay
+    {
+        get { return targetRange; }
+        set { targetRange = value; }
+    }
 
     override protected void Start()
     {
@@ -62,12 +68,6 @@ public class AllyAI : AI
     }
 
     protected override void Wait()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
     {
         
     }

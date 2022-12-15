@@ -11,19 +11,17 @@ using UnityEngine;
 
 public class Enemy : NPC
 {
-    public bool amIRunning;
     private SimpleEnemyAI myEnemyAI { get { return (SimpleEnemyAI)myAI; } }
 
-    private bool justCollided;
-    private float collisionTimeStamp;
-    
+    //private bool justCollided;
+    //private float collisionTimeStamp;
 
     //Handles collisions for Enemy that runs into a gameobject 
     //Hit an Obstacle, he picks a new destination to go
     override protected void collisionHandling(RaycastHit collision)
     {
-        justCollided = true;
-        collisionTimeStamp = Time.time + 2.0f;
+        //justCollided = true;
+        //collisionTimeStamp = Time.time + 2.0f;
         lastColliderHit = collision;
 
         

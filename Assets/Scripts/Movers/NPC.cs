@@ -20,10 +20,11 @@ public class NPC : Mover
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        nextPosition = startingPosition;
         myAI = this.GetComponent<AI>();
+        nextPosition = startingPosition;
         eyeLineHeight = (coll.size.y)/2;
     }
+
     //Just a visual indicator to show certain behaviors are working
     public void flashColorIndicator(string indicatorString)
     {
