@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6ce49f7120b960a4283866dbc47c2469
+guid: d65c7c631d7ceb34399cbd2edde95f7a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,10 +42,10 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
+  alignment: 7
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
@@ -103,62 +103,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Environment Sprite Sheet 2_0
-      rect:
-        serializedVersion: 2
-        x: 409
-        y: 42
-        width: 768
-        height: 1983
-      alignment: 9
-      pivot: {x: 0.5038781, y: 0.017856361}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8f86bbd5f98ec634c84bc7fc16f114a4
-      internalID: -920906870
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Environment Sprite Sheet 2_1
-      rect:
-        serializedVersion: 2
-        x: 1258
-        y: 109
-        width: 741
-        height: 1880
-      alignment: 9
-      pivot: {x: 0.5281365, y: 0.02471122}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 96db74333008747449d9e10f321e18f3
-      internalID: -140657439
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1673e9985c892104ab680656d9a59f3e
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Environment Sprite Sheet 2_0: -920906870
-      Environment Sprite Sheet 2_1: -140657439
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
