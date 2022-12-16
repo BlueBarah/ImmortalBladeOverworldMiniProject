@@ -106,7 +106,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 2
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -114,7 +114,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.6666667
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: d2e704e6b1a598c43824443e998aec32, type: 2}
 --- !u!4 &1389196 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6624789848833916328, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
@@ -134,7 +134,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-246824
+  m_Name: pb_Mesh-2638
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1422,6 +1422,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
 --- !u!1001 &32672636
@@ -1478,6 +1482,10 @@ PrefabInstance:
     - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
@@ -1536,6 +1544,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!1001 &45322454
@@ -1592,6 +1604,10 @@ PrefabInstance:
     - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
@@ -1650,6 +1666,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
 --- !u!4 &72617511 stripped
@@ -1675,8 +1695,8 @@ GameObject:
   m_Name: Stones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &82684470
 MeshCollider:
@@ -2395,7 +2415,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-244400
+  m_Name: pb_Mesh-2678
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2608,6 +2628,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!4 &86436886 stripped
@@ -2675,6 +2699,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
 --- !u!1001 &93244591
@@ -2731,6 +2759,10 @@ PrefabInstance:
     - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
@@ -2789,6 +2821,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!1001 &105120746
@@ -2801,6 +2837,10 @@ PrefabInstance:
     - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_Name
       value: Big Grass C(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6624789848833916328, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_RootOrder
@@ -2854,7 +2894,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh46946
+  m_Name: pb_Mesh29374
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3067,162 +3107,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
---- !u!1 &171145648
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 171145650}
-  - component: {fileID: 171145649}
-  - component: {fileID: 171145651}
-  - component: {fileID: 171145652}
-  - component: {fileID: 171145654}
-  - component: {fileID: 171145653}
-  m_Layer: 6
-  m_Name: Ariss
-  m_TagString: Ally
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &171145649
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171145648}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 657c22df189ba1d46abc09326041bed5, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 82e1116c83564174babb4603d252f874, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 5.12, y: 5.12}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &171145650
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171145648}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.565342, y: -0.018919436, z: -6.70625}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1320428837}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &171145651
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171145648}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!65 &171145652
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171145648}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 2.79, z: 0.5}
-  m_Center: {x: 0.06, y: 1.37, z: 0}
---- !u!114 &171145653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171145648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e3ca10f60934324b8c5c922d420a898, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <nextState_WaitChance>k__BackingField: 50
-  <nextState_MoveToDestChance>k__BackingField: 50
-  <waitState_FlipChance>k__BackingField: 50
-  <roamRange>k__BackingField: 10
-  myNPC: {fileID: 171145654}
---- !u!114 &171145654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 171145648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df8df94c178b53f4da628c5b325df925, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkingSpeed: 6
-  ySpeed: 0
-  followRange: 0
-  <direction>k__BackingField: {x: 0, y: 0, z: 1}
-  amIStuck: 0
-  myAI: {fileID: 171145653}
-  <target>k__BackingField: {fileID: 1905933404}
-  <eyeLineHeight>k__BackingField: 0
 --- !u!4 &173124132 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 416435727000234787, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
@@ -3283,6 +3173,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!43 &175319623
@@ -3291,7 +3185,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-243816
+  m_Name: pb_Mesh-2074
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3455,7 +3349,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh47174
+  m_Name: pb_Mesh29602
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3668,6 +3562,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!1 &191033951
@@ -3688,8 +3586,8 @@ GameObject:
   m_Name: River
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &191033952
 MeshCollider:
@@ -4379,6 +4277,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
 --- !u!1001 &199944610
@@ -4436,6 +4338,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
 --- !u!4 &200394997 stripped
@@ -4449,7 +4355,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-244320
+  m_Name: pb_Mesh-2578
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4667,6 +4573,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!4 &226251864 stripped
@@ -4728,6 +4638,10 @@ PrefabInstance:
     - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
@@ -4811,6 +4725,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!1001 &258596453
@@ -4867,6 +4785,10 @@ PrefabInstance:
     - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
@@ -4930,6 +4852,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!1001 &285286678
@@ -4987,6 +4913,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!1001 &288963916
@@ -5043,6 +4973,10 @@ PrefabInstance:
     - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
@@ -5121,7 +5055,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-244280
+  m_Name: pb_Mesh-2538
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5334,6 +5268,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!4 &312960356 stripped
@@ -5396,171 +5334,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
---- !u!1 &320440044
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 320440047}
-  - component: {fileID: 320440046}
-  - component: {fileID: 320440048}
-  - component: {fileID: 320440049}
-  - component: {fileID: 320440050}
-  - component: {fileID: 320440051}
-  m_Layer: 6
-  m_Name: LesserDemon
-  m_TagString: Enemy
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &320440046
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 320440044}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 657c22df189ba1d46abc09326041bed5, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: fbdddf9f743838c4cb77d99f7d42eafa, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 6.15, y: 5.35}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &320440047
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 320440044}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.03, y: 0.4555602, z: -22.52}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 818387506}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &320440048
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 320440044}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.45, y: 3.45, z: 0.5}
-  m_Center: {x: -0, y: 1.53, z: -0.05514263}
---- !u!114 &320440049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 320440044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01d51c8177f2b1a4f8dfb336f441ac1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkingSpeed: 4
-  ySpeed: 0
-  followRange: 0
-  <direction>k__BackingField: {x: 0, y: 0, z: 1}
-  amIStuck: 0
-  myAI: {fileID: 320440051}
-  <target>k__BackingField: {fileID: 1905933404}
-  <eyeLineHeight>k__BackingField: 0
-  amIRunning: 0
---- !u!54 &320440050
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 320440044}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!114 &320440051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 320440044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e887f7fa300f68468c04f6877f3196a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <nextState_WaitChance>k__BackingField: 50
-  <nextState_MoveToDestChance>k__BackingField: 50
-  <waitState_FlipChance>k__BackingField: 50
-  <roamRange>k__BackingField: 10
-  myNPC: {fileID: 320440049}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 256
-  sightAngle: 20
-  <detectionRange>k__BackingField: 8
-  <waitTimeMin>k__BackingField: 1
-  <waitTimeMax>k__BackingField: 2
-  fightRange: 5
 --- !u!1001 &321244713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5615,6 +5394,10 @@ PrefabInstance:
     - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
@@ -5774,7 +5557,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-244340
+  m_Name: pb_Mesh-2598
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5937,6 +5720,72 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5382777802094740631, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
   m_PrefabInstance: {fileID: 59312374}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &369747047
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 818387506}
+    m_Modifications:
+    - target: {fileID: 3787419869247683279, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1905933400}
+    - target: {fileID: 4718727249905937907, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_Name
+      value: LesserDemon (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -31.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -41.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+--- !u!4 &369747048 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+  m_PrefabInstance: {fileID: 369747047}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &374502821 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 416435727000234787, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
@@ -5996,6 +5845,10 @@ PrefabInstance:
     - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
@@ -6069,6 +5922,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!1001 &392504740
@@ -6126,6 +5983,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
 --- !u!43 &411128688
@@ -6134,7 +5995,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh46978
+  m_Name: pb_Mesh29406
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6352,6 +6213,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!4 &435414307 stripped
@@ -6414,6 +6279,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!1 &448747857
@@ -6434,8 +6303,8 @@ GameObject:
   m_Name: Boulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &448747858
 Transform:
@@ -7201,6 +7070,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!4 &461393674 stripped
@@ -7263,6 +7136,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!1001 &473344164
@@ -7319,6 +7196,10 @@ PrefabInstance:
     - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
@@ -7392,6 +7273,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!1001 &490600805
@@ -7449,6 +7334,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!1001 &497763535
@@ -7505,6 +7394,10 @@ PrefabInstance:
     - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
@@ -7577,6 +7470,10 @@ PrefabInstance:
     - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
@@ -7660,6 +7557,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!1001 &578193581
@@ -7672,6 +7573,10 @@ PrefabInstance:
     - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_Name
       value: Big Grass C(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6624789848833916328, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_RootOrder
@@ -7784,6 +7689,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!4 &603577105 stripped
@@ -7851,6 +7760,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!1001 &636262083
@@ -7907,6 +7820,10 @@ PrefabInstance:
     - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
@@ -7965,6 +7882,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!1 &652805403
@@ -7985,8 +7906,8 @@ GameObject:
   m_Name: Boulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &652805404
 Transform:
@@ -8713,6 +8634,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6624789848833916328, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_RootOrder
       value: 80
@@ -8774,6 +8699,10 @@ PrefabInstance:
     - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_Name
       value: Big Grass C(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6624789848833916328, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_RootOrder
@@ -8876,6 +8805,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!1001 &679125825
@@ -8888,6 +8821,10 @@ PrefabInstance:
     - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_Name
       value: Big Grass C(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6624789848833916328, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_RootOrder
@@ -8990,6 +8927,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!4 &691739287 stripped
@@ -9015,8 +8956,8 @@ GameObject:
   m_Name: Stump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &699685643
 MeshCollider:
@@ -9843,6 +9784,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!1001 &713402622
@@ -9855,6 +9800,10 @@ PrefabInstance:
     - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_Name
       value: Big Grass C(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6624789848833916328, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_RootOrder
@@ -9957,6 +9906,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!1001 &725356863
@@ -10013,6 +9966,10 @@ PrefabInstance:
     - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
@@ -10076,6 +10033,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!1001 &779564617
@@ -10133,12 +10094,82 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!4 &781123049 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 416435727000234787, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
   m_PrefabInstance: {fileID: 573949045}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &781926725
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 818387506}
+    m_Modifications:
+    - target: {fileID: 5473729910904162727, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1905933400}
+    - target: {fileID: 5473729910904162740, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473729910904162740, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473729910904162740, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473729910904162740, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -30.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473729910904162740, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473729910904162740, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473729910904162740, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473729910904162740, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473729910904162740, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473729910904162740, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473729910904162740, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473729910904162741, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+      propertyPath: m_Name
+      value: GreaterDemon
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+--- !u!4 &781926726 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5473729910904162740, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+  m_PrefabInstance: {fileID: 781926725}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &787158318 stripped
 Transform:
@@ -10151,7 +10182,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-244300
+  m_Name: pb_Mesh-2558
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10364,6 +10395,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!1001 &803187857
@@ -10421,6 +10456,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
 --- !u!1 &818387505
@@ -10451,11 +10490,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 320440047}
-  - {fileID: 1354806633}
-  - {fileID: 1486524110}
+  - {fileID: 2008990667}
+  - {fileID: 781926726}
+  - {fileID: 369747048}
   m_Father: {fileID: 1320428837}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &823826458 stripped
 Transform:
@@ -10517,6 +10556,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
 --- !u!1001 &836913059
@@ -10573,6 +10616,10 @@ PrefabInstance:
     - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
@@ -10636,6 +10683,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
 --- !u!4 &847494904 stripped
@@ -10698,6 +10749,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!43 &857943813
@@ -10706,7 +10761,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh46862
+  m_Name: pb_Mesh29290
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10919,6 +10974,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!43 &865294150
@@ -10927,7 +10986,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-243784
+  m_Name: pb_Mesh-2022
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11096,7 +11155,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh46832
+  m_Name: pb_Mesh29260
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11287,8 +11346,8 @@ GameObject:
   m_Name: Boulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &894895540
 Transform:
@@ -12295,6 +12354,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!4 &907756532 stripped
@@ -12367,6 +12430,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
 --- !u!1001 &939699330
@@ -12423,6 +12490,10 @@ PrefabInstance:
     - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
@@ -12511,8 +12582,8 @@ GameObject:
   m_Name: River
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &960711641
 MeshCollider:
@@ -13202,6 +13273,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!1 &963194225
@@ -13358,6 +13433,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!1001 &1015845943
@@ -13415,6 +13494,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!4 &1024039513 stripped
@@ -13433,7 +13516,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-244380
+  m_Name: pb_Mesh-2658
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13651,6 +13734,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!1001 &1050052520
@@ -13777,6 +13864,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!4 &1056306786 stripped
@@ -13839,6 +13930,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
 --- !u!43 &1083143123
@@ -13847,7 +13942,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh47354
+  m_Name: pb_Mesh29784
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14011,7 +14106,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh46566
+  m_Name: pb_Mesh28992
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14282,6 +14377,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!4 &1157403653 stripped
@@ -14299,6 +14398,10 @@ PrefabInstance:
     - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_Name
       value: Big Grass C(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6624789848833916328, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_RootOrder
@@ -14401,6 +14504,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
 --- !u!4 &1162669884 stripped
@@ -14463,6 +14570,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!1001 &1168864867
@@ -14520,6 +14631,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!4 &1174391258 stripped
@@ -14541,6 +14656,72 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 416435727000234787, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
   m_PrefabInstance: {fileID: 1345028536}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1252722410
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1320428837}
+    m_Modifications:
+    - target: {fileID: 5478167993611297657, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
+      propertyPath: m_Name
+      value: Ariss
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478167993611297659, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478167993611297659, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478167993611297659, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478167993611297659, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478167993611297659, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478167993611297659, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478167993611297659, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478167993611297659, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478167993611297659, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478167993611297659, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478167993611297659, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478167993611297660, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1905933400}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
+--- !u!4 &1252722411 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5478167993611297659, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
+  m_PrefabInstance: {fileID: 1252722410}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1253440725
 PrefabInstance:
@@ -14596,6 +14777,10 @@ PrefabInstance:
     - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
@@ -14659,6 +14844,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
 --- !u!1001 &1283384415
@@ -14715,6 +14904,10 @@ PrefabInstance:
     - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
@@ -14778,6 +14971,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!4 &1313054481 stripped
@@ -14840,6 +15037,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
 --- !u!1 &1320428835
@@ -14888,8 +15089,8 @@ Transform:
   - {fileID: 1138221463}
   - {fileID: 705507995}
   - {fileID: 1905933400}
+  - {fileID: 1252722411}
   - {fileID: 818387506}
-  - {fileID: 171145650}
   - {fileID: 5693784}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -14949,6 +15150,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
 --- !u!43 &1327515254
@@ -14957,7 +15162,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh47112
+  m_Name: pb_Mesh29540
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15175,6 +15380,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
 --- !u!1001 &1333456320
@@ -15232,6 +15441,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
 --- !u!1 &1335975720
@@ -15252,8 +15465,8 @@ GameObject:
   m_Name: Boulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1335975721
 Transform:
@@ -15985,7 +16198,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &1344896057
 MeshCollider:
@@ -17538,6 +17751,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!1001 &1349188061
@@ -17595,171 +17812,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
---- !u!1 &1354806629
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1354806633}
-  - component: {fileID: 1354806632}
-  - component: {fileID: 1354806631}
-  - component: {fileID: 1354806630}
-  - component: {fileID: 1354806634}
-  - component: {fileID: 1354806635}
-  m_Layer: 6
-  m_Name: LesserDemon (1)
-  m_TagString: Enemy
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1354806630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354806629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01d51c8177f2b1a4f8dfb336f441ac1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkingSpeed: 4
-  ySpeed: 0
-  followRange: 0
-  <direction>k__BackingField: {x: 0, y: 0, z: 1}
-  amIStuck: 0
-  myAI: {fileID: 1354806635}
-  <target>k__BackingField: {fileID: 1905933404}
-  <eyeLineHeight>k__BackingField: 0
-  amIRunning: 0
---- !u!65 &1354806631
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354806629}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.45, y: 3.45, z: 0.5}
-  m_Center: {x: -0, y: 1.53, z: -0.05514263}
---- !u!212 &1354806632
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354806629}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 657c22df189ba1d46abc09326041bed5, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: fbdddf9f743838c4cb77d99f7d42eafa, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 6.15, y: 5.35}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &1354806633
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354806629}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.3544803, y: 0.4555602, z: -27.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 818387506}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1354806634
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354806629}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!114 &1354806635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354806629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e887f7fa300f68468c04f6877f3196a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <nextState_WaitChance>k__BackingField: 50
-  <nextState_MoveToDestChance>k__BackingField: 50
-  <waitState_FlipChance>k__BackingField: 50
-  <roamRange>k__BackingField: 10
-  myNPC: {fileID: 1354806630}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 256
-  sightAngle: 20
-  <detectionRange>k__BackingField: 8
-  <waitTimeMin>k__BackingField: 1
-  <waitTimeMax>k__BackingField: 2
-  fightRange: 5
 --- !u!4 &1355966617 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6624789848833916328, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
@@ -17820,6 +17878,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
 --- !u!1001 &1381051333
@@ -17877,6 +17939,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
 --- !u!4 &1382178682 stripped
@@ -17902,8 +17968,8 @@ GameObject:
   m_Name: Stones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!64 &1391013600
 MeshCollider:
@@ -19156,6 +19222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!1001 &1414273361
@@ -19213,6 +19283,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
 --- !u!4 &1418247383 stripped
@@ -19238,8 +19312,8 @@ GameObject:
   m_Name: Boulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1419727328
 Transform:
@@ -20487,6 +20561,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!4 &1447104215 stripped
@@ -20549,6 +20627,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!43 &1476983033
@@ -20557,7 +20639,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-244420
+  m_Name: pb_Mesh-2698
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20726,6 +20808,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6624789848833916328, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_RootOrder
       value: 35
@@ -20787,169 +20873,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2097050426702080857, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
   m_PrefabInstance: {fileID: 93244591}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1486524106
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1486524110}
-  - component: {fileID: 1486524109}
-  - component: {fileID: 1486524108}
-  - component: {fileID: 1486524107}
-  - component: {fileID: 1486524111}
-  - component: {fileID: 1486524112}
-  m_Layer: 6
-  m_Name: GreaterDemon
-  m_TagString: Enemy
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1486524107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486524106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01d51c8177f2b1a4f8dfb336f441ac1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkingSpeed: 3
-  ySpeed: 0
-  followRange: 0
-  <direction>k__BackingField: {x: 0, y: 0, z: 1}
-  amIStuck: 0
-  myAI: {fileID: 1486524112}
-  <target>k__BackingField: {fileID: 1905933404}
-  <eyeLineHeight>k__BackingField: 0
-  amIRunning: 0
---- !u!65 &1486524108
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486524106}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.04, y: 5.08, z: 0.5}
-  m_Center: {x: 0.1, y: 2.1, z: 0}
---- !u!212 &1486524109
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486524106}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 657c22df189ba1d46abc09326041bed5, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 811b132b0bcc9644695b4dfc174c515b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 6.15, y: 5.35}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &1486524110
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486524106}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.24552, y: 0.4555602, z: -21.598866}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 818387506}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1486524111
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486524106}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!114 &1486524112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486524106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e887f7fa300f68468c04f6877f3196a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <nextState_WaitChance>k__BackingField: 50
-  <nextState_MoveToDestChance>k__BackingField: 50
-  <waitState_FlipChance>k__BackingField: 50
-  <roamRange>k__BackingField: 10
-  myNPC: {fileID: 1486524107}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 256
-  sightAngle: 20
-  <detectionRange>k__BackingField: 8
-  <waitTimeMin>k__BackingField: 1
-  <waitTimeMax>k__BackingField: 2
-  fightRange: 5
 --- !u!1001 &1501782362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21005,6 +20928,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!1001 &1507090224
@@ -21017,6 +20944,10 @@ PrefabInstance:
     - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_Name
       value: Big Grass C(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6624789848833916328, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_RootOrder
@@ -21119,6 +21050,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
 --- !u!4 &1522686499 stripped
@@ -21132,7 +21067,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-255942
+  m_Name: pb_Mesh-2054
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21301,7 +21236,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh46760
+  m_Name: pb_Mesh29188
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21514,6 +21449,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!4 &1542069253 stripped
@@ -21596,6 +21535,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!1001 &1623257634
@@ -21652,6 +21595,10 @@ PrefabInstance:
     - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
@@ -21710,6 +21657,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
 --- !u!1001 &1626030120
@@ -21767,6 +21718,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!43 &1628925171
@@ -21775,7 +21730,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-244008
+  m_Name: pb_Mesh-2266
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21988,6 +21943,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!1001 &1638216232
@@ -22045,6 +22004,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!4 &1651437975 stripped
@@ -22082,6 +22045,10 @@ PrefabInstance:
     - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_Name
       value: Big Grass C(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6624789848833916328, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_RootOrder
@@ -22184,6 +22151,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!43 &1709480875
@@ -22192,7 +22163,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh47098
+  m_Name: pb_Mesh29526
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -22356,7 +22327,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-244192
+  m_Name: pb_Mesh-2450
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -22574,6 +22545,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!1001 &1736795252
@@ -22631,6 +22606,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!1001 &1751391380
@@ -22687,6 +22666,10 @@ PrefabInstance:
     - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
@@ -22750,6 +22733,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!1001 &1774799331
@@ -22807,6 +22794,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!4 &1790430715 stripped
@@ -22835,7 +22826,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-244360
+  m_Name: pb_Mesh-2618
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -23078,6 +23069,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6624789848833916328, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_RootOrder
       value: 75
@@ -23194,6 +23189,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
 --- !u!4 &1848530685 stripped
@@ -23266,6 +23265,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
 --- !u!1001 &1899609771
@@ -23323,6 +23326,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
 --- !u!1001 &1904971318
@@ -23379,6 +23386,10 @@ PrefabInstance:
     - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
@@ -23463,7 +23474,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905933397}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.35465798, y: 0.01, z: -7.36625}
+  m_LocalPosition: {x: 0.35465765, y: 0.00999999, z: -7.36625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23515,11 +23526,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07b3ad3f59e8bf64cb5e387fb6a9dbae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <direction>k__BackingField: {x: 0, y: 0, z: 1}
   walkingSpeed: 9
   ySpeed: 0
-  followRange: 0
-  <direction>k__BackingField: {x: 0, y: 0, z: 1}
-  amIStuck: 0
+  currDirection: {x: 0, y: 0, z: 0}
+  nextPathPoint: {x: 0, y: 0, z: 0}
 --- !u!54 &1905933405
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23591,6 +23602,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!4 &1917262054 stripped
@@ -23653,6 +23668,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 6288526283468400003, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 540c573bec048e5459a44a5bbb14abab, type: 3}
 --- !u!1001 &1938704507
@@ -23710,6 +23729,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!1001 &1949857908
@@ -23722,6 +23745,10 @@ PrefabInstance:
     - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_Name
       value: Big Grass C(Polybrush Clone)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587223335052163846, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6624789848833916328, guid: 60c48cf1b86e8c64bbbd0c4daa4924a2, type: 3}
       propertyPath: m_RootOrder
@@ -23824,6 +23851,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!1001 &1957051090
@@ -23881,6 +23912,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!43 &1960156386
@@ -23889,7 +23924,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh46652
+  m_Name: pb_Mesh29078
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -24982,8 +25017,78 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+--- !u!1001 &2008990666
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 818387506}
+    m_Modifications:
+    - target: {fileID: 3787419869247683279, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1905933400}
+    - target: {fileID: 4718727249905937907, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_Name
+      value: LesserDemon
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -29.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+--- !u!4 &2008990667 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+  m_PrefabInstance: {fileID: 2008990666}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2014755031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 416435727000234787, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
@@ -25049,6 +25154,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass A(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 9046180952415748151, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffc493127ddee8d439703a01ce52c784, type: 3}
 --- !u!4 &2042393685 stripped
@@ -25062,7 +25171,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh47152
+  m_Name: pb_Mesh29580
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -25280,6 +25389,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass B(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 2218211138570641181, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ff27a03c5a24fe4c9b2376c28dc3ae2, type: 3}
 --- !u!4 &2074110945 stripped
@@ -25293,7 +25406,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh46594
+  m_Name: pb_Mesh29020
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -25506,6 +25619,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass C(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 7728390137053365605, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d6f42c905a0c32419373a82e3602f5c, type: 3}
 --- !u!4 &2096998858 stripped
@@ -25573,6 +25690,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!1001 &2106792223
@@ -25630,6 +25751,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Grass D(Polybrush Clone)
       objectReference: {fileID: 0}
+    - target: {fileID: 8900882267586284098, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 125d3b9341636de4db98a937205a7b35, type: 3}
 --- !u!4 &2117124656 stripped
@@ -25664,6 +25789,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1055811868289158073, guid: 0a48e1c83825a924394c05e62f9039f2, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055811868289158073, guid: 0a48e1c83825a924394c05e62f9039f2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1055811868603201409, guid: 0a48e1c83825a924394c05e62f9039f2, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -25675,6 +25808,14 @@ PrefabInstance:
     - target: {fileID: 1055811868603201411, guid: 0a48e1c83825a924394c05e62f9039f2, type: 3}
       propertyPath: m_Name
       value: Tree A
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055811868603201411, guid: 0a48e1c83825a924394c05e62f9039f2, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1055811868603201411, guid: 0a48e1c83825a924394c05e62f9039f2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1055811868603201421, guid: 0a48e1c83825a924394c05e62f9039f2, type: 3}
       propertyPath: m_RootOrder
@@ -25814,6 +25955,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Rock A
       objectReference: {fileID: 0}
+    - target: {fileID: 4604305018946180628, guid: 5bf4ba0492ece6946a91ae373d5858d9, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604305018946180628, guid: 5bf4ba0492ece6946a91ae373d5858d9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4604305018946180629, guid: 5bf4ba0492ece6946a91ae373d5858d9, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -25873,6 +26022,14 @@ PrefabInstance:
     - target: {fileID: 4604305018946180638, guid: 5bf4ba0492ece6946a91ae373d5858d9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604305020214889864, guid: 5bf4ba0492ece6946a91ae373d5858d9, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604305020214889864, guid: 5bf4ba0492ece6946a91ae373d5858d9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bf4ba0492ece6946a91ae373d5858d9, type: 3}
@@ -26029,9 +26186,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5555662959788865684, guid: bfb96a2ed9506494298ef4dadeaa48fb, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555662959788865684, guid: bfb96a2ed9506494298ef4dadeaa48fb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5555662960143412192, guid: bfb96a2ed9506494298ef4dadeaa48fb, type: 3}
       propertyPath: m_Name
       value: Small Tree A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555662960143412192, guid: bfb96a2ed9506494298ef4dadeaa48fb, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5555662960143412192, guid: bfb96a2ed9506494298ef4dadeaa48fb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5555662960143412194, guid: bfb96a2ed9506494298ef4dadeaa48fb, type: 3}
       propertyPath: m_Mesh
@@ -26178,6 +26351,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tree B
       objectReference: {fileID: 0}
+    - target: {fileID: 7248844935504004633, guid: d362b3566502d42469dbbd2218d32d44, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248844935504004633, guid: d362b3566502d42469dbbd2218d32d44, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7248844935504004634, guid: d362b3566502d42469dbbd2218d32d44, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -26186,6 +26367,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1033181530}
+    - target: {fileID: 7248844935724340589, guid: d362b3566502d42469dbbd2218d32d44, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248844935724340589, guid: d362b3566502d42469dbbd2218d32d44, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d362b3566502d42469dbbd2218d32d44, type: 3}
 --- !u!1001 &8244205216368229216
