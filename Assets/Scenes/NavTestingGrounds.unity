@@ -360,7 +360,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bbdf083d699f37b42a03603adc478329, type: 2}
+  - {fileID: 2100000, guid: 39dab2f39464c1f46b1afaee0f16b4db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -475,7 +475,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bbdf083d699f37b42a03603adc478329, type: 2}
+  - {fileID: 2100000, guid: 39dab2f39464c1f46b1afaee0f16b4db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -720,6 +720,7 @@ MonoBehaviour:
   sightAngle: 20
   <waitTimeMin>k__BackingField: 1
   <waitTimeMax>k__BackingField: 2
+  fightRange: 5
 --- !u!1 &347526348
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,7 +790,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bbdf083d699f37b42a03603adc478329, type: 2}
+  - {fileID: 2100000, guid: 39dab2f39464c1f46b1afaee0f16b4db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1475,6 +1476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
+  - component: {fileID: 705507996}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1559,6 +1561,26 @@ Transform:
   m_Father: {fileID: 1320428837}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 35, y: -40, z: 0}
+--- !u!114 &705507996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705507993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &757605265
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,7 +1666,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3d229cdc51b861c49b8b749c48d45ddc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2238,7 +2260,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bbdf083d699f37b42a03603adc478329, type: 2}
+  - {fileID: 2100000, guid: 39dab2f39464c1f46b1afaee0f16b4db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2833,6 +2855,7 @@ MonoBehaviour:
   sightAngle: 20
   <waitTimeMin>k__BackingField: 1
   <waitTimeMax>k__BackingField: 2
+  fightRange: 5
 --- !u!1 &1615954397
 GameObject:
   m_ObjectHideFlags: 0
@@ -2986,7 +3009,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bbdf083d699f37b42a03603adc478329, type: 2}
+  - {fileID: 2100000, guid: 39dab2f39464c1f46b1afaee0f16b4db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
