@@ -16,12 +16,10 @@ public class RandomTimerCondition : Condition
 
     public override void OnExit(BaseStateMachine machine)
     {
-
     }
 
     public override bool CheckCondition(BaseStateMachine machine)
     {
-        //Debug.Log("WaittimeStamp:" + waitTimestamp + "Time:" + Time.time);
         return waitTimestamp <= Time.time;
     }
 }

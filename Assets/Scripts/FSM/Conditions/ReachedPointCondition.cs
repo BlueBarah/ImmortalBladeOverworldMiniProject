@@ -14,12 +14,9 @@ public class ReachedPointCondition : Condition
 
     public override void OnEnter(BaseStateMachine machine)
     {
-        
     }
 
     public override void OnExit(BaseStateMachine machine)
     {
-        
     }
-
 }

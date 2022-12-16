@@ -5,21 +5,19 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "FSM/Conditions/TargetDetectedCondition")]
 public class TargetDetectedCondition : Condition
 {
-    private LineOfSight los;
+    //private LineOfSight los;
 
     public override bool CheckCondition(BaseStateMachine machine)
     {
-        if (los.isTargetSighted())
-        {
+        if (((LineOfSight)(machine.sensor)).isTargetSighted())
             return true;
-        }
         else
             return false;
     }
 
     public override void OnEnter(BaseStateMachine machine)
     {
-        los = machine.GetComponent<LineOfSight>();
+        //los = machine.GetComponent<LineOfSight>();
     }
 
     public override void OnExit(BaseStateMachine machine)

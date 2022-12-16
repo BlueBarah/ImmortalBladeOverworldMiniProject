@@ -30,8 +30,4 @@ public class Ally : NPC
 
         //}
     }
-    protected override void Update()
-    {
-        base.Update();
-    }
 }

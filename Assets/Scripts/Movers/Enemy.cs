@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : NPC
 {
-    LineOfSight los;
+    public LineOfSight los;
     protected override void Awake()
     {
         base.Awake();
@@ -17,9 +17,8 @@ public class Enemy : NPC
 
     }
 
-    protected override void Update()
+    void Update()
     {
-        base.Update();
         los.direction = currDirection;
 
     }

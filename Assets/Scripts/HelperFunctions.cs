@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public static class HelperFunctions
 {
@@ -11,13 +12,20 @@ public static class HelperFunctions
     }
 
     public static Vector3 GetRandomPositionInRange(Vector3 in_origin, float in_range) {
-            //Get direction
-            Vector3 randDirection = new Vector3(Random.Range(-1.00f, 1.00f), 0, Random.Range(-1.00f, 1.00f));
+        //int walkableMask = 1 << NavMesh.GetAreaFromName("walkable");
+        //NavMeshHit hit;
+        //if (NavMesh.SamplePosition(in_origin, out hit, in_range, 1))
+        //{
+        //    return hit.position;
+        //}
 
-            //Get distance
-            float distance = Random.Range(0.00f, in_range);
+        //Get direction
+        Vector3 randDirection = new Vector3(Random.Range(-1.00f, 1.00f), 0, Random.Range(-1.00f, 1.00f));
 
-            //Maybe cast a ray in this direction, make sure it legal. If not, pick a new destination
-            return in_origin + (distance * randDirection);
+        //Get distance
+        float distance = Random.Range(0.00f, in_range);
+
+        //Maybe cast a ray in this direction, make sure it legal. If not, pick a new destination
+        return in_origin + (distance * randDirection);
     }
 }

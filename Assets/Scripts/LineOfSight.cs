@@ -40,12 +40,12 @@ public class LineOfSight : Sensor
 
     public bool isTargetSighted()
     {
+        //Debug.Log(this.name);
 
         Vector3 targetsPosition = target.position;
         //Get 2 lines from rotating the los direction of Enemy by half the decection angle
         Vector3 directionLineLeft = (Quaternion.AngleAxis(sightAngle / 2, Vector3.up) * direction * detectionRange);
         Vector3 directionLineRight = (Quaternion.AngleAxis(-sightAngle / 2, Vector3.up) * direction * detectionRange);
-
         Debug.DrawRay(currPosition, directionLineLeft, Color.black);
         Debug.DrawRay(currPosition, directionLineRight, Color.black);
         Debug.DrawRay(currPosition, direction * detectionRange, Color.black);

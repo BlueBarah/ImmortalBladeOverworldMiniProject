@@ -69,7 +69,7 @@ public class Mover : MonoBehaviour
     {
         currDirection = nextPoint - currPosition;
         currDirection = currDirection.normalized;
-        //Debug.Log("Moving towards point:" + nextPoint);
+        currDirection = new Vector3(currDirection.x, 0, currDirection.z);
         MoveTowardsDirection(currDirection);
     }
 
@@ -77,6 +77,7 @@ public class Mover : MonoBehaviour
     {
         //Debug.Log("Moving in direction:" + direction);
         currDirection = direction.normalized;
+        currDirection = new Vector3(currDirection.x, 0, currDirection.z);
         // Animation Conditions
         if (direction != Vector3.zero)
         {
@@ -137,12 +138,6 @@ public class Mover : MonoBehaviour
             transform.Translate(new Vector3(moveDelta.x * Time.deltaTime, moveDelta.y * Time.deltaTime, moveDelta.z * Time.deltaTime));
         }
         
-    }
-
-    protected virtual void Update()
-    {
-
-
     }
 
     //Visualize path

@@ -10,11 +10,13 @@ public class BaseStateMachine : MonoBehaviour
     [field: SerializeField] public BaseState CurrentState { get; set; }
 
     public NPC NPC;
+    public Sensor sensor;
 
     private void Awake()
     {
         CurrentState = _initialState;
         NPC = GetComponent<NPC>();
+        sensor = GetComponent<Sensor>();
 
         CurrentState.OnEnter(this);
     }

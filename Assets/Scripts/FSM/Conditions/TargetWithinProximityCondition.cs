@@ -5,21 +5,21 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "FSM/Conditions/TargetNotCloseEnoughCondition")]
 public class TargetWithinProximityCondition : Condition
 {
-    private ProximitySensor proximitySensor;
+    //private ProximitySensor proximitySensor;
     public override bool CheckCondition(BaseStateMachine machine)
     {
-        if (proximitySensor.targetInProximity())
+        if (((ProximitySensor)machine.sensor).targetInProximity())
             return true;
         else
             return false;
     }
+
     public override void OnEnter(BaseStateMachine machine)
     {
-        proximitySensor = machine.NPC.GetComponent<ProximitySensor>();
+        //proximitySensor = machine.NPC.GetComponent<ProximitySensor>();
     }
 
     public override void OnExit(BaseStateMachine machine)
     {
-        
     }
 }

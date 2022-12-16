@@ -12,7 +12,7 @@ public class RoamAction : Action
     {
         //machine.NPC.nextDest = nextDest;
         //startPos = machine.NPC.startingPosition;
-        machine.NPC.MoveTowardsPoint(machine.NPC.nextDest);
+        machine.NPC.MoveAlongPathToPoint(machine.NPC.nextDest);
     }
 
     public override void OnEnter(BaseStateMachine machine)
