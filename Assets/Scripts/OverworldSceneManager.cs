@@ -45,7 +45,7 @@ public class OverworldSceneManager : MonoBehaviour
         rotationVector = directionalLight.transform.rotation * Vector3.forward;
 
         Vector2 newLightDirection = new Vector2(-rotationVector.x/2, -rotationVector.y/2);
-        spriteMaterial.SetVector("_LightDirection", newLightDirection);
+        spriteMaterial.SetVector("_MyLightDirection", newLightDirection);
     }
 
 
