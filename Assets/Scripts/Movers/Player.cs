@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : oldMover
+public class Player : Mover
 {
 
     //Handles collisions for Jason when he runs into an Enemy
@@ -28,6 +28,6 @@ public class Player : oldMover
     void Update()
     {
         Vector3 direction = getInputDirection();
-        Move(direction);
+        MoveTowardsDirection(direction);
     }
 }

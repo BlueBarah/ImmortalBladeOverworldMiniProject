@@ -407,8 +407,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 2.79, z: 0.5}
-  m_Center: {x: 0.06, y: 1.37, z: 0}
+  m_Size: {x: 0.43493134, y: 2.79, z: 0.5}
+  m_Center: {x: 0.09253433, y: 1.3699999, z: 0}
 --- !u!114 &171145653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,7 +828,7 @@ MonoBehaviour:
   <currDirection>k__BackingField: {x: 0, y: 0, z: 1}
   amIStuck: 0
   myAI: {fileID: 320440051}
-  <target>k__BackingField: {fileID: 1905933404}
+  <target>k__BackingField: {fileID: 0}
   <eyeLineHeight>k__BackingField: 0
 --- !u!54 &320440050
 Rigidbody:
@@ -1836,6 +1836,7 @@ GameObject:
   - component: {fileID: 888455571}
   - component: {fileID: 888455572}
   - component: {fileID: 888455573}
+  - component: {fileID: 888455574}
   m_Layer: 6
   m_Name: GreaterDemon
   m_TagString: Enemy
@@ -1851,12 +1852,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 888455558}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -66.5, y: 0.1, z: -27.7}
+  m_LocalPosition: {x: -66.5, y: 0.26, z: -27.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &888455563
 BoxCollider:
@@ -2051,9 +2052,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   t: {fileID: 888455559}
   target: {fileID: 1905933400}
-  sensorRange: 10
-  <sightAngle>k__BackingField: 20
-  eyeLineHeight: 5
+  sensorRange: 15
+  <sightAngle>k__BackingField: 25
+  eyeLineHeight: 4
 --- !u!114 &888455573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2071,8 +2072,30 @@ MonoBehaviour:
   ySpeed: 0
   currDirection: {x: 0, y: 0, z: 0}
   nextPathPoint: {x: 0, y: 0, z: 0}
-  agent: {fileID: 0}
+  agent: {fileID: 888455574}
   roamRange: 10
+--- !u!195 &888455574
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888455558}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 1.6
+  m_Speed: 3.5
+  m_Acceleration: 60
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 4.78
+  m_BaseOffset: 0.21
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &953263116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2968,7 +2991,7 @@ MonoBehaviour:
   <currDirection>k__BackingField: {x: 0, y: 0, z: 1}
   amIStuck: 0
   myAI: {fileID: 1486524112}
-  <target>k__BackingField: {fileID: 1905933404}
+  <target>k__BackingField: {fileID: 0}
   <eyeLineHeight>k__BackingField: 0
 --- !u!65 &1486524108
 BoxCollider:
@@ -3283,17 +3306,18 @@ GameObject:
   - component: {fileID: 1872768622}
   - component: {fileID: 1872768621}
   - component: {fileID: 1872768620}
-  - component: {fileID: 1872768619}
   - component: {fileID: 1872768618}
   - component: {fileID: 1872768617}
   - component: {fileID: 1872768616}
+  - component: {fileID: 1872768624}
+  - component: {fileID: 1872768623}
   m_Layer: 6
   m_Name: LesserDemon
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1872768616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3425,23 +3449,6 @@ MonoBehaviour:
   _initialState: {fileID: 11400000, guid: 9e31ab5000be65e4e994a8e5690e88be, type: 2}
   <CurrentState>k__BackingField: {fileID: 0}
   NPC: {fileID: 0}
---- !u!114 &1872768619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1872768615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db4c9d5bc40c9074eb150270bedf6be0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <direction>k__BackingField: {x: 0, y: 0, z: 1}
-  walkingSpeed: 7
-  ySpeed: 0
-  currDirection: {x: 0, y: 0, z: 0}
-  nextPathPoint: {x: 0, y: 0, z: 0}
 --- !u!65 &1872768620
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3515,13 +3522,54 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872768615}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -43, y: 0.1, z: 4.6}
+  m_LocalPosition: {x: -38.89, y: 0, z: 4.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &1872768623
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872768615}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.9
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 4
+  m_BaseOffset: -0.0181849
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1872768624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872768615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d61e0b3ed05417e4bb7e92d8d8230604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <direction>k__BackingField: {x: 0, y: 0, z: 1}
+  walkingSpeed: 6
+  ySpeed: 0
+  currDirection: {x: 0, y: 0, z: 0}
+  nextPathPoint: {x: 0, y: 0, z: 0}
+  agent: {fileID: 1872768623}
+  roamRange: 10
 --- !u!1 &1905933397
 GameObject:
   m_ObjectHideFlags: 0
@@ -3608,7 +3656,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1905933401
 Animator:
@@ -3655,10 +3703,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07b3ad3f59e8bf64cb5e387fb6a9dbae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <direction>k__BackingField: {x: 0, y: 0, z: 1}
   walkingSpeed: 9
   ySpeed: 0
-  <currDirection>k__BackingField: {x: 0, y: 0, z: 1}
-  amIStuck: 0
+  currDirection: {x: 0, y: 0, z: 0}
+  nextPathPoint: {x: 0, y: 0, z: 0}
 --- !u!54 &1905933405
 Rigidbody:
   m_ObjectHideFlags: 0

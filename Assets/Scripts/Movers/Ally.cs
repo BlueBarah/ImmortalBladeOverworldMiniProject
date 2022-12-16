@@ -1,9 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Ally : NPC
 {
+
+    ProximitySensor sensor;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        sensor = GetComponent<ProximitySensor>();
+    }
+    protected override void Start()
+    {
+        base.Start();
+        
+    }
+
     override protected void collisionHandling(RaycastHit collision)
     {
         //lastColliderHit = collision;
@@ -14,5 +29,9 @@ public class Ally : NPC
         //    flashColorIndicator("Obstacle");
 
         //}
+    }
+    protected override void Update()
+    {
+        base.Update();
     }
 }

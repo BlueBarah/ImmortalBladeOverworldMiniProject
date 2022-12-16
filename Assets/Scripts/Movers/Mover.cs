@@ -21,8 +21,8 @@ public class Mover : MonoBehaviour
     public Vector3 currPosition
     {
         get { return transform.position; }
+        set { transform.position = value; }
     }
-    LineOfSight los;
 
     public SpriteRenderer sprite { get; private set; }
     public Transform tf { get; private set; }
@@ -39,27 +39,21 @@ public class Mover : MonoBehaviour
     private Vector3 boxPosition;
     private bool amIStuck;
 
-    LineRenderer line;
-
     public Vector3 nextPathPoint;
 
-    // Start is called before the first frame update
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
         tf = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         coll = GetComponent<BoxCollider>();
-        line = GetComponent<LineRenderer>();
-        los = GetComponent<LineOfSight>();
+    }
+
+    // Start is called before the first frame update
+    protected virtual void Start()
+    {
         startingPosition = tf.position;
         direction = tf.forward;
-        //currPosition = startingPosition;
-        //agent.nextPosition = transform.position;
-        //agent.Warp(transform.position);
-
-        path = new NavMeshPath();
-        //agent.CalculatePath(nextDest, path);
         isRunning = false;
     }
     virtual protected void collisionHandling(RaycastHit collision) { }
@@ -71,16 +65,17 @@ public class Mover : MonoBehaviour
         return shouldIFlipToLeft;
     }
 
-    public void MoveTowardsPoint(Vector3 nextPoint)
+    public virtual void MoveTowardsPoint(Vector3 nextPoint)
     {
         currDirection = nextPoint - currPosition;
         currDirection = currDirection.normalized;
+        //Debug.Log("Moving towards point:" + nextPoint);
         MoveTowardsDirection(currDirection);
     }
 
     public void MoveTowardsDirection(Vector3 direction)
     {
-
+        //Debug.Log("Moving in direction:" + direction);
         currDirection = direction.normalized;
         // Animation Conditions
         if (direction != Vector3.zero)
@@ -111,8 +106,7 @@ public class Mover : MonoBehaviour
             flipSprite(true);
         }
 
-        if (los != null)
-            los.direction = direction;
+
 
         RaycastHit boxHit; //Raycast that will hold info about any collisions it touches
         boxExtents = coll.size; //Box should be same size as collider box
@@ -145,71 +139,9 @@ public class Mover : MonoBehaviour
         
     }
 
-    private void Update()
+    protected virtual void Update()
     {
 
-        //Can make the follwing work without agents?
-        // currDirection = nextPathPoint - currPosition;
-
-        //if (HelperFunctions.CheckProximity(currPosition, nextDest, 1f)) //Made it to overall destination
-        //{
-        //    Debug.Log("Checking if im there...");
-        //    nextDest = getNewDest(); //Get a new one
-        //    agent.CalculatePath(nextDest, path); //Calculate the path, put it into an array of vector points
-        //    index = 0; //We start at 0 of the array
-        //}
-
-        //if(index < path.corners.Length) //We still have Points to move to
-        //{
-        //    Debug.Log("Finding point...");
-        //    nextPathPoint = path.corners[index]; //My next intermediate destination is the next point in the array
-        //    MoveTowardsPoint(nextPathPoint); //Move to it
-        //}
-
-        //if (HelperFunctions.CheckProximity(currPosition, nextPathPoint, 1f)) //I got to my intermediate path point
-        //{
-        //    Debug.Log("Got to one point...");
-        //    index++; //Lets move to the next point by incrementing the index
-        //}
-
-
-        //Also works, make sure acceleration is high i guess lol
-        //also they may get stuck everntually cuz they pick a point they cant get to?
-
-        //agent.CalculatePath(nextDest, path);
-        
-        //if (agent.pathPending == false)
-        //{
-        //    switch (path.status)
-        //    {
-        //        case NavMeshPathStatus.PathComplete:
-        //            Debug.Log("Complete");
-
-        //            agent.CalculatePath(nextDest, path);
-        //            break;
-
-        //        case NavMeshPathStatus.PathPartial:
-        //            Debug.Log("Partial");
-        //            nextDest = getNewRandomDest();
-        //            agent.CalculatePath(nextDest, path);
-        //            break;
-
-        //        case NavMeshPathStatus.PathInvalid:
-        //            Debug.Log("Invalid");
-        //            nextDest = getNewRandomDest();
-        //            agent.CalculatePath(nextDest, path);
-        //            break;
-        //    }
-        //}
-
-        //agent.SetDestination(nextDest);
-        //path = agent.path;
-
-
-        //if (HelperFunctions.CheckProximity(currPosition, nextDest, 1f)) //Made it to overall destination
-        //{
-        //    nextDest = getNewRandomDest();
-        //}
 
     }
 
@@ -225,19 +157,7 @@ public class Mover : MonoBehaviour
             true);
 
         if (!Application.isPlaying) return;
-        //if (!agent.isStopped)
-        //{
-        //    Gizmos.color = Color.red;
-        //    for (int i = 0; i < path.corners.Length - 1; i++)
-        //    {
-        //        Vector3 s = path.corners[i];
-        //        Vector3 e = path.corners[i + 1];
-        //        Gizmos.DrawLine(s, e);
-        //    }
-        //}
 
-        //Gizmos.color = Color.blue;
-        //Gizmos.DrawLine(currPosition, nextDest);
 
     }
 
