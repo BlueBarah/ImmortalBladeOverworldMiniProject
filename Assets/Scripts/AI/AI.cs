@@ -9,12 +9,12 @@ using UnityEngine;
 [System.Serializable]
 public abstract class AI : MonoBehaviour
 {
-
     [field: SerializeField] public int nextState_WaitChance { get; set; } = 50;
     [field: SerializeField] public int nextState_MoveToDestChance { get; set; } = 50;
     [field: SerializeField] public int waitState_FlipChance { get; set; } = 50;
     [field: SerializeField] public float roamRange { get; set; } = 10;
     public State currentState { get; set; }
+    [field: SerializeField] public float targetRange { get; set; } //Range the NPC will follow/chase a target
 
     protected Vector3 currPosition
     {
@@ -32,15 +32,15 @@ public abstract class AI : MonoBehaviour
     }
     protected Vector3 currDirection
     {
-        get { return myNPC.direction; }
-        set { myNPC.direction = value; }
+        get { return myNPC.currDirection; }
+        set { myNPC.currDirection = value; }
     }
-    protected Mover currTarget
+    protected oldMover currTarget
     {
         get { return myNPC.target; }
     }
 
-    [SerializeField] protected NPC myNPC; //The NPC this AI controls
+    [SerializeField] protected oldNPC myNPC; //The NPC this AI controls
     private Vector3 foundPath = Vector3.zero;
 
     public enum State
@@ -50,7 +50,7 @@ public abstract class AI : MonoBehaviour
 
     protected virtual void Start()
     {
-        myNPC = this.GetComponent<NPC>();
+        myNPC = this.GetComponent<oldNPC>();
     }
 
     public abstract void SetCurrentState(State newState);

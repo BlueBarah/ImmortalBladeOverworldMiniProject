@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d514b3b6ea5cb4f4489af9b5831b59d0, type: 3}
+  m_Name: TransitionRoamToWaitCompleteCoinFlip
+  m_EditorClassIdentifier: 
+  Conditions:
+  - {fileID: 11400000, guid: 9c0d4a31023f2694ab98ecaa22b48195, type: 2}
+  TrueState: {fileID: 11400000, guid: 3edbb320ecf5e1449a03a86db319f76b, type: 2}
+  FalseState: {fileID: 11400000, guid: 9e31ab5000be65e4e994a8e5690e88be, type: 2}
+  finalCondition: {fileID: 11400000, guid: b2ff91794b5bcb946a73bc574e78c019, type: 2}

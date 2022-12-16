@@ -1,58 +1,148 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-[System.Serializable]
 public class NPC : Mover
 {
-    [SerializeField] public AI myAI; //Every NPC will need some sort of AI (will vary between different types of NPC)
-    [field: SerializeField] public virtual Mover target { get; protected set; }
-    [SerializeField] public virtual Vector3 targetPosition
+
+    //NPCs, unlike the PC, all need nav agents in order to navigate environments
+    //This class handles movement specific to NPCs
+    public NavMeshAgent agent;
+    public NavMeshPath currPath;
+    [SerializeField] public float roamRange = 10;
+
+
+    private int index;
+
+    protected override void Awake()
     {
-        get { return target.currentPosition; }
+        base.Awake();
+        //nextDest = getNewRandomDest();
+        agent = GetComponent<NavMeshAgent>();
+        startingPosition = transform.position;
+        currPosition = startingPosition;
+        //agent.nextPosition = transform.position;
+
+        currPath = new NavMeshPath();
+        nextDest = currPosition;
+        //agent.CalculatePath(nextDest, currPath);
+
+    }
+    override protected void collisionHandling(RaycastHit collision)
+    {
+        //lastColliderHit = collision;
+
+        ////I hit a thing
+        //if (lastColliderHit.collider.CompareTag("Obstacle"))
+        //{
+        //    flashColorIndicator("Obstacle");
+
+        //}
     }
 
-    public Vector3 nextPosition { get; set; }
-    public RaycastHit lastColliderHit { get; protected set; }
-
-    [field: SerializeField] public float eyeLineHeight { get; set; }
-
-    // Start is called before the first frame update
-    protected virtual void Start()
+    public Vector3 getNewRandomDest()
     {
-        nextPosition = startingPosition;
-        myAI = this.GetComponent<AI>();
-        eyeLineHeight = (coll.size.y)/2;
-    }
-    //Just a visual indicator to show certain behaviors are working
-    public void flashColorIndicator(string indicatorString)
-    {
-        switch (indicatorString)
+        Vector3 possibleDest = HelperFunctions.GetRandomPositionInRange(startingPosition, roamRange);
+
+        /*
+        int walkableMask = 1 << NavMesh.GetAreaFromName("walkable");
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(startingPosition, out hit, roamRange, walkableMask))
         {
-            case "Obstacle":
-                // Turn Blue as visual indicator
-                sprite.color = Color.blue;
-                break;
-            case "Player":
-                // Turn red as visual indicator
-                sprite.color = Color.red;
-                break;
-            case "Following":
-                //Turn yellow when Enemy chasing
-                sprite.color = Color.yellow;
-                break;
-            case "Moving":
-                sprite.color = Color.green;
-                break;
-            case "Waiting":
-                sprite.color = Color.white;
-                break;
+            possibleDest = hit.position;
         }
+        Debug.Log("Possible Dest = " + possibleDest);
+        */
+
+        if (CanReachPosition(possibleDest))
+        {
+            nextDest = possibleDest;
+            return possibleDest;
+        }
+        else
+            return getNewRandomDest();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool CanReachPosition(Vector3 position)
     {
-        myAI.calculateAI();
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(position, path);
+        return path.status == NavMeshPathStatus.PathComplete;
     }
+
+    public void MoveAlongPathToPoint(Vector3 position)
+    {
+        //agent.CalculatePath(position, currPath);
+        //agent.SetDestination(position);
+        //return;
+        //if (HelperFunctions.CheckProximity(currPosition, position, 1f)) //Made it to overall destination
+        //{
+        //    Debug.Log("Checking if im there...");
+
+        //    //nextDest = getNewDest(); //Get a new one
+        //    //agent.CalculatePath(nextDest, path); //Calculate the path, put it into an array of vector points
+        //    //index = 0; //We start at 0 of the array
+
+        //}
+        //else
+        //{
+        agent.CalculatePath(position, currPath); //Calculate the path, put it into an array of vector points
+        //nextPathPoint = currPath.corners[1]; //My next intermediate destination is the next point in the array
+        //currDirection = (nextPathPoint - currPosition).normalized;
+        //currDirection.y = 0;
+
+        //Debug.Log("position is:" + position);
+        //Debug.Log("is path null?? " + currPath == null);
+        if (currPath.corners.Length > 1)
+        {
+            nextPathPoint = currPath.corners[1]; //My next intermediate destination is the next point in the array
+            currDirection = (nextPathPoint - currPosition).normalized;
+            currDirection.y = 0;
+            MoveTowardsPoint(nextPathPoint); //Move to it
+            //agent.SetDestination(nextPathPoint);
+        }
+        else
+            MoveTowardsPoint(position);
+        //}
+
+        //agent.CalculatePath(position, currPath); //Calculate the path, put it into an array of vector points
+
+        //if (index < currPath.corners.Length) //We still have Points to move to
+        //{
+        //    Debug.Log("Finding a point on path...");
+        //    nextPathPoint = currPath.corners[index]; //My next intermediate destination is the next point in the array
+        //    MoveTowardsPoint(nextPathPoint); //Move to it
+        //}
+
+        //if (HelperFunctions.CheckProximity(currPosition, nextPathPoint, 1f)) //I got to my intermediate path point
+        //{
+        //    Debug.Log("Got to one point...");
+        //    index++; //Lets move to the next point by incrementing the index
+        //}
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!Application.isPlaying) return;
+        if (currPath != null)
+        {
+            Gizmos.color = Color.red;
+            for (int i = 0; i < currPath.corners.Length - 1; i++)
+            {
+                Vector3 s = currPath.corners[i];
+                Vector3 e = currPath.corners[i + 1];
+                Gizmos.DrawLine(s, e);
+            }
+        }
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(currPosition, nextDest);
+    }
+
+
+
+
+
 }

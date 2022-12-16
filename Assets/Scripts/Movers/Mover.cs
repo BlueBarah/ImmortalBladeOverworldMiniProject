@@ -1,55 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-//Basic class for any Object that needs to be able to move around wwithout passing through other objects
-//NPC, Enemy, Player, all inherit from this
 public class Mover : MonoBehaviour
 {
-    [SerializeField] float walkingSpeed = 8; //defualt speed for now
-    //[SerializeField] float runningSpeed = 8; 
-    [SerializeField] float ySpeed; //usually 0, could be useful for flying enemies later tho
-    [SerializeField] float followRange;
+    [field: SerializeField] public Vector3 direction { get; set; } = Vector3.forward; //direction mover is attempting to move
+    [SerializeField] float walkingSpeed = 6; //defualt speed for now
+    //[SerializeField] float runningSpeed = 8; //defualt speed for now
+    [SerializeField] float ySpeed = 0;
+
+    public Vector3 currDirection;
+
+
+    NavMeshPath path;
+    //int index = 0;
+
+    public Vector3 startingPosition { get; set; }
+    public Vector3 nextDest { get; set; }
+    public Vector3 currPosition
+    {
+        get { return transform.position; }
+        set { transform.position = value; }
+    }
+
     public SpriteRenderer sprite { get; private set; }
     public Transform tf { get; private set; }
 
-    public BoxCollider hitBox { get; private set; }
-
-    public Vector3 startingPosition { get; set; }
-    public Vector3 currentPosition
-    {
-        get { return tf.position; }
-        set { tf.position = value; }
-    }
-    [field: SerializeField] public Vector3 direction { get; set; } = Vector3.forward; //direction mover is attempting to move
-
-    public bool amIStuck;
-
-    //Stuff necessary for Boxcasting in front of mover to check for collisions
     protected BoxCollider coll;
     public float height
     {
         get { return coll.size.y; } //height of box collider
-    } 
+    }
+    private Animator animator;
+    public bool isRunning { get; set; }
+
     private Vector3 boxExtents;
     private Vector3 boxPosition;
+    private bool amIStuck;
 
-    // Animation Conditions
-    private Animator animator;
-    public bool isRunning { get; set;}
+    public Vector3 nextPathPoint;
 
-    // Start is called before the first frame update
-    //Awake called before Start
-    private void Awake()
+    protected virtual void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
         tf = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         coll = GetComponent<BoxCollider>();
+    }
 
+    // Start is called before the first frame update
+    protected virtual void Start()
+    {
         startingPosition = tf.position;
+        direction = tf.forward;
         isRunning = false;
     }
+    virtual protected void collisionHandling(RaycastHit collision) { }
 
     //Flip sprites Left if true, Right if false. Returns what it just flipped to
     public bool flipSprite(bool shouldIFlipToLeft)
@@ -58,43 +65,49 @@ public class Mover : MonoBehaviour
         return shouldIFlipToLeft;
     }
 
-    virtual protected void collisionHandling(RaycastHit collision) { }
-
-    //Move to a position given
-    public void MoveToPoint(Vector3 position)
+    public virtual void MoveTowardsPoint(Vector3 nextPoint)
     {
-
+        currDirection = nextPoint - currPosition;
+        currDirection = currDirection.normalized;
+        currDirection = new Vector3(currDirection.x, 0, currDirection.z);
+        MoveTowardsDirection(currDirection);
     }
 
-    //Move in the direction given, also flips sprite when moving to the left
-    public void Move(Vector3 direction)
+    public void MoveTowardsDirection(Vector3 direction)
     {
+        //Debug.Log("Moving in direction:" + direction);
+        currDirection = direction.normalized;
+        currDirection = new Vector3(currDirection.x, 0, currDirection.z);
         // Animation Conditions
-        if (direction != Vector3.zero) {
+        if (direction != Vector3.zero)
+        {
             isRunning = true;
         }
-        else {
+        else
+        {
             isRunning = false;
         }
 
-        if (animator != null) {
+        if (animator != null)
+        {
             animator.SetBool("isRunning", isRunning);
         }
-        else {
+        else
+        {
             animator = GetComponent<Animator>();
         }
 
-        Vector3 moveDelta = new Vector3(direction.x * walkingSpeed, direction.y * ySpeed, direction.z * walkingSpeed);
-
         //Mover is moving to right, unflip sprite
-        if(direction.x > 0)
+        if (direction.x > 0)
         {
             flipSprite(false);
         }
-        else if(direction.x < 0) // Moving to left, flip sprite
+        else if (direction.x < 0) // Moving to left, flip sprite
         {
             flipSprite(true);
         }
+
+
 
         RaycastHit boxHit; //Raycast that will hold info about any collisions it touches
         boxExtents = coll.size; //Box should be same size as collider box
@@ -106,38 +119,43 @@ public class Mover : MonoBehaviour
         amIStuck = Physics.BoxCast(
             boxPosition,
             boxExtents / 2,
-            this.direction,
+            currDirection,
             out boxHit,
             transform.rotation,
-            this.direction.magnitude/2,
+            currDirection.magnitude / 3,
             (1 << 6) | (1 << 7) | (1 << 8)); //(1 << #) indicates ray should look for and detect that layer #, (i.e. currently detecting layers 6, 7, 8)
 
         //Somethings in my way, need to go figure out what it is (What I do can be dependent on what I am)
         if (amIStuck)
         {
-            //STUCK
-            //Debug.Log("HALP IM STUCK");
+            //agent.CalculatePath(nextDest, path);
+            //index = 0;
             collisionHandling(boxHit);
         }
         else
-        {
-            //Nothin in my way, I walk
-            transform.Translate(moveDelta.x * Time.deltaTime, moveDelta.y * Time.deltaTime, moveDelta.z * Time.deltaTime);;
+        {//Move
+            Vector3 moveDelta = new Vector3(direction.x * walkingSpeed, direction.y * ySpeed, direction.z * walkingSpeed);
+            transform.Translate(new Vector3(moveDelta.x * Time.deltaTime, moveDelta.y * Time.deltaTime, moveDelta.z * Time.deltaTime));
         }
-
+        
     }
 
-    //ONLY FOR VISUALIZING THE BOXCAST IN SCENEVIEW, NOT NECCESSARY FOR IT TO WORK
+    //Visualize path
     void OnDrawGizmos()
-
     {
         if (!Application.isPlaying) return;
 
+
         DrawBoxLines(boxPosition,
             boxExtents,
-            boxPosition + direction,
+            boxPosition + currDirection,
             true);
+
+        if (!Application.isPlaying) return;
+
+
     }
+
 
     //ONLY FOR VISUALIZING THE BOXCAST IN SCENEVIEW, NOT NECCESSARY FOR IT TO WORK
     protected void DrawBoxLines(Vector3 p1, Vector3 extents, Vector3 p2, bool boxes = false)
@@ -192,4 +210,6 @@ public class Mover : MonoBehaviour
 
     }
 
+        
 }
+

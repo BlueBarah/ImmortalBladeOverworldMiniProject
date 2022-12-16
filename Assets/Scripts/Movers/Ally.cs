@@ -1,26 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Ally : NPC
 {
 
+    ProximitySensor sensor;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        sensor = GetComponent<ProximitySensor>();
+    }
+    protected override void Start()
+    {
+        base.Start();
+        
+    }
+
     override protected void collisionHandling(RaycastHit collision)
     {
-        lastColliderHit = collision;
+        //lastColliderHit = collision;
 
-        //I hit a thing
-        if (lastColliderHit.collider.CompareTag("Obstacle"))
-        {
-            flashColorIndicator("Obstacle");
+        ////I hit a thing
+        //if (lastColliderHit.collider.CompareTag("Obstacle"))
+        //{
+        //    flashColorIndicator("Obstacle");
 
-            //nextPosition = HelperFunctions.GetRandomPositionInRange(currentPosition, myEnemyAI.roamRange); //Better go somewhere else
-        }
-        else if (lastColliderHit.collider.CompareTag("Player"))
-        {
-            flashColorIndicator("Player");
-            //Debug.Log("BATTLE COMMENCE"); //Better get Jason
-        }
-
+        //}
     }
 }
