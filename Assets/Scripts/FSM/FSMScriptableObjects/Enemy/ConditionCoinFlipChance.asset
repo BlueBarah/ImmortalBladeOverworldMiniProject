@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1858991c6c94b2441a7d40f7be1780ec, type: 3}
   m_Name: ConditionCoinFlipChance
   m_EditorClassIdentifier: 
-  chanceToTransition: 0
+  chanceToTransition: 50
