@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 82e1116c83564174babb4603d252f874, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -134,6 +134,7 @@ MonoBehaviour:
   _initialState: {fileID: 11400000, guid: 31cd988f925059a45b9c5ee44e861704, type: 2}
   <CurrentState>k__BackingField: {fileID: 0}
   NPC: {fileID: 0}
+  sensor: {fileID: 0}
 --- !u!114 &5478167993611297660
 MonoBehaviour:
   m_ObjectHideFlags: 0
