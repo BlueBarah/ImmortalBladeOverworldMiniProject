@@ -6,6 +6,11 @@ using UnityEngine.AI;
 public class Enemy : NPC
 {
     public LineOfSight los;
+    [SerializeField] float fightRange = 5f;
+    // Event Handler Variables
+    private bool isPlayerInFightRangeFlag = false; // Only fire the event if the flag changes
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -17,8 +22,19 @@ public class Enemy : NPC
 
     }
 
+    private bool CheckFightRange()
+    {
+        return (los.isTargetSighted() || HelperFunctions.CheckProximity(currPosition, los.target.position, fightRange));
+    }
+
     void Update()
     {
+        if (CheckFightRange() != isPlayerInFightRangeFlag)
+        {
+            isPlayerInFightRangeFlag = CheckFightRange();
+            HelperFunctions.FirePlayerInRangeEvent(this, isPlayerInFightRangeFlag, gameObject.name);
+        }
+
         los.direction = currDirection;
 
     }
