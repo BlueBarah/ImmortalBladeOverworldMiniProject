@@ -161,6 +161,9 @@
         },
         {
             "m_Id": "46c18be589df43ed8ba45b6e4f27c2ac"
+        },
+        {
+            "m_Id": "febea609d3ce47faa91c039e8f992821"
         }
     ],
     "m_GroupDatas": [],
@@ -770,6 +773,9 @@
             },
             {
                 "m_Id": "1553c10fcd18400e83bbaf564c4aa628"
+            },
+            {
+                "m_Id": "febea609d3ce47faa91c039e8f992821"
             }
         ]
     },
@@ -789,6 +795,9 @@
     "m_ActiveTargets": [
         {
             "m_Id": "2af00490f85a48dca4491d7da2cc849a"
+        },
+        {
+            "m_Id": "b38aa373f77c436299dd1fd8ed88c94f"
         }
     ]
 }
@@ -2013,7 +2022,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector2MaterialSlot",
     "m_ObjectId": "3afb2bc222ca450e8a8588d1d35b149f",
     "m_Id": 0,
-    "m_DisplayName": "LightDirection",
+    "m_DisplayName": "MyLightDirection",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
@@ -2414,10 +2423,10 @@
     "m_Guid": {
         "m_GuidSerialized": "cc10fea5-985b-4831-878c-9c69ee49f27a"
     },
-    "m_Name": "LightDirection",
+    "m_Name": "MyLightDirection",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "LightDirection",
-    "m_DefaultReferenceName": "_LightDirection",
+    "m_RefNameGeneratedByDisplayName": "MyLightDirection",
+    "m_DefaultReferenceName": "_MyLightDirection",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -3085,6 +3094,15 @@
     },
     "m_Labels": [],
     "m_Channel": 0
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalLitSubTarget",
+    "m_ObjectId": "6eef47d6c28e402aad8f75364cc54c51",
+    "m_WorkflowMode": 1,
+    "m_NormalDropOffSpace": 0,
+    "m_ClearCoat": false
 }
 
 {
@@ -4727,6 +4745,26 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalTarget",
+    "m_ObjectId": "b38aa373f77c436299dd1fd8ed88c94f",
+    "m_ActiveSubTarget": {
+        "m_Id": "6eef47d6c28e402aad8f75364cc54c51"
+    },
+    "m_AllowMaterialOverride": false,
+    "m_SurfaceType": 1,
+    "m_ZTestMode": 4,
+    "m_ZWriteControl": 0,
+    "m_AlphaMode": 0,
+    "m_RenderFace": 0,
+    "m_AlphaClip": true,
+    "m_CastShadows": true,
+    "m_ReceiveShadows": true,
+    "m_CustomEditorGUI": "",
+    "m_SupportVFX": false
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
     "m_ObjectId": "b3b353dcb6374ba294230a7f0d79b3c5",
@@ -4891,6 +4929,21 @@
         "y": 0.0,
         "z": 0.0
     },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "c2a421e1d8b34e119b558eab3e0e0049",
+    "m_Id": 0,
+    "m_DisplayName": "Alpha Clip Threshold",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "AlphaClipThreshold",
+    "m_StageCapability": 2,
+    "m_Value": 0.5,
+    "m_DefaultValue": 0.5,
     "m_Labels": []
 }
 
@@ -5642,5 +5695,38 @@
     "m_ShaderOutputName": "Sampler",
     "m_StageCapability": 3,
     "m_BareResource": false
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BlockNode",
+    "m_ObjectId": "febea609d3ce47faa91c039e8f992821",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "SurfaceDescription.AlphaClipThreshold",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 0.0,
+            "y": 0.0,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "c2a421e1d8b34e119b558eab3e0e0049"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_SerializedDescriptor": "SurfaceDescription.AlphaClipThreshold"
 }
 
