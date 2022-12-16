@@ -134,6 +134,7 @@ MonoBehaviour:
   _initialState: {fileID: 11400000, guid: 31cd988f925059a45b9c5ee44e861704, type: 2}
   <CurrentState>k__BackingField: {fileID: 0}
   NPC: {fileID: 0}
+  sensor: {fileID: 0}
 --- !u!114 &5478167993611297660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <direction>k__BackingField: {x: 0, y: 0, z: 1}
-  walkingSpeed: 9
+  walkingSpeed: 12
   ySpeed: 0
   currDirection: {x: 0, y: 0, z: 0}
   nextPathPoint: {x: 0, y: 0, z: 0}

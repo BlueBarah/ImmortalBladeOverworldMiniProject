@@ -23,7 +23,6 @@ public class Mover : MonoBehaviour
         get { return transform.position; }
         set { transform.position = value; }
     }
-
     public SpriteRenderer sprite { get; private set; }
     public Transform tf { get; private set; }
 
@@ -123,7 +122,7 @@ public class Mover : MonoBehaviour
             out boxHit,
             transform.rotation,
             currDirection.magnitude / 3,
-            (1 << 6) | (1 << 7) | (1 << 8)); //(1 << #) indicates ray should look for and detect that layer #, (i.e. currently detecting layers 6, 7, 8)
+            (1 << 6) | (1 << 8)); //(1 << #) indicates ray should look for and detect that layer #, (i.e. currently detecting layers  7, 8 (Obstacle, Player)
 
         //Somethings in my way, need to go figure out what it is (What I do can be dependent on what I am)
         if (amIStuck)
