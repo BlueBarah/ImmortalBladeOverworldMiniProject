@@ -27,7 +27,7 @@ public class Enemy : NPC
         return (los.isTargetSighted() || HelperFunctions.CheckProximity(currPosition, los.target.position, fightRange));
     }
 
-    void Update()
+    protected override void OnUpdate()
     {
         if (CheckFightRange() != isPlayerInFightRangeFlag)
         {

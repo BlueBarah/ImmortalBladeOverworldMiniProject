@@ -39,6 +39,8 @@ public class Mover : MonoBehaviour
     private bool amIStuck;
 
     public Vector3 nextPathPoint;
+    public bool inWater { get; set; }
+    private bool inWaterFlag;
 
     protected virtual void Awake()
     {
@@ -46,6 +48,8 @@ public class Mover : MonoBehaviour
         tf = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         coll = GetComponent<BoxCollider>();
+        inWater = false;
+        inWaterFlag = false;
     }
 
     // Start is called before the first frame update
@@ -55,6 +59,16 @@ public class Mover : MonoBehaviour
         direction = tf.forward;
         isRunning = false;
     }
+    void Update() {
+        if (inWater != inWaterFlag) {
+            inWaterFlag = inWater;
+            string shadowType = (inWater) ? "water" : "shadow";
+            gameObject.transform.Find("Drop Shadow")?.GetComponent<DropShadowHandler>().SetShadowType(shadowType);
+        }
+        // Handle any Unit Specific update behavior
+        OnUpdate();
+    }
+    virtual protected void OnUpdate() {}
     virtual protected void collisionHandling(RaycastHit collision) { }
 
     //Flip sprites Left if true, Right if false. Returns what it just flipped to
