@@ -8,6 +8,7 @@ public class Player : Mover
     //Handles collisions for Jason when he runs into an Enemy
     override protected void collisionHandling(RaycastHit collision)
     {
+        Debug.Log(collision.collider.name);
         if (collision.collider.tag == "Enemy")
         {
             HelperFunctions.FireBattleStartEvent(this, gameObject.name);
