@@ -23,7 +23,6 @@ public class Mover : MonoBehaviour
         get { return transform.position; }
         set { transform.position = value; }
     }
-
     public SpriteRenderer sprite { get; private set; }
     public Transform tf { get; private set; }
 
@@ -40,6 +39,8 @@ public class Mover : MonoBehaviour
     private bool amIStuck;
 
     public Vector3 nextPathPoint;
+    public bool inWater { get; set; }
+    private bool inWaterFlag;
 
     protected virtual void Awake()
     {
@@ -47,6 +48,8 @@ public class Mover : MonoBehaviour
         tf = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         coll = GetComponent<BoxCollider>();
+        inWater = false;
+        inWaterFlag = false;
     }
 
     // Start is called before the first frame update
@@ -56,6 +59,16 @@ public class Mover : MonoBehaviour
         direction = tf.forward;
         isRunning = false;
     }
+    void Update() {
+        if (inWater != inWaterFlag) {
+            inWaterFlag = inWater;
+            string shadowType = (inWater) ? "water" : "shadow";
+            gameObject.transform.Find("Drop Shadow")?.GetComponent<DropShadowHandler>().SetShadowType(shadowType);
+        }
+        // Handle any Unit Specific update behavior
+        OnUpdate();
+    }
+    virtual protected void OnUpdate() {}
     virtual protected void collisionHandling(RaycastHit collision) { }
 
     //Flip sprites Left if true, Right if false. Returns what it just flipped to
@@ -123,7 +136,7 @@ public class Mover : MonoBehaviour
             out boxHit,
             transform.rotation,
             currDirection.magnitude / 3,
-            (1 << 6) | (1 << 7) | (1 << 8)); //(1 << #) indicates ray should look for and detect that layer #, (i.e. currently detecting layers 6, 7, 8)
+            (1 << 6) | (1 << 8)); //(1 << #) indicates ray should look for and detect that layer #, (i.e. currently detecting layers  7, 8 (Obstacle, Player)
 
         //Somethings in my way, need to go figure out what it is (What I do can be dependent on what I am)
         if (amIStuck)

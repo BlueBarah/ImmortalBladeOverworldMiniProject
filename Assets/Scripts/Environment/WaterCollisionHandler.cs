@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class WaterCollisionHandler : MonoBehaviour
 {
-    void OnTriggerEnter(Collider collision) {
-        Debug.Log(collision.name + " Enter");
+    void OnTriggerEnter(Collider col) {
+        if (col.gameObject.TryGetComponent<Mover>(out Mover out_mover)) {
+            out_mover.inWater = true;
+        }
     }
 
     void OnTriggerExit(Collider col) {
-        Debug.Log(col.name + " Exit");
+        if (col.gameObject.TryGetComponent<Mover>(out Mover out_mover)) {
+            out_mover.inWater = false;
+        }
     }
 }
