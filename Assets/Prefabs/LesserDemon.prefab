@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <direction>k__BackingField: {x: 0, y: 0, z: 1}
-  walkingSpeed: 6
+  walkingSpeed: 9
   ySpeed: 0
   currDirection: {x: 0, y: 0, z: 0}
   nextPathPoint: {x: 0, y: 0, z: 0}
