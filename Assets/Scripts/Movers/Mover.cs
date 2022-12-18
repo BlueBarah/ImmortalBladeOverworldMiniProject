@@ -120,8 +120,6 @@ public class Mover : MonoBehaviour
             flipSprite(true);
         }
 
-
-
         RaycastHit boxHit; //Raycast that will hold info about any collisions it touches
         boxExtents = coll.size; //Box should be same size as collider box
         Vector3 heightVector = new Vector3(0, height, 0); //vector3 representation of my height (based on collider box height)
@@ -136,7 +134,7 @@ public class Mover : MonoBehaviour
             out boxHit,
             transform.rotation,
             currDirection.magnitude / 3,
-            (1 << 6) | (1 << 8)); //(1 << #) indicates ray should look for and detect that layer #, (i.e. currently detecting layers  7, 8 (Obstacle, Player)
+            (1 << 7) | (1 << 8)); //(1 << #) indicates ray should look for and detect that layer #, (i.e. currently detecting layers  7, 8 (Obstacle, Player)
 
         //Somethings in my way, need to go figure out what it is (What I do can be dependent on what I am)
         if (amIStuck)
