@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "FSM/Conditions/TargetNotDetectedCondition")]
-public class TargetNotDetectedCondition : Condition
+[CreateAssetMenu(menuName = "FSM/Conditions/TargetInConeIsVisibleCondition")]
+public class TargetInConeIsVisibleCondition : Condition
 {
     //private LineOfSight los;
+
     public override bool CheckCondition(BaseStateMachine machine)
     {
-        Debug.Log("Checking if target isnt sighted...");
-        if (((LineOfSight)(machine.sensor)).isTargetSighted())
-        {
-            return false;
-        }
-        else
+        if (((LineOfSight)(machine.sensor)).isTargetInCone())
             return true;
+        else
+            return false;
     }
 
     public override void OnEnter(BaseStateMachine machine)
@@ -24,7 +22,6 @@ public class TargetNotDetectedCondition : Condition
 
     public override void OnExit(BaseStateMachine machine)
     {
-        
+
     }
 }
-

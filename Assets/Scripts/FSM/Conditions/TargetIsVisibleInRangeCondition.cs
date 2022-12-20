@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "FSM/Conditions/TargetDetectedCondition")]
-public class TargetDetectedCondition : Condition
+[CreateAssetMenu(menuName = "FSM/Conditions/TargetIsVisibleInRangeCondition")]
+public class TargetIsVisibleInRangeCondition : Condition
 {
-    //private LineOfSight los;
-
     public override bool CheckCondition(BaseStateMachine machine)
     {
-        if (((LineOfSight)(machine.sensor)).isTargetSighted())
+        LineOfSight los = machine.GetComponent<LineOfSight>();
+
+        if (los.isTargetVisible() && los.isTargetInProximity())
             return true;
         else
             return false;
@@ -17,7 +17,7 @@ public class TargetDetectedCondition : Condition
 
     public override void OnEnter(BaseStateMachine machine)
     {
-        //los = machine.GetComponent<LineOfSight>();
+
     }
 
     public override void OnExit(BaseStateMachine machine)

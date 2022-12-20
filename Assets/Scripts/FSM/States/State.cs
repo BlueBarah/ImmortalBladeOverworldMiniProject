@@ -30,13 +30,24 @@ public class State : BaseState
         base.OnExit(machine);
     }
 
+    //For actions with translation movements and deciding betweem conditions in transitions
     public override void Execute(BaseStateMachine machine)
     {
         foreach (Action action in Actions)
             action.Execute(machine);
 
         foreach (Transition transition in Transitions)
-            transition.Execute(machine);
+            transition.Decide(machine);
+    }
+
+    //For actions with rigidbody/built in physics movements only
+    public override void FixedExecute(BaseStateMachine machine)
+    {
+        foreach (Action action in Actions)
+            action.FixedExecute(machine);
+
+        foreach (Transition transition in Transitions)
+            transition.FixedDecide(machine);
     }
 }
 

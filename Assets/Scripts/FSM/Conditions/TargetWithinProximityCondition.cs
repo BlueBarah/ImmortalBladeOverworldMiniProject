@@ -8,7 +8,7 @@ public class TargetWithinProximityCondition : Condition
     //private ProximitySensor proximitySensor;
     public override bool CheckCondition(BaseStateMachine machine)
     {
-        if (((ProximitySensor)machine.sensor).targetInProximity())
+        if (((ProximitySensor)machine.sensor).isTargetInProximity())
             return true;
         else
             return false;

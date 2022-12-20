@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Component that can be added to an object that gives line of sight
-public class LineOfSight : Sensor
+public class LineOfSight : ProximitySensor
 {
     [SerializeField]
     float detectionRange
@@ -38,7 +38,32 @@ public class LineOfSight : Sensor
         }
     }
 
-    public bool isTargetSighted()
+    public bool isTargetVisible()
+    {
+        Vector3 targetsPosition = target.position;
+        //Now need to check if there is something inbetween Enemy and Jason
+        //Cast just one ray from enemies "eye level" height to Jason's center, if it hits Jason, hes in sight
+        RaycastHit sightHit;
+        Vector3 shiftUp = new Vector3(0, eyeLineHeight, 0);
+        Vector3 targetShiftUp = new Vector3(0, 4 / 2, 0);
+        Ray sightRay = new Ray(currPosition + shiftUp, targetsPosition - (currPosition + shiftUp));
+        if (Physics.Raycast(sightRay, out sightHit, detectionRange, (1 << 7) | (1 << 8)))
+        {
+            Debug.DrawRay(currPosition + shiftUp, (targetsPosition + targetShiftUp) - (currPosition + shiftUp), Color.red);
+            if (sightHit.collider.tag == "Player")
+            {
+                return true;
+            }
+            else
+            {
+                //Ray hit something on the way to Jason, he must be behind something
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public bool isTargetInCone()
     {
         //Debug.Log(this.name);
 
@@ -56,29 +81,9 @@ public class LineOfSight : Sensor
         if (Vector3.Angle(direction, target.position - currPosition) < sightAngle &&
           HelperFunctions.CheckProximity(currPosition, targetsPosition, detectionRange))
         {
-            //Now need to check if there is something inbetween Enemy and Jason
-            //Cast just one ray from enemies "eye level" height to Jason's center, if it hits Jason, hes in sight
-            RaycastHit sightHit;
-            Vector3 shiftUp = new Vector3(0, eyeLineHeight, 0);
-            Vector3 targetShiftUp = new Vector3(0, 4 / 2, 0);
-            Ray sightRay = new Ray(currPosition + shiftUp, targetsPosition - (currPosition + shiftUp));
-            if (Physics.Raycast(sightRay, out sightHit, detectionRange, (1 << 7) | (1 << 8)))
-            {
-                Debug.DrawRay(currPosition + shiftUp, (targetsPosition + targetShiftUp) - (currPosition + shiftUp), Color.red);
-                if (sightHit.collider.tag == "Player")
-                {
-                    return true;
-                }
-                else
-                {
-                    //Ray hit something on the way to Jason, he must be behind something
-                    return false;
-                }
-            }
-
-            return true;
-        }
-        return false;
+            return isTargetVisible();
+        }else
+            return false;
 
     }
 

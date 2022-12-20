@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class Ally : NPC
 {
-
     ProximitySensor sensor;
+    Vector3 targetPos;
 
     protected override void Awake()
     {
@@ -17,6 +17,24 @@ public class Ally : NPC
     {
         base.Start();
         
+    }
+
+    protected void followJason()
+    {
+        MoveTowardsPointRB(targetPos);
+    }
+    protected override void OnUpdate()
+    {
+        //if (!HelperFunctions.CheckProximity(currPosition, sensor.target.position, 4))
+        //    targetPos = sensor.target.position;
+    }
+
+    protected override void OnFixedUpdate()
+    {
+        //Debug.Log(this.name + " speed is " + walkingSpeed);
+        //Debug.Log(this.name + " velocity is " + rb.velocity);
+        //followJason();
+        //MoveInDirectionRB(Vector3.left);
     }
 
     override protected void collisionHandling(RaycastHit collision)

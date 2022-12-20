@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TransitionContinueStopChase
   m_EditorClassIdentifier: 
   Conditions:
-  - {fileID: 11400000, guid: 8fefa599887e52240adcb21e7a969c4e, type: 2}
+  - {fileID: 11400000, guid: 52b197f0186876e418a6906484c394bd, type: 2}
   TrueState: {fileID: 11400000, guid: a6ca6ddee3d233b4f958862d7775c501, type: 2}
   FalseState: {fileID: 11400000, guid: 3edbb320ecf5e1449a03a86db319f76b, type: 2}

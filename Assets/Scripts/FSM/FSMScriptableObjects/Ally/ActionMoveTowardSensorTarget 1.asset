@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc3833198e2129a45815fb516a58c80a, type: 3}
-  m_Name: ConditionTargetDetected
+  m_Script: {fileID: 11500000, guid: bee95b3e82567364e90383ac0a608621, type: 3}
+  m_Name: ActionMoveTowardSensorTarget 1
   m_EditorClassIdentifier: 

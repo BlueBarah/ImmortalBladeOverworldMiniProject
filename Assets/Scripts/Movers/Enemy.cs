@@ -24,7 +24,7 @@ public class Enemy : NPC
 
     private bool CheckFightRange()
     {
-        return (los.isTargetSighted() || HelperFunctions.CheckProximity(currPosition, los.target.position, fightRange));
+        return (los.isTargetInCone() || HelperFunctions.CheckProximity(currPosition, los.target.position, fightRange));
     }
 
     protected override void OnUpdate()
@@ -36,6 +36,5 @@ public class Enemy : NPC
         }
 
         los.direction = currDirection;
-
     }
 }

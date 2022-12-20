@@ -17,7 +17,13 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target != null) {
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (target != null)
+        {
             Vector3 targetPos = target.position + offset;
             transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
         }

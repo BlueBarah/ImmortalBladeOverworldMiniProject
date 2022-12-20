@@ -8,7 +8,7 @@ public class OrderedTransition : Transition
 
     public Condition finalCondition;
 
-    public override void Execute(BaseStateMachine machine)
+    public override void Decide(BaseStateMachine machine)
     {
         if (AllConditionsTrue(machine))
         {

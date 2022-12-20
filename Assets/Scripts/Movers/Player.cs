@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : Mover
 {
+    Vector3 inputDirection;
 
     //Handles collisions for Jason when he runs into an Enemy
     override protected void collisionHandling(RaycastHit collision)
@@ -24,10 +25,17 @@ public class Player : Mover
         
         return direction.normalized;
     }
+
     // Update is called once per frame
     protected override void OnUpdate()
     {
-        Vector3 direction = getInputDirection();
-        MoveTowardsDirection(direction);
+        inputDirection = getInputDirection();
+        currDirection = inputDirection;
+        //TranslateTowardsDirection(direction);
+    }
+
+    protected override void OnFixedUpdate()
+    {
+        MoveInDirectionRB(inputDirection);
     }
 }

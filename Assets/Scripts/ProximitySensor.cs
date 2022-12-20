@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProximitySensor : Sensor
 {
-    public bool targetInProximity()
+    public bool isTargetInProximity()
     {
         if (HelperFunctions.CheckProximity(t.position, target.position, sensorRange))
         {
