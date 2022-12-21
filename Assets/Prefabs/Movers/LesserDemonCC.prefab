@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4256935525222350610}
   - component: {fileID: 4256935525222350609}
   - component: {fileID: 4256935525222350608}
-  - component: {fileID: 4256935525222350614}
+  - component: {fileID: 8822522123878262148}
   - component: {fileID: 4256935525222350604}
   - component: {fileID: 5683678439832594471}
-  - component: {fileID: 8822522123878262148}
+  - component: {fileID: 4256935525222350614}
   m_Layer: 6
   m_Name: LesserDemonCC
   m_TagString: Enemy
@@ -102,22 +102,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.4, y: 3.3, z: 0.2}
   m_Center: {x: 0, y: 1.65, z: 0}
---- !u!114 &4256935525222350614
-MonoBehaviour:
+--- !u!143 &8822522123878262148
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4256935525222350619}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7815a31ad6c490143964be2114fcff5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _initialState: {fileID: 11400000, guid: 9e31ab5000be65e4e994a8e5690e88be, type: 2}
-  <CurrentState>k__BackingField: {fileID: 0}
-  NPC: {fileID: 0}
-  sensor: {fileID: 0}
+  serializedVersion: 2
+  m_Height: 3.57
+  m_Radius: 0.52
+  m_SlopeLimit: 60
+  m_StepOffset: 1
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1.78, z: 0}
 --- !u!114 &4256935525222350604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +135,6 @@ MonoBehaviour:
   maxSpeed: 8
   ySpeed: 0
   acceleration: 0.1
-  deceleration: 0.1
   currentSpeed: 0
   currDirection: {x: 0, y: 0, z: 0}
   controller: {fileID: 8822522123878262148}
@@ -161,28 +162,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace56b639c03e5f4888484c90c98de59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  t: {fileID: 0}
+  t: {fileID: 4256935525222350610}
   target: {fileID: 0}
-  <proximityRange>k__BackingField: 0
-  <losRange>k__BackingField: 10
-  <sightAngle>k__BackingField: 30
-  <eyeHeight>k__BackingField: 0
+  <eyeHeight>k__BackingField: 2.9
   mover: {fileID: 0}
---- !u!143 &8822522123878262148
-CharacterController:
+--- !u!114 &4256935525222350614
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4256935525222350619}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 3.57
-  m_Radius: 0.52
-  m_SlopeLimit: 60
-  m_StepOffset: 1
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.78, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7815a31ad6c490143964be2114fcff5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialState: {fileID: 11400000, guid: 9e31ab5000be65e4e994a8e5690e88be, type: 2}
+  <CurrentState>k__BackingField: {fileID: 0}
+  NPC: {fileID: 0}
+  sensor: {fileID: 0}

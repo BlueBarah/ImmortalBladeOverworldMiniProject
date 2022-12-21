@@ -5,6 +5,10 @@ using UnityEngine.AI;
 
 public class Enemy : NPC
 {
+    //For testing and inpsector purposes:
+    public bool showCone = true;
+    public bool showAwareArea = true;
+
     public LineOfSight los;
 
     [SerializeField] float fightRange = 5f;
@@ -13,7 +17,6 @@ public class Enemy : NPC
     [SerializeField] float sightAngle = 15f; //Angle of sight for enemies sight cone
     [SerializeField] float awarenessRange = 5f; //How far away can Player be from Enemy until Enemy will become aware of Jason without line of sight/cone
                                                 //If player is near enemy, enemy can become aware even without line of sight
-
     // Event Handler Variables
     private bool isPlayerInFightRangeFlag = false; // Only fire the event if the flag changes
 
@@ -27,7 +30,10 @@ public class Enemy : NPC
     {
         base.Start();
 
-        los.eyeHeight = height * (2f / 3f); //Eye height is about 2/3 of total height, adjustable in inspector through Sensor
+        if(los.eyeHeight == 0)
+        {
+            los.eyeHeight = height * (4f / 5f); // defualt Eye height is 4/5ths of total height, adjustable in inspector through Sensor
+        }
     }
 
     private bool CheckFightRange()
@@ -43,7 +49,7 @@ public class Enemy : NPC
             HelperFunctions.FirePlayerInRangeEvent(this, isPlayerInFightRangeFlag, gameObject.name);
         }
 
-        //Update of LOS sensor every frame
+        //Update of LOS sensor every frame, mostly so you can alter it in inpsector from the same place as other vairables in NPC/Mover
         los.direction = currDirection;
         los.sightAngle = sightAngle;
         los.proximityRange = awarenessRange;
@@ -62,7 +68,7 @@ public class Enemy : NPC
 
         if (showAwareArea)
         {
-            los.DrawWireDisk(currPosition, awarenessRange, Color.red);
+            DrawWireDisk(currPosition, awarenessRange, Color.red);
         }
     }
 

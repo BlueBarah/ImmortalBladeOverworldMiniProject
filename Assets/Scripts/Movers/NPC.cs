@@ -8,41 +8,40 @@ public class NPC : Mover
 
     //This class handles movement specific to NPCs, such as moving along a calculated path
 
-    public NavMeshPath currPath; //The current path that NPC is following/attempting to follow. 
     [SerializeField] public float roamRange = 10; //How far away from starting position will NPC roam from if in an action that involves random roaming
 
-    private Vector3 nextPathPoint;
 
+    public NavMeshPath currPath; //The current path that NPC is following/attempting to follow. 
+    public Vector3 startingPosition { get; set; } //Position mover orignally was placed in world
+    public Vector3 nextDest { get; set; } //The next overall destination mover is aiming to move to. 
+    private Vector3 nextPathPoint; //Intermediate destinations along path to get to NextDest
+
+    //For testing and inpsector purposes:
     public bool showRoamArea = true;
     public bool showPath = true;
-    public bool showCone = true;
-    public bool showAwareArea = true;
-
-    //BaseStateMachine machine;
-
 
     protected override void Awake()
     {
         base.Awake();
-        //nextDest = getNewRandomDest();
-        //agent = GetComponent<NavMeshAgent>();
+
         startingPosition = transform.position;
         currPosition = startingPosition;
-        //agent.nextPosition = transform.position;
-
         currPath = new NavMeshPath();
         nextDest = currPosition;
-        //machine = GetComponent<BaseStateMachine>();
-        //agent.CalculatePath(nextDest, currPath);
 
+        //nextDest = getNewRandomDest();
+        //agent = GetComponent<NavMeshAgent>();
+        //agent.nextPosition = transform.position;
+        //agent.CalculatePath(nextDest, currPath);
     }
 
     protected override void OnUpdate()
     {
         base.OnUpdate();
-
+        startingPosition = tf.position;
     }
 
+    //Gets and Sets the NPCs next overall destination point to a random position in range of startingPosition
     public Vector3 getNewRandomDest()
     {
         Vector3 possibleDest = HelperFunctions.GetRandomPositionInRange(startingPosition, roamRange);
@@ -55,7 +54,17 @@ public class NPC : Mover
         else
             return getNewRandomDest(); //Not valid, try the method again
 
+    }
 
+    //Attempts to check if a position is reachable by the NPC
+    //TODO make a better CanReachPosition()
+    public bool CanReachPosition(Vector3 position)
+    {
+        NavMeshPath path = new NavMeshPath();
+        NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), path);
+        return path.status == NavMeshPathStatus.PathComplete; //Position is reachable if the path's status is defined as Complete
+
+        //TODO check whether path.status or SamplePosition() works better
         /* Try this method again if getNewRandomDest() stops workng
         int walkableMask = 1 << NavMesh.GetAreaFromName("walkable");
         NavMeshHit hit;
@@ -65,22 +74,15 @@ public class NPC : Mover
         }
         Debug.Log("Possible Dest = " + possibleDest);
         */
+
     }
 
-    public bool CanReachPosition(Vector3 position)
-    {
-        NavMeshPath path = new NavMeshPath();
-        NavMesh.CalculatePath(currPosition, position, NavMesh.AllAreas, path);
-        return path.status == NavMeshPathStatus.PathComplete;
-    }
-
-    //For travelling along a path to a final destination using CharacterController
+    //For travelling along a path to a final destination using CharacterController and NavMesh
     public void MoveAlongPathToPoint(Vector3 position)
     {
         if (CanReachPosition(position))
         {
-            NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), currPath);
-            //agent.CalculatePath(position, currPath); //Calculate the path, put it into an array of vector points
+            NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), currPath); //Get a hopefully viable path from NavMesh
 
             if (currPath.corners.Length > 1)
             {
@@ -90,15 +92,15 @@ public class NPC : Mover
                 MoveTowardsPoint(nextPathPoint); //Move to it
             }
             else
-                MoveTowardsPoint(position); //Only one point, path is straight
+                MoveTowardsPoint(position); //Only one point, path is straight, go go go
         }
         else
         {
-            //recalculate or something idk
-
+            //TODO make sure NPCs get stuck less often by make some sort of recalculation
         }
     }
 
+    #region Currently Unused Movement Methods
     //Travel along a path of points calculated by nav agent with use of transform.Translate()
     public void TranslateAlongPathToPoint(Vector3 position)
     {
@@ -138,6 +140,7 @@ public class NPC : Mover
 
         }
     }
+    #endregion
 
     //For visualizing the current path of an NPC
     protected void drawPath(NavMeshPath path, Color color)

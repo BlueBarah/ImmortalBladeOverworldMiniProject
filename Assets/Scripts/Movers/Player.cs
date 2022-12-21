@@ -7,12 +7,33 @@ public class Player : Mover
     Vector3 inputDirection;
 
     //Handles collisions for Jason when he runs into an Enemy
-    override protected void collisionHandling(RaycastHit collision)
+    //override protected void collisionHandling(RaycastHit collision)
+    //{
+    //    if (collision.collider.tag == "Enemy")
+    //    {
+    //        HelperFunctions.FireBattleStartEvent(this, gameObject.name);
+    //    }
+    //}
+
+    protected override void Start()
     {
+        isRunning = false;
+    }
+
+    //Using CharacterControllers built in collision detection. 
+    protected override void OnControllerColliderHit(ControllerColliderHit collision)
+    {
+        base.OnControllerColliderHit(collision);
+
         if (collision.collider.tag == "Enemy")
         {
             HelperFunctions.FireBattleStartEvent(this, gameObject.name);
         }
+
+        //if (hit.gameObject.tag != "Ground")
+        //{
+        //    Debug.Log(this.name + "'s CC hit " + hit.gameObject.name);
+        //}
     }
 
     //Grabs and returns inputs
@@ -32,6 +53,13 @@ public class Player : Mover
         inputDirection = getInputDirection();
         currDirection = inputDirection;
 
+        handleAnimationAndSprite();
+        MoveInDirection(inputDirection);
+    }
+
+    //Players running bool is based on direct inputs instead of movement states, needs own handleAnimation()
+    override protected void handleAnimationAndSprite()
+    {
         if (inputDirection != Vector3.zero)
         {
             isRunning = true;
@@ -39,11 +67,8 @@ public class Player : Mover
         else
             isRunning = false;
 
-        MoveInDirection(inputDirection);
+        base.handleAnimationAndSprite();
+
     }
 
-    protected override void OnFixedUpdate()
-    {
-        
-    }
 }

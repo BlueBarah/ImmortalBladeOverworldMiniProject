@@ -5,28 +5,22 @@ using UnityEngine.AI;
 
 public class Mover : MonoBehaviour
 {
-    [SerializeField] public float maxSpeed = 8; //defualt speed for now
+    [SerializeField] public float maxSpeed = 8; //defualt speed Movers will aim to move at
     [SerializeField] float ySpeed = 0;
-    //[SerializeField] public float maxRunningSpeed = 9; //defualt speed for now
-    [SerializeField] protected float acceleration = .1f; //configurable acceleration
-    [SerializeField] protected float deceleration = .2f; //configurable deceleration
+    //[SerializeField] public float maxRunningSpeed = 9; //for later
+    [SerializeField] protected float acceleration = .1f; //configurable acceleration, rate at which Mover gets to normal speed
     [SerializeField] protected float currentSpeed = 0; //the speed the Mover is currently going
 
-    public static float gravity = .4f;
+    public static float gravity = .1f; //idk what this should be yet. Constant y velocity added to CharacterController move vector so that Movers can fall
 
-    public Vector3 currDirection;
-    public Vector3 startingPosition { get; set; }
-    public Vector3 nextDest { get; set; }
-    public Vector3 currPosition
+    public Vector3 currDirection; //Current direction the mover is Moving. For Player, this is more about his inputs
+    public Vector3 currPosition //The current position the Mover is at. Defined by transform
     {
         get { return transform.position; }
         set { transform.position = value; }
     }
-    //public float height
-    //{
-    //    get { return coll.size.y; } //height of box collider
-    //}
     
+    //Component stuff
     protected BoxCollider coll;
     private Animator animator;
     public SpriteRenderer sprite { get; private set; }
@@ -36,15 +30,15 @@ public class Mover : MonoBehaviour
     public CharacterController controller;
     public float height { get { return controller.height; } }
 
+    //Bools, animation and others
     [field: SerializeField] public bool isRunning { get; set; }
-    public bool amIStuck;
     public bool inWater { get; set; }
     private bool inWaterFlag;
 
+    //For boxcasting
     private Vector3 boxExtents;
     private Vector3 boxPosition;
     private Vector3 rayVector;
-
 
     protected virtual void Awake()
     {
@@ -56,16 +50,14 @@ public class Mover : MonoBehaviour
         inWater = false;
         inWaterFlag = false;
         controller = GetComponent<CharacterController>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
 
     }
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
-       // height = controller.height;
-        startingPosition = tf.position;
-        //isRunning = false;
+       
     }
 
     protected void Update()
@@ -87,13 +79,18 @@ public class Mover : MonoBehaviour
     }
 
     virtual protected void OnUpdate() { }
-
     virtual protected void OnFixedUpdate() { }
 
-    virtual protected void collisionHandling(RaycastHit collision) { }
+    //A Collision handling method specific to Movers using CharacterController
+    protected virtual void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.tag != "Ground")
+        {
+            
+        }
+    }
 
     //Flip sprites Left if true, Right if false. Returns what it just flipped to
-    //
     public bool flipSprite(bool shouldIFlipToLeft)
     {
         sprite.flipX = shouldIFlipToLeft;
@@ -108,7 +105,8 @@ public class Mover : MonoBehaviour
         currDirection.Normalize();
         MoveInDirection(currDirection);
     }
-    //Takes in direction (makes sure its normalized),
+
+    //Takes in direction (makess sure its normalized),
     //calls method to handle any animation/sprite changes,
     //gets a movement vector based on the desired direction, speed, and gravity
     public void MoveInDirection(Vector3 direction)
@@ -120,6 +118,8 @@ public class Mover : MonoBehaviour
         controller.Move(moveVector);
     }
 
+    //Handles changing speed of a Mover. If they're stopped and starting to move, they should speed up to their ideal speed.
+    //If not moving, set speed back to 0.
     protected void handleSpeed()
     {
         if(isRunning)
@@ -140,9 +140,10 @@ public class Mover : MonoBehaviour
     }
 
     //Handles animation and sprite, flips when moving left/right, plays running animation if it exists and mover is running
-    protected void handleAnimationAndSprite()
+    protected virtual void handleAnimationAndSprite()
     {
-
+        //Animation bools can actally be set directly in states/actions now. If NPC is doing a moving action, it sets its bool as isRunning
+        //Players animations are handled in Player as they dont have FSM
         //// Animation Conditions
         //if (currDirection != Vector3.zero)
         //{
@@ -173,6 +174,10 @@ public class Mover : MonoBehaviour
         }
     }
 
+    #region Currently Unused Movement Methods:
+
+    virtual protected void collisionHandling(RaycastHit collision) { }
+
     //Takes a point to Move to, uses MoveInDirectionRB() to move a rigidbody to that point
     public virtual void MoveTowardsPointRB(Vector3 nextPoint)
     {
@@ -194,6 +199,7 @@ public class Mover : MonoBehaviour
     //Takes in direction, moves a rigid body in that direction using rb.movePosition()
     public void MoveInDirectionRB(Vector3 direction)
     {
+        Debug.Log(this.name + " is moving with a RB ");
         currDirection = direction.normalized;
         handleAnimationAndSprite();
 
@@ -227,26 +233,28 @@ public class Mover : MonoBehaviour
     //Takes a direction in direction, uses transform.Translate() to move to that point
     public void TranslateTowardsDirection(Vector3 direction)
     {
+        Debug.Log(this.name + " is translating ");
         currDirection = direction.normalized;
         handleAnimationAndSprite();
         CheckBoxCastCollision();
 
         //Somethings in my way, need to go figure out what it is (What I do can be dependent on what I am)
-        if (amIStuck)
-        {
+        //if (amIStuck)
+        //{
 
-        }
-        else
-        {//Move
+        //}
+        //else
+        //{//Move
             Vector3 moveDelta = new Vector3(direction.x * maxSpeed * Time.deltaTime, direction.y * ySpeed * Time.deltaTime, direction.z * maxSpeed * Time.deltaTime);
             Debug.Log(this.name + " is using translate in direction");
             transform.Translate(moveDelta);
-        }
+        //}
     }
 
     //For boxcasting to check for things Mover is about to hit.
     protected RaycastHit CheckBoxCastCollision()
     {
+        Debug.Log(this.name + " is boxcasting ");
         RaycastHit boxHit; //Raycast that will hold info about any collisions it touches
         boxExtents = coll.size; //Box should be same size as collider box
         Vector3 heightVector = new Vector3(0, height, 0); //vector3 representation of my height (based on collider box height)
@@ -254,7 +262,8 @@ public class Mover : MonoBehaviour
         rayVector = currDirection / 3;
 
         //A box cast the same size of collider extending in front of me in the direction Im moving
-        amIStuck = Physics.BoxCast(
+        //amIStuck=
+        Physics.BoxCast(
             boxPosition,
             boxExtents / 2,
             rayVector,
@@ -269,18 +278,19 @@ public class Mover : MonoBehaviour
         return boxHit;
     }
 
+    #endregion 
+
     //Draw box cast
     protected virtual void OnDrawGizmos()
     {
         if (!Application.isPlaying) return;
 
         Gizmos.color = Color.white;
-        DrawBoxLines(boxPosition,
-            boxExtents,
-            boxPosition + rayVector,
-            true);
+        //DrawBoxLines(boxPosition,
+        //    boxExtents,
+        //    boxPosition + rayVector,
+        //    true);
 
-        if (!Application.isPlaying) return;
     }
 
     //ONLY FOR VISUALIZING THE BOXCAST IN SCENEVIEW, NOT NECCESSARY FOR IT TO WORK

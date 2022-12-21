@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Component that can be added to an object that gives line of sight
+//Component that can be added to an object that gives line of sight to detect a target. Both as a direct line of sight us isVisible() and as a cone using isVisibleInCone()
 public class LineOfSight : ProximitySensor
 {
-    [field: SerializeField] public float losRange { get; set; } = 10;
-    [field: SerializeField] public float sightAngle { get; set; } = 20;
-    [field: SerializeField] public float eyeHeight { get; set; }
-
-    public Mover mover;
+    public float losRange { get; set; } = 10; //The distance at which a sight cone and sight line will spot/see targets
+    public float sightAngle { get; set; } = 20; //The angle of vision of a sight cone
+    [field: SerializeField] public float eyeHeight { get; set; } = 0; //The point where sight rays should originate from
 
     private Vector3 currPosition
     {
@@ -17,6 +15,7 @@ public class LineOfSight : ProximitySensor
         set{ t.position = value; }
     }
 
+    //currDirection of attached Mover and the subsequent sightLine vectors that make up a cone of vision
     public Vector3 direction { get; set; }
     private Vector3 directionLine;
     private Vector3 directionLineLeft;
@@ -32,16 +31,14 @@ public class LineOfSight : ProximitySensor
             direction = t.forward;
         }
 
-        mover = GetComponent<Mover>();
-
     }
 
     //Returns true if target is visible by a straight Line of Sight, defined by sight range
     public bool isTargetVisible()
     {
-        if(!HelperFunctions.CheckProximity(currPosition, targetsPosition, losRange)) //Player got too far away, farther than sight range
+        if(!HelperFunctions.CheckProximity(currPosition, targetsPosition, losRange)) //farther than sight range
         {
-            return false; //no need to check LOS
+            return false; //no need to check LOS, target is simply too far
         }
 
         //Vector3 targetsPosition = target.currPosition;
@@ -65,18 +62,22 @@ public class LineOfSight : ProximitySensor
             else
             {
                 //Ray hit something other than Player, he must not be visible
-                Debug.Log(this.name + " saw " + sightHit.collider.tag);
                 return false;
             }
         }
-        return false;
+        return false; //not in the sight cone
     }
 
     //Returns true if target is within a cone defined by its sight range and sight angle
     //Also uses IsTargetVisible() to assure it also only returns true if target is not obscured by obstacles
     public bool isTargetVisibleInCone()
     {
-        Vector3 targetsPosition = target.currPosition;
+        if (!HelperFunctions.CheckProximity(currPosition, targetsPosition, losRange)) //farther than sight range
+        {
+            return false; //no need to check LOS, target is simply too far 
+        }
+
+        //Vector3 targetsPosition = target.currPosition;
 
         //Make sure direction line lays flat on ground from enemies position
         direction = new Vector3(direction.x, 0, direction.z);
@@ -93,7 +94,7 @@ public class LineOfSight : ProximitySensor
         if (Vector3.Angle(direction, targetsPosition - currPosition) < sightAngle &&
             HelperFunctions.CheckProximity(currPosition, targetsPosition, losRange))
         {
-            if (isTargetVisible())
+            if (isTargetVisible()) //Targetis within the cone, but still make sure the target is visible
             {
                 return true;
             }
@@ -110,9 +111,4 @@ public class LineOfSight : ProximitySensor
         Debug.DrawRay(currPosition, direction * losRange, color); 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
 }
