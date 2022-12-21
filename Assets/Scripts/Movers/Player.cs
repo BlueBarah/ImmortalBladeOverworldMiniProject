@@ -31,11 +31,19 @@ public class Player : Mover
     {
         inputDirection = getInputDirection();
         currDirection = inputDirection;
-        //TranslateTowardsDirection(direction);
+
+        if (inputDirection != Vector3.zero)
+        {
+            isRunning = true;
+        }
+        else
+            isRunning = false;
+
+        MoveInDirection(inputDirection);
     }
 
     protected override void OnFixedUpdate()
     {
-        MoveInDirectionRB(inputDirection);
+        
     }
 }

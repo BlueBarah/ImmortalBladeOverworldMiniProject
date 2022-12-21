@@ -6,7 +6,9 @@ using UnityEngine.AI;
 public class Ally : NPC
 {
     ProximitySensor sensor;
-    Vector3 targetPos;
+
+    [SerializeField] float followRange = 5; //How far away ally will try to stay following Player
+    [SerializeField] float teleportRange = 20; //how far away does Player have to get away from ally until ally teleports to player directly
 
     protected override void Awake()
     {
@@ -16,36 +18,46 @@ public class Ally : NPC
     protected override void Start()
     {
         base.Start();
-        
+        sensor.proximityRange = followRange;
     }
 
-    protected void followJason()
-    {
-        MoveTowardsPointRB(targetPos);
-    }
     protected override void OnUpdate()
     {
-        //if (!HelperFunctions.CheckProximity(currPosition, sensor.target.position, 4))
-        //    targetPos = sensor.target.position;
+        sensor.proximityRange = followRange;
+
+        //Ally has gotten too far away from Players position based on teleportRange, most likely stuck
+        if (!HelperFunctions.CheckProximity(currPosition, sensor.targetsPosition, teleportRange))
+        {
+            teleportToPosition(sensor.targetsPosition - Vector3.back); //Teleport behind player
+        }
+    }
+
+    protected void teleportToPosition(Vector3 position)
+    {
+        controller.enabled = false;
+        transform.position = position;
+        controller.enabled = true;
     }
 
     protected override void OnFixedUpdate()
     {
-        //Debug.Log(this.name + " speed is " + walkingSpeed);
-        //Debug.Log(this.name + " velocity is " + rb.velocity);
-        //followJason();
-        //MoveInDirectionRB(Vector3.left);
+
     }
 
     override protected void collisionHandling(RaycastHit collision)
     {
-        //lastColliderHit = collision;
 
-        ////I hit a thing
-        //if (lastColliderHit.collider.CompareTag("Obstacle"))
-        //{
-        //    flashColorIndicator("Obstacle");
-
-        //}
     }
+
+    protected override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+        if (!Application.isPlaying) return;
+
+        if (showAwareArea)
+        {
+            sensor.DrawWireDisk(currPosition, followRange, Color.cyan);
+        }
+    }
+
 }
