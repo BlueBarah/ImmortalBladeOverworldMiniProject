@@ -6,8 +6,11 @@ public class Sensor : MonoBehaviour
 {
 
     [SerializeField] public Transform t;
-    [SerializeField] public Transform target;
-    [SerializeField] public float sensorRange;
+    [SerializeField] public Mover target;
+    public Vector3 targetsPosition
+    {
+        get { return target.currPosition; }
+    }
 
     protected virtual void Start()
     {

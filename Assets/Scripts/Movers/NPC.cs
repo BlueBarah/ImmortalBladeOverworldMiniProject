@@ -6,46 +6,66 @@ using UnityEngine.AI;
 public class NPC : Mover
 {
 
-    //NPCs, unlike the PC, all need nav agents in order to navigate environments
-    //This class handles movement specific to NPCs
-    public NavMeshAgent agent;
-    public NavMeshPath currPath;
-    [SerializeField] public float roamRange = 10;
+    //This class handles movement specific to NPCs, such as moving along a calculated path
+
+    [SerializeField] public float roamRange = 10; //How far away from starting position will NPC roam from if in an action that involves random roaming
 
 
-    private int index;
+    public NavMeshPath currPath; //The current path that NPC is following/attempting to follow. 
+    public Vector3 startingPosition { get; set; } //Position mover orignally was placed in world
+    public Vector3 nextDest { get; set; } //The next overall destination mover is aiming to move to. 
+    private Vector3 nextPathPoint; //Intermediate destinations along path to get to NextDest
+
+    //For testing and inpsector purposes:
+    public bool showRoamArea = true;
+    public bool showPath = true;
 
     protected override void Awake()
     {
         base.Awake();
-        //nextDest = getNewRandomDest();
-        agent = GetComponent<NavMeshAgent>();
+
         startingPosition = transform.position;
         currPosition = startingPosition;
-        //agent.nextPosition = transform.position;
-
         currPath = new NavMeshPath();
         nextDest = currPosition;
+
+        //nextDest = getNewRandomDest();
+        //agent = GetComponent<NavMeshAgent>();
+        //agent.nextPosition = transform.position;
         //agent.CalculatePath(nextDest, currPath);
-
     }
-    override protected void collisionHandling(RaycastHit collision)
+
+    protected override void OnUpdate()
     {
-        //lastColliderHit = collision;
-
-        ////I hit a thing
-        //if (lastColliderHit.collider.CompareTag("Obstacle"))
-        //{
-        //    flashColorIndicator("Obstacle");
-
-        //}
+        base.OnUpdate();
+        startingPosition = tf.position;
     }
 
+    //Gets and Sets the NPCs next overall destination point to a random position in range of startingPosition
     public Vector3 getNewRandomDest()
     {
         Vector3 possibleDest = HelperFunctions.GetRandomPositionInRange(startingPosition, roamRange);
 
-        /*
+        if (CanReachPosition(possibleDest)) //Check if this destination is valid
+        {
+            nextDest = possibleDest; //If it it, set as the nextDest and return it
+            return possibleDest;
+        }
+        else
+            return getNewRandomDest(); //Not valid, try the method again
+
+    }
+
+    //Attempts to check if a position is reachable by the NPC
+    //TODO make a better CanReachPosition()
+    public bool CanReachPosition(Vector3 position)
+    {
+        NavMeshPath path = new NavMeshPath();
+        NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), path);
+        return path.status == NavMeshPathStatus.PathComplete; //Position is reachable if the path's status is defined as Complete
+
+        //TODO check whether path.status or SamplePosition() works better
+        /* Try this method again if getNewRandomDest() stops workng
         int walkableMask = 1 << NavMesh.GetAreaFromName("walkable");
         NavMeshHit hit;
         if (NavMesh.SamplePosition(startingPosition, out hit, roamRange, walkableMask))
@@ -55,94 +75,127 @@ public class NPC : Mover
         Debug.Log("Possible Dest = " + possibleDest);
         */
 
-        if (CanReachPosition(possibleDest))
-        {
-            nextDest = possibleDest;
-            return possibleDest;
-        }
-        else
-            return getNewRandomDest();
-
     }
 
-    public bool CanReachPosition(Vector3 position)
-    {
-        NavMeshPath path = new NavMeshPath();
-        agent.CalculatePath(position, path);
-        return path.status == NavMeshPathStatus.PathComplete;
-    }
-
+    //For travelling along a path to a final destination using CharacterController and NavMesh
     public void MoveAlongPathToPoint(Vector3 position)
     {
-        //agent.CalculatePath(position, currPath);
-        //agent.SetDestination(position);
-        //return;
-        //if (HelperFunctions.CheckProximity(currPosition, position, 1f)) //Made it to overall destination
-        //{
-        //    Debug.Log("Checking if im there...");
+        if (CanReachPosition(position))
+        {
+            NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), currPath); //Get a hopefully viable path from NavMesh
 
-        //    //nextDest = getNewDest(); //Get a new one
-        //    //agent.CalculatePath(nextDest, path); //Calculate the path, put it into an array of vector points
-        //    //index = 0; //We start at 0 of the array
+            if (currPath.corners.Length > 1)
+            {
+                nextPathPoint = currPath.corners[1]; //My next intermediate destination is the next point in the array
+                currDirection = (nextPathPoint - currPosition).normalized;
+                currDirection.y = 0;
+                MoveTowardsPoint(nextPathPoint); //Move to it
+            }
+            else
+                MoveTowardsPoint(position); //Only one point, path is straight, go go go
+        }
+        else
+        {
+            //TODO make sure NPCs get stuck less often by make some sort of recalculation
+        }
+    }
 
-        //}
-        //else
-        //{
-        agent.CalculatePath(position, currPath); //Calculate the path, put it into an array of vector points
-        //nextPathPoint = currPath.corners[1]; //My next intermediate destination is the next point in the array
-        //currDirection = (nextPathPoint - currPosition).normalized;
-        //currDirection.y = 0;
+    #region Currently Unused Movement Methods
+    //Travel along a path of points calculated by nav agent with use of transform.Translate()
+    public void TranslateAlongPathToPoint(Vector3 position)
+    {
+        NavMesh.CalculatePath(currPosition, position, NavMesh.AllAreas, currPath); //Calculate the path, put it into an array of vector points
 
-        //Debug.Log("position is:" + position);
-        //Debug.Log("is path null?? " + currPath == null);
         if (currPath.corners.Length > 1)
         {
             nextPathPoint = currPath.corners[1]; //My next intermediate destination is the next point in the array
             currDirection = (nextPathPoint - currPosition).normalized;
             currDirection.y = 0;
-            MoveTowardsPoint(nextPathPoint); //Move to it
-            //agent.SetDestination(nextPathPoint);
+            TranslateTowardsPoint(nextPathPoint); //Move to it
         }
         else
-            MoveTowardsPoint(position);
-        //}
-
-        //agent.CalculatePath(position, currPath); //Calculate the path, put it into an array of vector points
-
-        //if (index < currPath.corners.Length) //We still have Points to move to
-        //{
-        //    Debug.Log("Finding a point on path...");
-        //    nextPathPoint = currPath.corners[index]; //My next intermediate destination is the next point in the array
-        //    MoveTowardsPoint(nextPathPoint); //Move to it
-        //}
-
-        //if (HelperFunctions.CheckProximity(currPosition, nextPathPoint, 1f)) //I got to my intermediate path point
-        //{
-        //    Debug.Log("Got to one point...");
-        //    index++; //Lets move to the next point by incrementing the index
-        //}
+            TranslateTowardsPoint(position); //Only one point, path is straight
     }
-
-    private void OnDrawGizmos()
+    //Travel along a path of points calculated by nav agent with use of rb.MovePosition()
+    public void MoveAlongPathToPointRB(Vector3 position)
     {
-        if (!Application.isPlaying) return;
-        if (currPath != null)
+        if (CanReachPosition(position))
         {
-            Gizmos.color = Color.red;
-            for (int i = 0; i < currPath.corners.Length - 1; i++)
+            NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), currPath);
+            //agent.CalculatePath(position, currPath); //Calculate the path, put it into an array of vector points
+
+            if (currPath.corners.Length > 1)
             {
-                Vector3 s = currPath.corners[i];
-                Vector3 e = currPath.corners[i + 1];
+                nextPathPoint = currPath.corners[1]; //My next intermediate destination is the next point in the array
+                currDirection = (nextPathPoint - currPosition).normalized;
+                currDirection.y = 0;
+                MoveTowardsPointRB(nextPathPoint); //Move to it
+            }
+            else
+                MoveTowardsPointRB(position); //Only one point, path is straight
+        }
+        else
+        {
+            //recalculate or something idk
+
+        }
+    }
+    #endregion
+
+    //For visualizing the current path of an NPC
+    protected void drawPath(NavMeshPath path, Color color)
+    {
+        if (path != null)
+        {
+            Gizmos.color = color;
+            for (int i = 0; i < path.corners.Length - 1; i++)
+            {
+                Vector3 s = path.corners[i];
+                Vector3 e = path.corners[i + 1];
                 Gizmos.DrawLine(s, e);
             }
         }
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(currPosition, nextDest);
     }
 
+    //Draws a circle with a radius and color, with position being the origin
+    public static void DrawWireDisk(Vector3 position, float radius, Color color)
+    {
+        float circleThickness = .001f;
+        Color oldColor = Gizmos.color;
+        Gizmos.color = color;
+        Matrix4x4 oldMatrix = Gizmos.matrix;
+        Gizmos.matrix = Matrix4x4.TRS(position, Quaternion.identity, new Vector3(1, circleThickness, 1));
+        Gizmos.DrawWireSphere(Vector3.zero, radius);
+        Gizmos.matrix = oldMatrix;
+        Gizmos.color = oldColor;
+    }
 
+    //VISUALIZE CURRENT PATH IN SCENE
+    protected override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+        if (!Application.isPlaying) return;
 
+        if (showPath)
+        {
+            drawPath(currPath, Color.blue);
+        }
 
+        //Drawing circle to visualize the possible roam area if NPC has a roam range
+        if(roamRange > 0 && showRoamArea)
+        {
+            switch (this.tag)
+            {
+                case "Enemy":
+                    DrawWireDisk(startingPosition, roamRange, Color.magenta);
+                    break;
+                case "Neutral":
+                    break;
+            }
+        }
+
+        //Gizmos.color = Color.blue;
+        //Gizmos.DrawLine(currPosition, nextDest); //Draw straigt line from current position to the next destination (not path)
+    }
 
 }

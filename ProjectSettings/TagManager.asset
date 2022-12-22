@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - Ally
   - Environment
+  - Ground
   layers:
   - Default
   - TransparentFX

@@ -3199,11 +3199,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07b3ad3f59e8bf64cb5e387fb6a9dbae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <direction>k__BackingField: {x: 0, y: 0, z: 1}
   walkingSpeed: 9
   ySpeed: 0
   currDirection: {x: 0, y: 0, z: 0}
-  nextPathPoint: {x: 0, y: 0, z: 0}
+  amIStuck: 0
+  boxExtents: {x: 0, y: 0, z: 0}
+  boxPosition: {x: 0, y: 0, z: 0}
+  rayVector: {x: 0, y: 0, z: 0}
 --- !u!54 &1905933405
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3423,6 +3425,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2074367653553278443, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3787419869247683279, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
       propertyPath: target
       value: 
@@ -3438,6 +3444,14 @@ PrefabInstance:
     - target: {fileID: 4718727249905937907, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937912, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_Size.x
+      value: 1.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937912, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_Size.y
+      value: 2.93
       objectReference: {fileID: 0}
     - target: {fileID: 4718727249905937914, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
       propertyPath: m_RootOrder
@@ -3483,11 +3497,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4718727249905937915, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4718727249905937918, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
       propertyPath: sensor
       value: 
       objectReference: {fileID: 1215102465}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4718727249905937915, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
 --- !u!1001 &5473729911093676083
 PrefabInstance:
@@ -3504,6 +3523,10 @@ PrefabInstance:
       propertyPath: _initialState
       value: 
       objectReference: {fileID: 11400000, guid: 9e31ab5000be65e4e994a8e5690e88be, type: 2}
+    - target: {fileID: 5473729910904162725, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5473729910904162727, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
       propertyPath: target
       value: 
@@ -3560,7 +3583,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8067537104631212480, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5473729910904162725, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
 --- !u!1001 &5478167993444653769
 PrefabInstance:
@@ -3569,6 +3597,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5478167993611297649, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5478167993611297657, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
       propertyPath: m_Name
       value: Ariss
@@ -3576,6 +3608,10 @@ PrefabInstance:
     - target: {fileID: 5478167993611297657, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478167993611297658, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5478167993611297659, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
       propertyPath: m_RootOrder
@@ -3629,5 +3665,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1905933400}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5478167993611297649, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e12e88c844183d844903d543d2ffbf88, type: 3}
