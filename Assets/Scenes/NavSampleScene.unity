@@ -2894,7 +2894,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28536
+  m_Name: pb_Mesh28540
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3185,7 +3185,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28758
+  m_Name: pb_Mesh28764
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5468,10 +5468,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 818387506}
     m_Modifications:
+    - target: {fileID: 2074367653553278443, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3787419869247683279, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1905933400}
+    - target: {fileID: 4718727249905937892, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: walkingSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4718727249905937907, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
       propertyPath: m_Name
       value: LesserDemon (1)
@@ -6040,9 +6048,9 @@ GameObject:
   - component: {fileID: 448747861}
   - component: {fileID: 448747860}
   - component: {fileID: 448747859}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boulder
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -7971,9 +7979,9 @@ GameObject:
   - component: {fileID: 652805407}
   - component: {fileID: 652805406}
   - component: {fileID: 652805405}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boulder
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -10251,6 +10259,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 818387506}
     m_Modifications:
+    - target: {fileID: 5473729910904162726, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+      propertyPath: walkingSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5473729910904162727, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
       propertyPath: target
       value: 
@@ -10302,6 +10314,10 @@ PrefabInstance:
     - target: {fileID: 5473729910904162741, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
       propertyPath: m_Name
       value: GreaterDemon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8067537104631212480, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe988be3e5bceff4e89ecf5194c2298f, type: 3}
@@ -11130,7 +11146,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28412
+  m_Name: pb_Mesh28416
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -11317,9 +11333,9 @@ GameObject:
   - component: {fileID: 894895543}
   - component: {fileID: 894895542}
   - component: {fileID: 894895541}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boulder
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -15797,9 +15813,9 @@ GameObject:
   - component: {fileID: 1335975724}
   - component: {fileID: 1335975723}
   - component: {fileID: 1335975722}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boulder
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -19644,9 +19660,9 @@ GameObject:
   - component: {fileID: 1419727331}
   - component: {fileID: 1419727330}
   - component: {fileID: 1419727329}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boulder
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
@@ -22499,7 +22515,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh28696
+  m_Name: pb_Mesh28702
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -25387,10 +25403,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 818387506}
     m_Modifications:
+    - target: {fileID: 2074367653553278443, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3787419869247683279, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1905933400}
+    - target: {fileID: 4718727249905937892, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
+      propertyPath: walkingSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4718727249905937907, guid: 3360c3bcc026d83488d16934b6458e19, type: 3}
       propertyPath: m_Name
       value: LesserDemon
