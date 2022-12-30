@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4256935525222350610}
   - component: {fileID: 4256935525222350609}
-  - component: {fileID: 4256935525222350608}
   - component: {fileID: 8822522123878262148}
   - component: {fileID: 4256935525222350604}
   - component: {fileID: 5683678439832594471}
@@ -89,19 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &4256935525222350608
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4256935525222350619}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.4, y: 3.3, z: 0.2}
-  m_Center: {x: 0, y: 1.65, z: 0}
 --- !u!143 &8822522123878262148
 CharacterController:
   m_ObjectHideFlags: 0
@@ -139,7 +125,6 @@ MonoBehaviour:
   currDirection: {x: 0, y: 0, z: 0}
   controller: {fileID: 8822522123878262148}
   <isRunning>k__BackingField: 0
-  amIStuck: 0
   roamRange: 20
   showRoamArea: 0
   showPath: 1
@@ -165,7 +150,6 @@ MonoBehaviour:
   t: {fileID: 4256935525222350610}
   target: {fileID: 0}
   <eyeHeight>k__BackingField: 2.9
-  mover: {fileID: 0}
 --- !u!114 &4256935525222350614
 MonoBehaviour:
   m_ObjectHideFlags: 0

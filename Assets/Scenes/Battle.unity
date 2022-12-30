@@ -575,12 +575,15 @@ MonoBehaviour:
   _maxHP: 0
   _maxESS: 0
   _maxAP: 0
+  _level: 0
   _strength: 0
   _willpower: 0
   _dexterity: 0
   _focus: 0
   _endurance: 0
   _agility: 0
+  Attacks:
+  - {fileID: 11400000, guid: 7056c2d9d0e72cd4b9b31ab12959b7c5, type: 2}
 --- !u!1 &1185188511
 GameObject:
   m_ObjectHideFlags: 0
