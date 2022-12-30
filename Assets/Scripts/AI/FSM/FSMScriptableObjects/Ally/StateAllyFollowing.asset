@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd148f58570106047bdf4a46e8cc7337, type: 3}
+  m_Name: StateAllyFollowing
+  m_EditorClassIdentifier: 
+  Actions:
+  - {fileID: 11400000, guid: 3bdf2b629c59b4541a870c0d07db8149, type: 2}
+  Transitions:
+  - {fileID: 11400000, guid: d8033714591c4aa4c8e7eaedfcd301a2, type: 2}
