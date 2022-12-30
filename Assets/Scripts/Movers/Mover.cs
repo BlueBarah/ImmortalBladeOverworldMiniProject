@@ -11,7 +11,12 @@ public class Mover : MonoBehaviour
     [SerializeField] protected float acceleration = .1f; //configurable acceleration, rate at which Mover gets to normal speed
     [SerializeField] protected float currentSpeed = 0; //the speed the Mover is currently going
 
-    public static float gravity = .1f; //idk what this should be yet. Constant y velocity added to CharacterController move vector so that Movers can fall
+    public static float gravity = -9.8f; //Constant y velocity added to CharacterController move vector so that Movers can fall
+    [SerializeField] private float gravityModifier = .2f; //To Tweak gravity 
+    private float yVelocity;
+    public bool grounded; //If character is on the ground or not
+    public bool jumping; //Use for jumping logic but can also be used for animation purposes
+    [SerializeField] public float jumpHeight = 1.4f;
 
     public Vector3 currDirection; //Current direction the mover is Moving. For Player, this is more about his inputs
     public Vector3 currPosition //The current position the Mover is at. Defined by transform
@@ -67,10 +72,12 @@ public class Mover : MonoBehaviour
             string shadowType = (inWater) ? "water" : "shadow";
             gameObject.transform.Find("Drop Shadow")?.GetComponent<DropShadowHandler>().SetShadowType(shadowType);
         }
-
-        handleSpeed();
+       
+        HandleSpeed();
+        ApplyGravity(); //Apply gconstant gravity every frame
         // Handle any Unit Specific update behavior
         OnUpdate();
+        grounded = controller.isGrounded; //Check if the Movers grounded, after any movement so its accurate for th next frame
     }
 
     protected void FixedUpdate()
@@ -112,15 +119,38 @@ public class Mover : MonoBehaviour
     public void MoveInDirection(Vector3 direction)
     {
         currDirection = direction.normalized;
-        handleAnimationAndSprite();
+        HandleAnimationAndSprite();
         Vector3 moveVector = (currDirection * Time.deltaTime * currentSpeed);
-        moveVector.y = -gravity;
+        moveVector.y = yVelocity; //Fix the y amount last so any gravity or jumping can be applied
         controller.Move(moveVector);
+    }
+
+    public void ApplyGravity()
+    {
+        if (grounded && yVelocity < 0)
+        {
+            jumping = false; //We're on the ground, not jumping anymore
+            yVelocity = -1; //Apply a small amount of gravity to ensure isGrounded stays accurate
+        }
+        else if (!grounded) //In the air, apply gravity so things fall
+        {
+            yVelocity += gravity * gravityModifier * Time.deltaTime;
+        }
+    }
+
+    //Add an upwards velocity to Mover when Jumping is viable
+    public void Jump()
+    {
+        if (jumping == false && grounded) //Can only jump when not already jumping and Mover is grounded
+        {
+            yVelocity += jumpHeight; //get the jumpVelocity 
+            jumping = true; //jumping bool
+        }
     }
 
     //Handles changing speed of a Mover. If they're stopped and starting to move, they should speed up to their ideal speed.
     //If not moving, set speed back to 0.
-    protected void handleSpeed()
+    protected void HandleSpeed()
     {
         if(isRunning)
         {
@@ -140,7 +170,7 @@ public class Mover : MonoBehaviour
     }
 
     //Handles animation and sprite, flips when moving left/right, plays running animation if it exists and mover is running
-    protected virtual void handleAnimationAndSprite()
+    protected virtual void HandleAnimationAndSprite()
     {
         //Animation bools can actally be set directly in states/actions now. If NPC is doing a moving action, it sets its bool as isRunning
         //Players animations are handled in Player as they dont have FSM
@@ -201,7 +231,7 @@ public class Mover : MonoBehaviour
     {
         Debug.Log(this.name + " is moving with a RB ");
         currDirection = direction.normalized;
-        handleAnimationAndSprite();
+        HandleAnimationAndSprite();
 
         // if (rb == null) //Not a rigid body, no reason to use FixedUpdate()
         // {
@@ -235,7 +265,7 @@ public class Mover : MonoBehaviour
     {
         Debug.Log(this.name + " is translating ");
         currDirection = direction.normalized;
-        handleAnimationAndSprite();
+        HandleAnimationAndSprite();
         CheckBoxCastCollision();
 
         //Somethings in my way, need to go figure out what it is (What I do can be dependent on what I am)

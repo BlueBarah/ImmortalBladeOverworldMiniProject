@@ -207,12 +207,14 @@ MonoBehaviour:
   maxSpeed: 12
   ySpeed: 0
   acceleration: 0.2
-  deceleration: 0.1
   currentSpeed: 0
+  gravityModifier: 0.2
+  grounded: 0
+  jumping: 0
+  jumpHeight: 1.4
   currDirection: {x: 0, y: 0, z: 0}
   controller: {fileID: 0}
   <isRunning>k__BackingField: 0
-  amIStuck: 0
 --- !u!143 &6864847128049836723
 CharacterController:
   m_ObjectHideFlags: 0

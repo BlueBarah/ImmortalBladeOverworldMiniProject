@@ -47,18 +47,29 @@ public class Player : Mover
         return direction.normalized;
     }
 
+    private void GetInputButtons()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            Debug.Log("Jump!");
+            Jump();
+        }
+    }
+
     // Update is called once per frame
     protected override void OnUpdate()
     {
         inputDirection = getInputDirection();
         currDirection = inputDirection;
+        GetInputButtons();
 
-        handleAnimationAndSprite();
+        HandleAnimationAndSprite();
         MoveInDirection(inputDirection);
+        
     }
 
     //Players running bool is based on direct inputs instead of movement states, needs own handleAnimation()
-    override protected void handleAnimationAndSprite()
+    override protected void HandleAnimationAndSprite()
     {
         if (inputDirection != Vector3.zero)
         {
@@ -67,7 +78,7 @@ public class Player : Mover
         else
             isRunning = false;
 
-        base.handleAnimationAndSprite();
+        base.HandleAnimationAndSprite();
 
     }
 
