@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class Player : Mover
 {
-    Vector3 inputDirection;
+    //Handles movement that is specific to Player Character like getting inputs
 
-    //Handles collisions for Jason when he runs into an Enemy
-    //override protected void collisionHandling(RaycastHit collision)
-    //{
-    //    if (collision.collider.tag == "Enemy")
-    //    {
-    //        HelperFunctions.FireBattleStartEvent(this, gameObject.name);
-    //    }
-    //}
+    //Inputs
+    Vector3 inputDirection;
 
     protected override void Start()
     {
@@ -30,11 +24,11 @@ public class Player : Mover
             HelperFunctions.FireBattleStartEvent(this, gameObject.name);
         }else if(collision.gameObject.tag != "Ground")
         {
-            Debug.Log(this.name + " defualt collision enter with " + collision.gameObject.name);
+            //Debug.Log(this.name + " defualt collision enter with " + collision.gameObject.name);
         }
+    }
 
-}
-
+    //CollisionEnter not usable without rb
     //Collisions specific to Player
     //protected override void OnCollisionEnter(Collision collision)
     //{
@@ -51,6 +45,7 @@ public class Player : Mover
 
     //Grabs and returns inputs
     //TODO: configurable inputs (using either keyboard or controller to move)
+
     private Vector3 getInputDirection()
     {
         float x = Input.GetAxis("Horizontal");
@@ -64,7 +59,6 @@ public class Player : Mover
     {
         if (Input.GetButtonDown("Jump"))
         {
-            Debug.Log("Jump!");
             Jump();
         }
     }

@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(ProximitySensor))]
+
 public class Ally : NPC
 {
-    //For testing and inpsector purposes:
-    public bool showFollowRange = true;
+    //Stuff specific for Ally movement
 
     ProximitySensor sensor;
 
+    //Needed for teleporting and following
     [SerializeField] float followRange = 5; //How far away ally will try to stay following Player
     [SerializeField] float teleportRange = 20; //how far away does Player have to get away from ally until ally teleports to player directly
 
+    //For testing and inpsector purposes:
+    public bool showFollowRange = true;
 
     protected override void Awake()
     {

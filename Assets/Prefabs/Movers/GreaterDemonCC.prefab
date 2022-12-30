@@ -132,27 +132,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61e0b3ed05417e4bb7e92d8d8230604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currDirection: {x: 0, y: 0, z: 0}
   maxSpeed: 7
-  ySpeed: 0
   acceleration: 0.1
   currentSpeed: 0
-  gravityModifier: 1
-  grounded: 0
+  jumpPower: 0
+  gravityModifier: 0.06
   jumping: 0
-  jumpHeight: 3
-  currDirection: {x: 0, y: 0, z: 0}
   controller: {fileID: 0}
   <isRunning>k__BackingField: 0
   roamRange: 30
   showRoamArea: 0
   showPath: 1
-  showCone: 1
-  showAwareArea: 1
   los: {fileID: 0}
   fightRange: 5
   sightRange: 15
   sightAngle: 20
   awarenessRange: 6
+  showCone: 1
+  showAwareArea: 1
 --- !u!114 &7551736197158529616
 MonoBehaviour:
   m_ObjectHideFlags: 0
