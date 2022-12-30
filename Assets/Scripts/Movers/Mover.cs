@@ -88,14 +88,19 @@ public class Mover : MonoBehaviour
     virtual protected void OnUpdate() { }
     virtual protected void OnFixedUpdate() { }
 
-    //A Collision handling method specific to Movers using CharacterController
-    protected virtual void OnControllerColliderHit(ControllerColliderHit hit)
+    //A Collision handling method for all Movers using CharacterController
+    protected virtual void OnControllerColliderHit(ControllerColliderHit collision)
     {
-        if (hit.gameObject.tag != "Ground")
-        {
-            
-        }
+
+
     }
+
+    ////OnCollisionEnter is just called once at the start of a collision
+    ///
+    //protected virtual void OnCollisionEnter(Collision collision)
+    //{
+        
+    //}
 
     //Flip sprites Left if true, Right if false. Returns what it just flipped to
     public bool flipSprite(bool shouldIFlipToLeft)

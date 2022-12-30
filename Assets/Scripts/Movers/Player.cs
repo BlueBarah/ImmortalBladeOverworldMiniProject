@@ -28,13 +28,26 @@ public class Player : Mover
         if (collision.collider.tag == "Enemy")
         {
             HelperFunctions.FireBattleStartEvent(this, gameObject.name);
+        }else if(collision.gameObject.tag != "Ground")
+        {
+            Debug.Log(this.name + " defualt collision enter with " + collision.gameObject.name);
         }
 
-        //if (hit.gameObject.tag != "Ground")
-        //{
-        //    Debug.Log(this.name + "'s CC hit " + hit.gameObject.name);
-        //}
-    }
+}
+
+    //Collisions specific to Player
+    //protected override void OnCollisionEnter(Collision collision)
+    //{
+    //    base.OnCollisionEnter(collision);
+    //    Debug.Log("collision");
+    //    if (collision.collider.tag == "Enemy")
+    //    {
+    //        HelperFunctions.FireBattleStartEvent(this, gameObject.name);
+    //    }else if (collision.gameObject.tag != "Ground" && collision.gameObject.name != this.name)
+    //    {
+    //        Debug.Log(this.name + " defualt collision enter with " + collision.gameObject.name);
+    //    }
+    //}
 
     //Grabs and returns inputs
     //TODO: configurable inputs (using either keyboard or controller to move)
