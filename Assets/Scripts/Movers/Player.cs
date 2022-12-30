@@ -24,7 +24,7 @@ public class Player : Mover
             HelperFunctions.FireBattleStartEvent(this, gameObject.name);
         }else if(collision.gameObject.tag != "Ground")
         {
-            //Debug.Log(this.name + " defualt collision enter with " + collision.gameObject.name);
+            //Debug.Log(this.name + " touched " + collision.gameObject.name);
         }
     }
 
@@ -72,7 +72,6 @@ public class Player : Mover
 
         HandleAnimationAndSprite();
         MoveInDirection(inputDirection);
-        
     }
 
     //Players running bool is based on direct inputs instead of movement states, needs own handleAnimation()
@@ -86,7 +85,5 @@ public class Player : Mover
             isRunning = false;
 
         base.HandleAnimationAndSprite();
-
     }
-
 }

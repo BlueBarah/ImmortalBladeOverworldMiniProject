@@ -8,30 +8,30 @@ public class Mover : MonoBehaviour
 
     //Stuff for movements/positions, etc
     public Vector3 currDirection; //Current direction the mover is Moving. For Player, this is more about his inputs
+    private float currentSpeed = 0; //the speed the Mover is currently going
     public Vector3 currPosition //The current position the Mover is at. Defined by transform
     {
         get { return transform.position; }
         set { transform.position = value; }
     }
 
+
     //Tweak feel of movement
     [SerializeField] public float maxSpeed = 8; //defualt speed Movers will aim to move at
     //[SerializeField] float ySpeed = 0; //for later
     //[SerializeField] public float maxRunningSpeed = 9; //for later
     [SerializeField] protected float acceleration = .1f; //configurable acceleration, rate at which Mover gets to normal speed
-    [SerializeField] protected float currentSpeed = 0; //the speed the Mover is currently going
 
     //For gravity/physics, and Jumping
-    [SerializeField] public float jumpPower = 1.4f;
+    [SerializeField] protected float jumpPower = .25f; //power of the jump, tweak to change how high jump goes
     [SerializeField] private float gravityModifier = .06f; //To Tweak gravity 
-    public static float gravity = -9.8f; //Constant y velocity added to CharacterController move vector so that Movers can fall
+    public static float gravity = -9.8f; //
     private float yVelocity; //current y velocity of Mover, will be applied to move direction in their Move()
     public bool grounded  //If character is on the ground or not, retrieved from CharacterController component
     {
         get { return controller.isGrounded; }
     }
     public bool jumping; //Use for jumping logic but can also be used for animation purposes
-
 
     //Component stuff
     protected BoxCollider coll; //may be unneeded
@@ -46,10 +46,10 @@ public class Mover : MonoBehaviour
     public bool inWater { get; set; }
     private bool inWaterFlag;
 
-    //For boxcasting
-    private Vector3 boxExtents;
-    private Vector3 boxPosition;
-    private Vector3 rayVector;
+    ////For boxcasting
+    //private Vector3 boxExtents;
+    //private Vector3 boxPosition;
+    //private Vector3 rayVector;
 
     protected virtual void Awake()
     {
@@ -99,13 +99,13 @@ public class Mover : MonoBehaviour
     }
 
     ////OnCollisionEnter is just called once at the start of a collision
-    ///
+    //
     //protected virtual void OnCollisionEnter(Collision collision)
     //{
-        
     //}
 
     //Flip sprites Left if true, Right if false. Returns what it just flipped to
+
     public bool flipSprite(bool shouldIFlipToLeft)
     {
         sprite.flipX = shouldIFlipToLeft;
