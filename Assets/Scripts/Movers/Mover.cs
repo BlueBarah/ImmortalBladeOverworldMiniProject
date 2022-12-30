@@ -81,7 +81,6 @@ public class Mover : MonoBehaviour
         ApplyGravity(); //Apply gconstant gravity every frame
         // Handle any Unit Specific update behavior
         OnUpdate();
-        //grounded = controller.isGrounded; //Check if the Movers grounded, after any movement so its accurate for th next frame
     }
 
     protected void FixedUpdate()
