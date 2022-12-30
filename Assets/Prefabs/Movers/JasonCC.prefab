@@ -190,8 +190,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 2.79, z: 0.5}
-  m_Center: {x: 0.06, y: 1.38, z: 0}
+  m_Size: {x: 0.92, y: 2.79, z: 0.83}
+  m_Center: {x: 0, y: 1.38, z: 0}
 --- !u!114 &6864847128049836721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,15 +204,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07b3ad3f59e8bf64cb5e387fb6a9dbae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 12
-  ySpeed: 0
-  acceleration: 0.2
-  deceleration: 0.1
-  currentSpeed: 0
   currDirection: {x: 0, y: 0, z: 0}
+  maxSpeed: 12
+  acceleration: 0.2
+  currentSpeed: 0
+  jumpPower: 0.25
+  gravityModifier: 0.06
+  jumping: 0
   controller: {fileID: 0}
   <isRunning>k__BackingField: 0
-  amIStuck: 0
 --- !u!143 &6864847128049836723
 CharacterController:
   m_ObjectHideFlags: 0
@@ -226,8 +226,8 @@ CharacterController:
   serializedVersion: 2
   m_Height: 2.76
   m_Radius: 0.46
-  m_SlopeLimit: 55.75
-  m_StepOffset: 1.12
+  m_SlopeLimit: 50
+  m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.39, z: 0}
