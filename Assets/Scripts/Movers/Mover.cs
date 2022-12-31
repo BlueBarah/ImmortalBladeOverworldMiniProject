@@ -7,7 +7,7 @@ public class Mover : MonoBehaviour
 {
 
     //Stuff for movements/positions, etc
-    public Vector3 currDirection; //Current direction the mover is Moving. For Player, this is more about his inputs
+    [SerializeField] public Vector3 currDirection; //Current direction the mover is Moving. For Player, this is more about his inputs
     private float currentSpeed = 0; //the speed the Mover is currently going
     public Vector3 currPosition //The current position the Mover is at. Defined by transform
     {
@@ -27,10 +27,10 @@ public class Mover : MonoBehaviour
     [SerializeField] private float gravityModifier = .06f; //To Tweak gravity 
     public static float gravity = -9.8f; //
     private float yVelocity; //current y velocity of Mover, will be applied to move direction in their Move()
-    public bool grounded  //If character is on the ground or not, retrieved from CharacterController component
-    {
-        get { return controller.isGrounded; }
-    }
+    public bool grounded;  //If character is on the ground or not, retrieved from CharacterController component
+    //{
+        //get { return controller.isGrounded; }
+    //}
     public bool jumping; //Use for jumping logic but can also be used for animation purposes
 
     //Component stuff
@@ -81,6 +81,7 @@ public class Mover : MonoBehaviour
         ApplyGravity(); //Apply gconstant gravity every frame
         // Handle any Unit Specific update behavior
         OnUpdate();
+        grounded = controller.isGrounded;
     }
 
     protected void FixedUpdate()
@@ -116,6 +117,7 @@ public class Mover : MonoBehaviour
     //Takes point, gets and set currDirection from current position going towards point, calls MoveInDirection() with new currDirection
     public void MoveTowardsPoint(Vector3 point)
     {
+        Debug.DrawLine(transform.position, point);
         currDirection = point - currPosition;
         currDirection.Normalize();
         MoveInDirection(currDirection);
@@ -130,6 +132,7 @@ public class Mover : MonoBehaviour
         HandleAnimationAndSprite();
         Vector3 moveVector = (currDirection * Time.deltaTime * currentSpeed);
         moveVector.y = yVelocity; //Fix the y amount last so any gravity or jumping can be applied
+        //Debug.Log(this.name + " has a move vector y of " + moveVector.y);
         controller.Move(moveVector);
     }
 
@@ -138,13 +141,15 @@ public class Mover : MonoBehaviour
     {
         if (grounded && yVelocity < 0)
         {
+            //Debug.Log(this.name + " is grounded");
             jumping = false; //We're on the ground, not jumping anymore
-            yVelocity = -0.1f; //Apply a small amount of gravity to ensure isGrounded stays accurate
+            yVelocity = -.1f; //Apply a small amount of gravity to ensure isGrounded stays accurate
             //yVelocity = fallForce;
         }
         else if (!grounded) //In the air, apply gravity so things fall
         {
             yVelocity += gravity * gravityModifier * Time.deltaTime;
+            //Debug.Log(this.name + " is not grounded");
         }
     }
 
@@ -154,7 +159,7 @@ public class Mover : MonoBehaviour
     {
         if (grounded) //Can only jump when not already jumping and Mover is grounded
         {
-            Debug.Log("juuump!");
+            //Debug.Log("juuump!");
             yVelocity += jumpPower; //get the jumpVelocity 
             jumping = true; //jumping bool
         }

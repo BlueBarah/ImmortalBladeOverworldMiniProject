@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(BaseStateMachine))]
 public class NPC : Mover
 {
     //This class handles movement specific to NPCs, such as moving along a calculated path
@@ -13,12 +14,14 @@ public class NPC : Mover
     //Navigation/AI stuff
     public NavMeshPath currPath; //The current path that NPC is following/attempting to follow. 
     public Vector3 startingPosition { get; set; } //Position mover orignally was placed in world
+    [field: SerializeField]
     public Vector3 nextDest { get; set; } //The next overall destination mover is aiming to move to. 
     private Vector3 nextPathPoint; //Intermediate destinations along path to get to NextDest
 
     //For testing and inpsector purposes:
     public bool showRoamArea = true;
     public bool showPath = true;
+    public bool idle;
 
     protected override void Awake()
     {
@@ -48,7 +51,6 @@ public class NPC : Mover
         }
         else
             return getNewRandomDest(); //Not valid, try the method again
-
     }
 
     //Attempts to check if a position is reachable by the NPC
@@ -57,6 +59,9 @@ public class NPC : Mover
     {
         NavMeshPath path = new NavMeshPath();
         NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), path);
+
+        //Debug.Log("Can " + this.name + " reach position " + position + "? : " + path.status );
+
         return path.status == NavMeshPathStatus.PathComplete; //Position is reachable if the path's status is defined as Complete
 
         //TODO check whether path.status or SamplePosition() works better
@@ -75,23 +80,58 @@ public class NPC : Mover
     //For travelling along a path to a final destination using CharacterController and NavMesh
     public void MoveAlongPathToPoint(Vector3 position)
     {
+        NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), currPath); //Get a hopefully viable path from NavMesh
         if (CanReachPosition(position))
         {
-            NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), currPath); //Get a hopefully viable path from NavMesh
-
             if (currPath.corners.Length > 1)
             {
                 nextPathPoint = currPath.corners[1]; //My next intermediate destination is the next point in the array
                 currDirection = (nextPathPoint - currPosition).normalized;
                 currDirection.y = 0;
-                MoveTowardsPoint(nextPathPoint); //Move to it
+                
+                if (CanReachPosition(nextPathPoint))
+                {
+                    Debug.Log(this.name + " thinks she can get to " + nextPathPoint + " in order to get to position");
+                    MoveTowardsPoint(nextPathPoint); //Move to it
+                }
+                else
+                {
+                    Debug.Log(this.name + " cant reach next path point");
+                }
+                
             }
             else
+            {
+                Debug.Log(this.name + " thinks they can reach " + position);
                 MoveTowardsPoint(position); //Only one point, path is straight, go go go
+            }
         }
         else
         {
-            //TODO make sure NPCs get stuck less often by make some sort of recalculation
+            //Jump();//Debug.Log("Can " + this.name + " reach position? " + NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), currPath) + " The Position: " + position);
+            //MoveTowardsPoint(position); //just try anyway lol jasons prolly on a goddamn mountain
+
+            NavMeshHit hit;
+            Vector3 closestPosition;
+            NavMesh.FindClosestEdge(position, out hit, NavMesh.GetAreaFromName("walkable"));
+            closestPosition = hit.position;
+
+            Debug.Log(this.name + " is confused ):");
+            
+            if(!(float.IsInfinity(closestPosition.x) && float.IsInfinity(closestPosition.y) && float.IsInfinity(closestPosition.z)))
+            {
+                //Debug.Log("closest point path status: " + currPath.status);
+                Debug.Log(this.name + " is moving to this point instead: " + closestPosition);
+                Jump();
+                MoveTowardsPoint(closestPosition); 
+            }
+            else //
+            {
+                //Debug.Log(this.name + " is gonna try jumpng I guess idek");
+                Debug.Log(this.name + "has no closest point gonna try to jump i guess, path status: " + currPath.status);
+                Debug.Log(closestPosition);
+                MoveTowardsPoint(position);
+            }
         }
     }
    
