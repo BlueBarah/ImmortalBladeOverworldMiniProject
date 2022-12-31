@@ -91,14 +91,15 @@ public class NPC : Mover
                 
                 if (CanReachPosition(nextPathPoint))
                 {
-                    Debug.Log(this.name + " thinks she can get to " + nextPathPoint + " in order to get to position");
+                    //TODO: for some reason they get stuck here even though the path seems complete and viable
+                    //basically need to fix CanReachPosition() somehow
+                    Debug.Log(this.name + " thinks they can get to " + nextPathPoint + " in order to get to next path point");
                     MoveTowardsPoint(nextPathPoint); //Move to it
                 }
                 else
                 {
                     Debug.Log(this.name + " cant reach next path point");
                 }
-                
             }
             else
             {
@@ -106,30 +107,25 @@ public class NPC : Mover
                 MoveTowardsPoint(position); //Only one point, path is straight, go go go
             }
         }
-        else
+        else  //We couldnt reach that destination for some reason. two possible reasons:
         {
-            //Jump();//Debug.Log("Can " + this.name + " reach position? " + NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), currPath) + " The Position: " + position);
-            //MoveTowardsPoint(position); //just try anyway lol jasons prolly on a goddamn mountain
-
             NavMeshHit hit;
             Vector3 closestPosition;
             NavMesh.FindClosestEdge(position, out hit, NavMesh.GetAreaFromName("walkable"));
             closestPosition = hit.position;
 
-            Debug.Log(this.name + " is confused ):");
-            
+            //1. Position is on the navmesh but there is no path to it
             if(!(float.IsInfinity(closestPosition.x) && float.IsInfinity(closestPosition.y) && float.IsInfinity(closestPosition.z)))
             {
-                //Debug.Log("closest point path status: " + currPath.status);
-                Debug.Log(this.name + " is moving to this point instead: " + closestPosition);
-                Jump();
+                Debug.Log(this.name + "Doesnt have a good path, will try jumping/moving to this point instead: " + closestPosition);
+                Jump(); //lets try jumping to it lol
                 MoveTowardsPoint(closestPosition); 
             }
-            else //
+            else //2. Position isnt on the navmesh at all
             {
-                //Debug.Log(this.name + " is gonna try jumpng I guess idek");
-                Debug.Log(this.name + "has no closest point gonna try to jump i guess, path status: " + currPath.status);
-                Debug.Log(closestPosition);
+                //TODO: put something else here
+                Debug.Log("Destination isnt on the nav mesh. " + this.name + " Will just try to move towards the original position i guess?");
+                
                 MoveTowardsPoint(position);
             }
         }

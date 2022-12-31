@@ -147,15 +147,17 @@ MonoBehaviour:
   currDirection: {x: 0, y: 0, z: 0}
   maxSpeed: 12
   acceleration: 0.1
-  currentSpeed: 0
   jumpPower: 0.25
   gravityModifier: 0.06
+  grounded: 0
   jumping: 0
   controller: {fileID: 0}
   <isRunning>k__BackingField: 0
   roamRange: 0
+  <nextDest>k__BackingField: {x: 0, y: 0, z: 0}
   showRoamArea: 0
   showPath: 1
+  idle: 0
   followRange: 5
   teleportRange: 20
   showFollowRange: 1
@@ -175,5 +177,5 @@ CharacterController:
   m_SlopeLimit: 60
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1.29, z: 0}

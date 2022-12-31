@@ -96,7 +96,10 @@ public class Mover : MonoBehaviour
     protected virtual void OnControllerColliderHit(ControllerColliderHit collision)
     {
 
-
+        if(collision.gameObject.tag != "Ground" && collision.gameObject.tag != "Obstacle")
+        {
+            //Debug.Log(this.name + " has hit " + collision.gameObject.name);
+        }
     }
 
     ////OnCollisionEnter is just called once at the start of a collision
