@@ -7,7 +7,7 @@ public class WaitAction : Action
 {
     public override void Execute(BaseStateMachine machine)
     {
-        
+        machine.NPC.MoveInDirection(Vector3.zero);// dont move, but we need to apply gravity 
     }
 
     public override void FixedExecute(BaseStateMachine machine)

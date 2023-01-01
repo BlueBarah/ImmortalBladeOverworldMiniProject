@@ -100,7 +100,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.43493134, y: 2.62, z: 0.5}
+  m_Size: {x: 0.95, y: 2.62, z: 1.03}
   m_Center: {x: 0, y: 1.32, z: 0}
 --- !u!114 &9084765677866485113
 MonoBehaviour:
@@ -132,7 +132,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   t: {fileID: 0}
   target: {fileID: 0}
-  <proximityRange>k__BackingField: 0
 --- !u!114 &9084765677866485112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,22 +144,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df8df94c178b53f4da628c5b325df925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 12
-  ySpeed: 0
-  acceleration: 0.1
-  deceleration: 0.1
-  currentSpeed: 0
   currDirection: {x: 0, y: 0, z: 0}
+  maxSpeed: 12
+  acceleration: 0.1
+  jumpPower: 0.25
+  gravityModifier: 0.06
+  grounded: 0
+  jumping: 0
   controller: {fileID: 0}
   <isRunning>k__BackingField: 0
-  amIStuck: 0
   roamRange: 0
+  <nextDest>k__BackingField: {x: 0, y: 0, z: 0}
   showRoamArea: 0
   showPath: 1
-  showCone: 0
-  showAwareArea: 0
+  idle: 0
   followRange: 5
   teleportRange: 20
+  showFollowRange: 1
 --- !u!143 &3609017742531874270
 CharacterController:
   m_ObjectHideFlags: 0
@@ -175,7 +175,7 @@ CharacterController:
   m_Height: 2.76
   m_Radius: 0.42
   m_SlopeLimit: 60
-  m_StepOffset: 1
+  m_StepOffset: 0.3
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1.29, z: 0}
