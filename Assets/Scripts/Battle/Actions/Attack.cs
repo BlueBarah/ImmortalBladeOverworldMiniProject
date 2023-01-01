@@ -82,6 +82,7 @@ namespace Battle {
             {
                 return 0;
             }
+            
         }
         private float CalculateCrit(float in_ownerCritRate, float in_ownerCritDamage) {  
             // Roll a single random number against the crit chance
