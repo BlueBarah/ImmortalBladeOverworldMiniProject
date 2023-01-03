@@ -24,14 +24,14 @@ public class OverworldSceneManager : MonoBehaviour
         foreach (string enemy in enemiesInRange) {
             logStr += enemy + ", ";
         }
-        Debug.Log(logStr);
+        //Debug.Log(logStr);
     }
     public static void Event_BattleStart(object in_sender, BattleStartArgs in_args) {
         string logStr = in_args.playerName + " started a battle with ";
         foreach (string enemy in enemiesInRange) {
             logStr += enemy + ", ";
         }
-        Debug.Log(logStr);
+       // Debug.Log(logStr);
     }
 
     private void SetLightColor() {

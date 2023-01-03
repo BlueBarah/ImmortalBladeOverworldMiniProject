@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c1b9e6dee7fe447955a4b3395ba429, type: 3}
+  m_Name: AttackTest2
+  m_EditorClassIdentifier: 
+  damageCategory: 0
+  damageType: 0
+  hits: []
+  <AP_cost>k__BackingField: 0
+  <ESS_cost>k__BackingField: 0
+  <numTargets>k__BackingField: 0
+  baseAccuracy: 0
+  baseCritChance: 0
+  aggroPerHit: 0
+  ignoreCounter: 0
+  ignoreEvade: 0
+  ignoreBlock: 0

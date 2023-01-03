@@ -43,6 +43,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: UI Render Layer
+    uniqueID: 2517098871
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

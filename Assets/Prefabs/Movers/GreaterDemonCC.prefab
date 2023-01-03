@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7551736197158529603}
   - component: {fileID: 7551736197158529608}
-  - component: {fileID: 7551736197158529615}
   - component: {fileID: 5178118633178805136}
   - component: {fileID: 7551736197158529617}
   - component: {fileID: 7551736197158529616}
@@ -114,11 +113,11 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 4.78
-  m_Radius: 0.79
+  m_Radius: 0.8
   m_SlopeLimit: 60
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: 2.36, z: 0}
 --- !u!114 &7551736197158529617
 MonoBehaviour:
@@ -135,15 +134,17 @@ MonoBehaviour:
   currDirection: {x: 0, y: 0, z: 0}
   maxSpeed: 7
   acceleration: 0.1
-  currentSpeed: 0
   jumpPower: 0
   gravityModifier: 0.06
+  grounded: 0
   jumping: 0
   controller: {fileID: 0}
   <isRunning>k__BackingField: 0
   roamRange: 30
+  <nextDest>k__BackingField: {x: 0, y: 0, z: 0}
   showRoamArea: 0
   showPath: 1
+  idle: 0
   los: {fileID: 0}
   fightRange: 5
   sightRange: 15

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(BaseStateMachine))]
 public class NPC : Mover
 {
     //This class handles movement specific to NPCs, such as moving along a calculated path
@@ -13,12 +14,14 @@ public class NPC : Mover
     //Navigation/AI stuff
     public NavMeshPath currPath; //The current path that NPC is following/attempting to follow. 
     public Vector3 startingPosition { get; set; } //Position mover orignally was placed in world
+    [field: SerializeField]
     public Vector3 nextDest { get; set; } //The next overall destination mover is aiming to move to. 
     private Vector3 nextPathPoint; //Intermediate destinations along path to get to NextDest
 
     //For testing and inpsector purposes:
     public bool showRoamArea = true;
     public bool showPath = true;
+    public bool idle;
 
     protected override void Awake()
     {
@@ -48,7 +51,6 @@ public class NPC : Mover
         }
         else
             return getNewRandomDest(); //Not valid, try the method again
-
     }
 
     //Attempts to check if a position is reachable by the NPC
@@ -57,6 +59,9 @@ public class NPC : Mover
     {
         NavMeshPath path = new NavMeshPath();
         NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), path);
+
+        //Debug.Log("Can " + this.name + " reach position " + position + "? : " + path.status );
+
         return path.status == NavMeshPathStatus.PathComplete; //Position is reachable if the path's status is defined as Complete
 
         //TODO check whether path.status or SamplePosition() works better
@@ -75,23 +80,54 @@ public class NPC : Mover
     //For travelling along a path to a final destination using CharacterController and NavMesh
     public void MoveAlongPathToPoint(Vector3 position)
     {
+        NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), currPath); //Get a hopefully viable path from NavMesh
         if (CanReachPosition(position))
         {
-            NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), currPath); //Get a hopefully viable path from NavMesh
-
             if (currPath.corners.Length > 1)
             {
                 nextPathPoint = currPath.corners[1]; //My next intermediate destination is the next point in the array
                 currDirection = (nextPathPoint - currPosition).normalized;
                 currDirection.y = 0;
-                MoveTowardsPoint(nextPathPoint); //Move to it
+                
+                if (CanReachPosition(nextPathPoint))
+                {
+                    //TODO: for some reason they get stuck here even though the path seems complete and viable
+                    //basically need to fix CanReachPosition() somehow
+                    Debug.Log(this.name + " thinks they can get to " + nextPathPoint + " in order to get to next path point");
+                    MoveTowardsPoint(nextPathPoint); //Move to it
+                }
+                else
+                {
+                    Debug.Log(this.name + " cant reach next path point");
+                }
             }
             else
+            {
+                Debug.Log(this.name + " thinks they can reach " + position);
                 MoveTowardsPoint(position); //Only one point, path is straight, go go go
+            }
         }
-        else
+        else  //We couldnt reach that destination for some reason. two possible reasons:
         {
-            //TODO make sure NPCs get stuck less often by make some sort of recalculation
+            NavMeshHit hit;
+            Vector3 closestPosition;
+            NavMesh.FindClosestEdge(position, out hit, NavMesh.GetAreaFromName("walkable"));
+            closestPosition = hit.position;
+
+            //1. Position is on the navmesh but there is no path to it
+            if(!(float.IsInfinity(closestPosition.x) && float.IsInfinity(closestPosition.y) && float.IsInfinity(closestPosition.z)))
+            {
+                Debug.Log(this.name + "Doesnt have a good path, will try jumping/moving to this point instead: " + closestPosition);
+                Jump(); //lets try jumping to it lol
+                MoveTowardsPoint(closestPosition); 
+            }
+            else //2. Position isnt on the navmesh at all
+            {
+                //TODO: put something else here
+                Debug.Log("Destination isnt on the nav mesh. " + this.name + " Will just try to move towards the original position i guess?");
+                
+                MoveTowardsPoint(position);
+            }
         }
     }
    
