@@ -21,6 +21,11 @@ namespace Battle {
         [SerializeField] private bool ignoreCounter;
         [SerializeField] private bool ignoreEvade;
         [SerializeField] private bool ignoreBlock;
+        public ActionTypes actionType { get; set; }
+
+        void Awake() {
+            actionType = ActionTypes.Attack;
+        }
         
         // Called once for each hit of the attack
         public DamageDealt DealDamage(float in_damage, Attributes in_ownerStats, Attributes in_targetStats, BonusList<DamageTypes> in_ownerDamageBonuses, BonusList<RateTypes> in_ownerRateBonuses, float in_ownerTN, float in_targetTN) {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Battle {
+    [RequireComponent(typeof(UnitActions))]
+    [RequireComponent(typeof(SpriteRenderer))]
     public class Unit : MonoBehaviour
     {
         public Resources resources;
@@ -26,9 +28,6 @@ namespace Battle {
         public BonusList<DamageTypes> damageResistances = new BonusList<DamageTypes>();
         public BonusList<DamageTypes> damageBonuses = new BonusList<DamageTypes>();
         public BonusList<RateTypes> rateBonuses = new BonusList<RateTypes>();
-
-        [Space(10)][Header("Actions")]
-        [SerializeField] public List<Attack> Attacks;
 
         // States
         public HP HP_state { get; set; }
