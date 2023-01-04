@@ -6,11 +6,16 @@ namespace Battle {
     }
     public static class MenuEvents
     {
-        public static event EventHandler<LogArgs> logEvent;
-        public static void Event_Log(object in_sender, string in_logStr) {
-            logEvent?.Invoke(in_sender, new LogArgs {
+        public static event Action<LogArgs> Event_Log;
+        public static event System.Action Event_ClearLog;
+        public static void Log(string in_logStr) {
+            Event_Log?.Invoke(new LogArgs {
                 logStr = in_logStr,
             });
+        }
+
+        public static void ClearLog() {
+            Event_ClearLog?.Invoke();
         }
     }
 }

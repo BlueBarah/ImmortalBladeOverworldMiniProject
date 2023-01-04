@@ -15,14 +15,6 @@ namespace Battle {
                 availableActions.Add(ActionTypes.Attack);
             }
 
-            // Test GetActions
-            List<IAction> actionList = GetActions(ActionTypes.Attack);
-            string logStr = $"{gameObject.name}'s Attacks: \n";
-            foreach (Attack attack in actionList) {
-                logStr += $"- {attack.name} \n";
-            }
-            logStr += " extra \n extra \n extra \n extra \n extra \n ";
-            MenuEvents.Event_Log(this, logStr);
         }
 
         // Functions for populating menus
