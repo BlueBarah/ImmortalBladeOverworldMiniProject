@@ -44,7 +44,10 @@ public class Mover : MonoBehaviour
     //Bools, animation and others
     [field: SerializeField] public bool isRunning { get; set; }
     public bool inWater { get; set; }
-    private bool inWaterFlag;
+    private bool Flag_inWater;
+    public float waterCollisionY { get; set; }
+    GameObject waterInteraction;
+    GameObject dropShadow;
 
     ////For boxcasting
     //private Vector3 boxExtents;
@@ -58,9 +61,11 @@ public class Mover : MonoBehaviour
         animator = GetComponent<Animator>();
         coll = GetComponent<BoxCollider>(); //may be unneeded
         inWater = false;
-        inWaterFlag = false;
+        Flag_inWater = false;
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        waterInteraction = transform.Find("WaterInteraction").gameObject;
+        dropShadow = gameObject.transform.Find("Drop Shadow").gameObject;
     }
 
     // Start is called before the first frame update
@@ -71,12 +76,7 @@ public class Mover : MonoBehaviour
 
     protected void Update()
     {
-        if (inWater != inWaterFlag) {
-            inWaterFlag = inWater;
-            string shadowType = (inWater) ? "water" : "shadow";
-            gameObject.transform.Find("Drop Shadow")?.GetComponent<DropShadowHandler>().SetShadowType(shadowType);
-        }
-       
+        Handle_WaterCollision();
         HandleSpeed();
         ApplyGravity(); //Apply gconstant gravity every frame
         // Handle any Unit Specific update behavior
@@ -107,6 +107,19 @@ public class Mover : MonoBehaviour
     //protected virtual void OnCollisionEnter(Collision collision)
     //{
     //}
+    private void Handle_WaterCollision() {
+        if (inWater != Flag_inWater) {
+            Flag_inWater = inWater;
+            dropShadow?.SetActive(!inWater);
+            waterInteraction?.SetActive(inWater);
+        }
+        if (inWater) {
+            Vector3 currentPos = waterInteraction.transform.position;
+            waterInteraction.transform.position = new Vector3(currentPos.x, waterCollisionY, currentPos.z);
+        }
+
+    }
+
 
     //Flip sprites Left if true, Right if false. Returns what it just flipped to
 

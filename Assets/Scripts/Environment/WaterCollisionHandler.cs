@@ -15,12 +15,8 @@ public class WaterCollisionHandler : MonoBehaviour
     }
 
     void OnTriggerStay(Collider col) {
-        float yPos = myCol.ClosestPoint(col.gameObject.transform.position).y;
-        Debug.Log(col.gameObject.name);
-        Transform waterInteraction = col.gameObject.transform.Find("WaterInteraction").transform;
-        if (waterInteraction != null) {
-            Vector3 currentPos = waterInteraction.position;
-            waterInteraction.position = new Vector3(currentPos.x, yPos, currentPos.z);
+        if (col.gameObject.TryGetComponent<Mover>(out Mover out_mover)) {
+            out_mover.waterCollisionY = myCol.ClosestPointOnBounds(col.gameObject.transform.position).y;
         }
     }
 
