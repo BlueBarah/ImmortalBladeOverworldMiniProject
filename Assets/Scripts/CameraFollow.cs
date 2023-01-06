@@ -7,19 +7,20 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private float smoothTime = 0.3f;
     [SerializeField] private Vector3 offset;
+    [SerializeField] private bool spriteSortCameraDirection = true;
     private Vector3 velocity = Vector3.zero;
-    // Start is called before the first frame update
-    void Start()
+    private Camera cam;
+    void Awake()
     {
-        
+        cam = transform.Find("Main Camera").GetComponent<Camera>();
+        cam.transparencySortMode = TransparencySortMode.CustomAxis;
+        if (spriteSortCameraDirection) {
+            cam.transparencySortAxis = cam.transform.rotation * Vector3.forward;
+        }
+        else {
+            cam.transparencySortAxis = new Vector3(0, 0, 1f);
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void FixedUpdate()
     {
         if (target != null)
