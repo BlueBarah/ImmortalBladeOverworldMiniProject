@@ -9,22 +9,22 @@ namespace Battle {
     public class ActionMenuManager : MonoBehaviour
     {
         [SerializeField] private GameObject buttonPrefab;
+        private Unit currentUnit;
+        private IAction currentAction;
         private Transform menuContent;
         
         void Awake() {
             menuContent = transform.Find("Scroll View").Find("Viewport").Find("Content");
-            
-            UnityAction myAction = () => {
-                BattleSceneManager.instance.UpdateState(BattleState.PlayerPerformingAction);
-            };
 
             PopulateTestButtons();
 
             // Subscribe to events
             BattleSceneManager.Event_OnStateChange += EventSub_OnStateChange;
+            BattleSceneManager.Event_OnCurrentUnitChange += EventSub_OnCurrentUnitChange;
         }
         void OnDestroy() {
             BattleSceneManager.Event_OnStateChange -= EventSub_OnStateChange;
+            BattleSceneManager.Event_OnCurrentUnitChange -= EventSub_OnCurrentUnitChange;
         }
 
         private void EventSub_OnStateChange(BattleState in_state) {
@@ -36,6 +36,9 @@ namespace Battle {
             else {
                 gameObject.SetActive(false);
             }
+        }
+        private void EventSub_OnCurrentUnitChange(Unit in_unit) {
+            currentUnit = in_unit;
         }
 
         private void ClearMenuButtons() {
@@ -50,23 +53,38 @@ namespace Battle {
                 PopulateAttackButtons();
             });
             InstantiateActionButton("End Turn", () => {
-                BattleSceneManager.instance.UpdateState(BattleState.EnemyTurn);
-                MenuEvents.ClearLog();
-                MenuEvents.Log("Enemy Performing Action");
+                BattleSceneManager.instance.EndTurn();
             });
         }
         private void PopulateAttackButtons() {
             ClearMenuButtons();
 
-            UnitActions currentUnitActions = BattleSceneManager.instance.currentUnit.GetComponent<UnitActions>();
+            UnitActions currentUnitActions = currentUnit.GetComponent<UnitActions>();
             List<IAction> attackList = currentUnitActions.GetActions(ActionTypes.Attack);
             foreach(Attack attack in attackList) {
                 InstantiateActionButton(attack.name, () => {
-                    BattleSceneManager.instance.UpdateState(BattleState.PlayerPerformingAction);
-                    MenuEvents.ClearLog();
-                    MenuEvents.Log($"Player Performing Action: {attack.name}");
+                    PopulateEnemyTargets(attack);
                 });
             }
+            InstantiateActionButton("Back", () => {
+                PopulateTestButtons();
+            });
+        }
+        private void PopulateEnemyTargets(Attack in_attack) {
+            ClearMenuButtons();
+
+            UnitActions currentUnitActions = currentUnit.GetComponent<UnitActions>();
+            List<Unit> enemyList = BattleSceneManager.instance.GetEnemyUnits();
+            foreach(Unit enemy in enemyList) {
+                InstantiateActionButton(enemy.name, () => {
+                    BattleSceneManager.instance.UpdateState(BattleState.PlayerPerformingAction);
+                    currentUnitActions.PerformAttack(enemy, in_attack);
+                });
+            }
+            InstantiateActionButton("Back", () => {
+                PopulateAttackButtons();
+            });
+
         }
 
         private void InstantiateActionButton(string in_text, UnityAction in_action) {

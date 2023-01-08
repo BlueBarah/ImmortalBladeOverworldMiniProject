@@ -9,6 +9,7 @@ TagManager:
   - Ally
   - Environment
   - Ground
+  - Battle Unit
   layers:
   - Default
   - TransparentFX
