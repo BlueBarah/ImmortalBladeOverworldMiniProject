@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43c1b9e6dee7fe447955a4b3395ba429, type: 3}
-  m_Name: AttackTest2
+  m_Name: Smite
   m_EditorClassIdentifier: 
-  damageCategory: 2
-  damageType: 6
+  damageCategory: 0
+  damageType: 0
   hits:
-  - 100
-  <AP_cost>k__BackingField: 5
-  <ESS_cost>k__BackingField: 10
+  - 10000
+  <AP_cost>k__BackingField: 0
+  <ESS_cost>k__BackingField: 0
   <numTargets>k__BackingField: 1
-  baseAccuracy: 75
-  baseCritChance: 15
+  baseAccuracy: 100
+  baseCritChance: 100
   aggroPerHit: 100
-  ignoreCounter: 0
-  ignoreEvade: 0
-  ignoreBlock: 0
+  ignoreCounter: 1
+  ignoreEvade: 1
+  ignoreBlock: 1

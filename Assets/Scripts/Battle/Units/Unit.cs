@@ -43,7 +43,7 @@ namespace Battle {
             } 
             set {
                 _hp = Mathf.Clamp(Mathf.Round(value), 0f, resources.HP_max.val);
-                calculateHPstate();
+                HP_state = calculateHPstate();
             } 
         }
         private float _tn = 1;
@@ -55,7 +55,7 @@ namespace Battle {
             set {
                 float roundedVal = Mathf.Round(value * 100) / 100;
                 _tn = Mathf.Clamp(roundedVal, 0.5f, 1.5f);
-                calculateTNstate();
+                TN_state = calculateTNstate();
             }
         }
         private float _ap = 0;
@@ -105,8 +105,11 @@ namespace Battle {
             return attributes.agi.val.CompareTo(otherUnit.attributes.agi.val);
         }
 
-        public void TakeDamage(DamageDealt in_damageData) {
+        public DamageTaken TakeDamage(DamageDealt in_damageData) {
             DamageTaken damageTaken = StaticUnitFunctions.CalculateDamage(in_damageData, damageResistances, defenses, _maxHP);
+            HP_current -= damageTaken.damage;
+            TN_current += damageTaken.TN_change;
+            return damageTaken;
         }
 
         private void InitializeResources() {
@@ -123,7 +126,8 @@ namespace Battle {
         }
         private HP calculateHPstate() {
             HP returnState;
-            float HP_percent = Mathf.Round((HP_current / _maxHP) * 100);
+            int HP_percent = Mathf.RoundToInt((HP_current / _maxHP) * 100);
+            Debug.Log($"{HP_percent} - {(int)HP.Full}");
 
             if (HP_percent >= (int)HP.Full) returnState = HP.Full;
             else if (HP_percent >= (int)HP.High) returnState = HP.High;
@@ -135,7 +139,7 @@ namespace Battle {
         }
         private TN calculateTNstate() {
             TN returnState;
-            float TN_wholeNumber = Mathf.Round(TN_current * 100);
+            int TN_wholeNumber = Mathf.RoundToInt(TN_current * 100);
 
             if (TN_wholeNumber >= (int)TN.VeryHigh) returnState = TN.VeryHigh;
             else if (TN_wholeNumber >= (int)TN.High) returnState = TN.High;

@@ -43,6 +43,7 @@ namespace Battle {
         }
         public void UpdateState(BattleState in_state) {
             state = in_state;
+            Event_OnStateChange?.Invoke(in_state);
             switch (in_state) {
                 case BattleState.PlayerChoosingAction:
                     Handle_PlayerChoosingAction();
@@ -54,17 +55,21 @@ namespace Battle {
                     Handle_EnemyTurn();
                     break;
                 case BattleState.Decide:
+                    Handle_Decide();
                     break;
                 case BattleState.Win:
+                    MenuEvents.ClearLog();
+                    MenuEvents.Log("Win");
                     break;
                 case BattleState.Lose:
+                    MenuEvents.ClearLog();
+                    MenuEvents.Log("Lose");
                     break;
                 default:
                     Debug.Log($"Unknown State: {nameof(in_state)}");
                     break;
             }
 
-            Event_OnStateChange?.Invoke(in_state);
         }
 
         public void EndTurn() {
@@ -78,14 +83,43 @@ namespace Battle {
             return turnOrder.FindAll(unit => unit.GetType() == typeof(EnemyUnit));
         }
         private void Handle_PlayerChoosingAction() {
+            Debug.Log("Player Turn");
         }
         private async void Handle_PlayerPerformingAction() {
-            await Task.Delay(12000);
-            UpdateState(BattleState.PlayerChoosingAction);
+            await Task.Delay(5000);
+            UpdateState(BattleState.Decide);
         }
         private async void Handle_EnemyTurn() {
             await Task.Delay(2000);
-            UpdateState(BattleState.PlayerChoosingAction);
+            UpdateState(BattleState.Decide);
+        }
+        private void Handle_Decide() {
+            bool Flag_GameOver = true;
+            bool Flag_Victory = true;
+            for (int i = turnOrder.Count - 1; i >= 0; i--) {
+                Unit unit = turnOrder[i];
+                if (unit.GetType() == typeof(EnemyUnit) && unit.HP_state == HP.Incapacitated) {
+                    turnOrder.Remove(unit);
+                    Destroy(unit.gameObject);
+                }
+                if (unit.GetType() == typeof(EnemyUnit) && unit.HP_state != HP.Incapacitated) {
+                    Debug.Log("No Victory");
+                    Flag_Victory = false;
+                }
+                else if (unit.GetType() == typeof(PlayerUnit) && unit.HP_state != HP.Incapacitated) {
+                    Debug.Log("No Game Over");
+                    Flag_GameOver = false;
+                }
+            }
+            if (Flag_GameOver) {
+                UpdateState(BattleState.Lose);
+            }
+            else if (Flag_Victory) {
+                UpdateState(BattleState.Win);
+            }
+            else {
+                UpdateState(BattleState.PlayerChoosingAction);
+            }
         }
     }
 
