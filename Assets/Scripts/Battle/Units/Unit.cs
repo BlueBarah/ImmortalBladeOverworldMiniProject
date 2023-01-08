@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 namespace Battle {
     [RequireComponent(typeof(UnitActions))]
     [RequireComponent(typeof(SpriteRenderer))]
-    public class Unit : MonoBehaviour
+    public class Unit : MonoBehaviour, IComparable
     {
         public Resources resources;
         [Header("Resources")]
@@ -34,43 +35,47 @@ namespace Battle {
         public TN TN_state { get; set; }
 
         // Resources (Automatically round and clamp values to prevent invalid data)
+        private float _hp = 0;
         public float HP_current { 
             // A whole number between zero and _maxHP
             get {
-                return HP_current;
+                return _hp;
             } 
             set {
-                HP_current = Mathf.Clamp(Mathf.Round(value), 0f, _maxHP);
+                _hp = Mathf.Clamp(Mathf.Round(value), 0f, resources.HP_max.val);
                 calculateHPstate();
             } 
         }
+        private float _tn = 1;
         public float TN_current {
             // A value between 0.5 (50%) and 1.5 (150%), rounded to two decimal places
             get {
-                return TN_current;
+                return _tn;
             }
             set {
                 float roundedVal = Mathf.Round(value * 100) / 100;
-                TN_current = Mathf.Clamp(roundedVal, 0.5f, 1.5f);
+                _tn = Mathf.Clamp(roundedVal, 0.5f, 1.5f);
                 calculateTNstate();
             }
         }
+        private float _ap = 0;
         public float AP_current {
             // A whole number between zero and _maxAP
             get {
-                return AP_current;
+                return _ap;
             }
             set {
-                AP_current = Mathf.Clamp(Mathf.Round(value), 0f, _maxAP);
+                _ap = Mathf.Clamp(Mathf.Round(value), 0f, resources.AP_max.val);
             }
         }
+        private float _ess;
         public float ESS_current {
             // A whole number between zero and _maxESS
             get {
-                return ESS_current;
+                return _ess;
             }
             set {
-                ESS_current = Mathf.Clamp(Mathf.Round(value), 0f, _maxESS);
+                _ess = Mathf.Clamp(Mathf.Round(value), 0f, resources.ESS_max.val);
             }
         }
 
@@ -85,17 +90,31 @@ namespace Battle {
             attributes = new Attributes(_level, _strength, _willpower, _dexterity, _focus, _endurance, _agility);
             resources = new Resources(_maxHP, _maxESS, _maxAP);
             defenses = new Defenses(calculateEvasion(), calculateBlock());
+
+            InitializeResources();
         }
         void Update() {
             // Update calculated values if necessary
             if (flag_changeEvasion) defenses.evasion.val = calculateEvasion();
             if (flag_changeBlock) defenses.block.val = calculateBlock();
         }
+        public int CompareTo(object obj)
+        {
+            // Use the unit's agility when sorting units in a list
+            Unit otherUnit = obj as Unit;
+            return attributes.agi.val.CompareTo(otherUnit.attributes.agi.val);
+        }
 
         public void TakeDamage(DamageDealt in_damageData) {
             DamageTaken damageTaken = StaticUnitFunctions.CalculateDamage(in_damageData, damageResistances, defenses, _maxHP);
         }
 
+        private void InitializeResources() {
+            HP_current = resources.HP_max.val;
+            ESS_current = resources.ESS_max.val;
+            AP_current = resources.AP_max.val;
+            TN_current = 1f;
+        }
         private float calculateEvasion() {
             return (attributes.agi.val - 10f) / 2f;
         }

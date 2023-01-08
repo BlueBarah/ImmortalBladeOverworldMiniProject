@@ -66,7 +66,7 @@ namespace Battle {
         }
         private float CalculateHit(float in_ownerAimStat, float in_ownerAccuracyBonus, float in_ownerTN, float in_targetAgility, float in_targetTN) {
             // Calculate hit chance
-            float totalAccuracy = baseAccuracy * in_ownerAccuracyBonus;
+            float totalAccuracy = baseAccuracy + (baseAccuracy * in_ownerAccuracyBonus);
             float hitChance = Mathf.Ceil(totalAccuracy + (in_ownerAimStat * in_ownerTN) - (in_targetAgility * in_targetTN));
             hitChance = Mathf.Clamp(hitChance, 0f, 99f);
             
@@ -98,7 +98,7 @@ namespace Battle {
             totalCritChance = Mathf.Clamp(totalCritChance, 0, 99);
             if (totalCritChance >= roll)
             {
-                return 1.5f * in_ownerCritDamage;
+                return 1f + (1f * (0.5f + in_ownerCritDamage));
             }
             else
             {
@@ -108,8 +108,10 @@ namespace Battle {
         private float CalculateDamage(float in_damage, float in_hit, float in_crit, float in_ownerAttackStat, float in_ownerLevel, float in_targetEndurance, float in_damageBonuses) {
             // Calculate the total damage dealt by the attack
             float damage = in_hit * in_crit * Mathf.Sqrt(in_ownerAttackStat / in_targetEndurance) * in_damage * (in_ownerLevel / 2);
+            Debug.Log($"{in_hit} * {in_crit} * SQRT({in_ownerAttackStat} / {in_targetEndurance}) * {in_damage} * ({in_ownerLevel} / 2) = {damage}");
+            Debug.Log($"Damage Bonuses: {in_damageBonuses}");
             damage = damage + (damage * in_damageBonuses);
-            return damage;
+            return Mathf.Round(damage);
         }
     }
 }

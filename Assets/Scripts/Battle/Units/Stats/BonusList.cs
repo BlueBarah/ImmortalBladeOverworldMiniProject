@@ -23,11 +23,11 @@ namespace Battle {
         }
         
         public float GetSumOfBonuses(T in_bonusType) {
-            // If there are no bonuses, return 1
-            float sum = 1f;
+            // If there are no bonuses, return 0
+            float sum = 0f;
             List<Bonus<T>> filteredList = FilterList(in_bonusType);
 
-            // Add percentages to the sum (1 + 15% = 1.15 + (-10%) = 1.05)
+            // Add percentages to the sum 
             foreach (Bonus<T> bonus in filteredList) {
                 sum += bonus.val;
             }

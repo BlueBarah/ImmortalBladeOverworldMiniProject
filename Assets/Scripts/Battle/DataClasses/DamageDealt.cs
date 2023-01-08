@@ -11,7 +11,7 @@ namespace Battle {
         public float baseAggro;
         public DamageTypes damageCategory; // Physical or Magical
         public DamageTypes damageType;
-        public bool ignoreConter;
+        public bool ignoreCounter;
         public bool ignoreEvade;
         public bool ignoreBlock;
 
@@ -23,9 +23,22 @@ namespace Battle {
             baseAggro = in_baseAggro;
             damageCategory = in_damageCategory;
             damageType = in_damageType;
-            ignoreConter = in_ignoreCounter;
+            ignoreCounter = in_ignoreCounter;
             ignoreEvade = in_ignoreEvade;
             ignoreBlock = in_ignoreBlock;
+        }
+
+        public string Log() {
+            string logStr = $"Hit: {hit}\n"
+            + $"Crit: {crit}\n"
+            + $"Damage: {baseDamage}\n"
+            + $"Aggro: {baseAggro}\n"
+            + $"Category: {damageCategory}\n"
+            + $"Type: {damageType}\n"
+            + $"No Counter: {ignoreCounter}\n"
+            + $"No Evade: {ignoreEvade}\n"
+            + $"No Block: {ignoreBlock}\n";
+            return logStr;
         }
     }
 }

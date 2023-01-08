@@ -9,11 +9,34 @@ namespace Battle {
     {
         public static BattleSceneManager instance;
         public static event Action<BattleState> Event_OnStateChange;
+        public static event Action<Unit> Event_OnCurrentUnitChange;
+        [SerializeField] private Material UI_Material;
         public BattleState state;
-        public GameObject currentUnit { get; set; }
+        public Unit currentUnit { get; set; }
+        public List<Unit> turnOrder = new List<Unit>();
         void Awake() {
             instance = this;
-            currentUnit = GameObject.Find("Jason");
+
+            // Initialize List
+            foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Battle Unit")) {
+                turnOrder.Add(unit.GetComponent<Unit>());
+            }
+            turnOrder.Sort();
+            turnOrder.Reverse();
+            currentUnit = turnOrder[0];
+            Event_OnCurrentUnitChange?.Invoke(currentUnit);
+
+            // Log
+            string logStr = "Turn Order: ";
+            foreach (Unit unit in turnOrder) {
+                logStr += $"{unit.name}, ";
+            }
+            Debug.Log(logStr);
+            logStr = "Enemy Units: ";
+            foreach (EnemyUnit unit in GetEnemyUnits()) {
+                logStr += $"{unit.name}, ";
+            }
+            Debug.Log(logStr);
         }
         void Start() {
             UpdateState(BattleState.PlayerChoosingAction);
@@ -43,11 +66,21 @@ namespace Battle {
 
             Event_OnStateChange?.Invoke(in_state);
         }
+
+        public void EndTurn() {
+            int nextIndex = turnOrder.IndexOf(currentUnit) + 1;
+            currentUnit = (nextIndex < turnOrder.Count) ? turnOrder[nextIndex] : turnOrder[0];
+
+            Event_OnCurrentUnitChange?.Invoke(currentUnit);
+            UpdateState(BattleState.PlayerChoosingAction);
+        }
+        public List<Unit> GetEnemyUnits() {
+            return turnOrder.FindAll(unit => unit.GetType() == typeof(EnemyUnit));
+        }
         private void Handle_PlayerChoosingAction() {
-            Debug.Log("Handle Player Turn");
         }
         private async void Handle_PlayerPerformingAction() {
-            await Task.Delay(2000);
+            await Task.Delay(12000);
             UpdateState(BattleState.PlayerChoosingAction);
         }
         private async void Handle_EnemyTurn() {
