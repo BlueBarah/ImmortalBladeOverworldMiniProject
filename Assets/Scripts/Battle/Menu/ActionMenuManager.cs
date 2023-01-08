@@ -29,6 +29,7 @@ namespace Battle {
 
         private void EventSub_OnStateChange(BattleState in_state) {
             // Don't display the log box while the user is selecting actions
+            Debug.Log(in_state);
             if (in_state == BattleState.PlayerChoosingAction) {
                 gameObject.SetActive(true);
                 PopulateTestButtons();
