@@ -21,6 +21,8 @@ namespace Battle {
             foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Battle Unit")) {
                 turnOrder.Add(unit.GetComponent<Unit>());
             }
+        }
+        void Start() {
             turnOrder.Sort();
             turnOrder.Reverse();
             currentUnit = turnOrder[0];
@@ -37,8 +39,6 @@ namespace Battle {
                 logStr += $"{unit.name}, ";
             }
             Debug.Log(logStr);
-        }
-        void Start() {
             UpdateState(BattleState.PlayerChoosingAction);
         }
         public void UpdateState(BattleState in_state) {
