@@ -6,17 +6,16 @@ using UnityEngine.AI;
 [RequireComponent(typeof(LineOfSight))]
 public class Enemy : NPC
 {
-
     //Specific to Enemy movement:
 
     public LineOfSight los;
 
-    [SerializeField] float fightRange = 5f;
+    [SerializeField] private float fightRange = 5f;
 
     //Line of Sight and Detection stuff
-    [SerializeField] float sightRange = 15f; //How far enemy can see with los/vision, literally from eyes of enemy to center of Player
-    [SerializeField] float sightAngle = 15f; //Angle of sight for enemies sight cone
-    [SerializeField] float awarenessRange = 5f; //How far away can Player be from Enemy until Enemy will become aware of Jason without line of sight/cone
+    [SerializeField] private float sightRange = 15f; //How far enemy can see with los/vision, literally from eyes of enemy to center of Player
+    [SerializeField] private float sightAngle = 15f; //Angle of sight for enemies sight cone
+    [SerializeField] private float awarenessRange = 5f; //How far away can Player be from Enemy until Enemy will become aware of Jason without line of sight/cone
                                                 //If player is near enemy, enemy can become aware even without line of sight
     // Event Handler Variables
     private bool isPlayerInFightRangeFlag = false; // Only fire the event if the flag changes

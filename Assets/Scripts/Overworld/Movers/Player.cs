@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class Player : Mover
 {
-    //Handles movement that is specific to Player Character like getting inputs
+    //Handles movement that is specific to Player Character:
+        //Get Inputs
+        //Field Ability + Switching
 
     //Inputs
     Vector3 inputDirection;
 
+    private FieldAbilityEquipper fieldAbility;
+
     protected override void Start()
     {
         isRunning = false;
+        fieldAbility = GetComponent<FieldAbilityEquipper>();
     }
 
     //Using CharacterControllers built in collision detection. 
@@ -22,30 +27,14 @@ public class Player : Mover
         if (collision.collider.tag == "Enemy")
         {
             HelperFunctions.FireBattleStartEvent(this, gameObject.name);
+
         }else if(collision.gameObject.tag != "Ground")
         {
             //Debug.Log(this.name + " touched " + collision.gameObject.name);
         }
     }
 
-    //CollisionEnter not usable without rb
-    //Collisions specific to Player
-    //protected override void OnCollisionEnter(Collision collision)
-    //{
-    //    base.OnCollisionEnter(collision);
-    //    Debug.Log("collision");
-    //    if (collision.collider.tag == "Enemy")
-    //    {
-    //        HelperFunctions.FireBattleStartEvent(this, gameObject.name);
-    //    }else if (collision.gameObject.tag != "Ground" && collision.gameObject.name != this.name)
-    //    {
-    //        Debug.Log(this.name + " defualt collision enter with " + collision.gameObject.name);
-    //    }
-    //}
-
     //Grabs and returns inputs
-    //TODO: configurable inputs (using either keyboard or controller to move)
-
     private Vector3 getInputDirection()
     {
         float x = Input.GetAxis("Horizontal");
@@ -61,13 +50,23 @@ public class Player : Mover
         {
             Jump();
         }
+
+        if (Input.GetButtonDown("Ability"))
+        {
+            fieldAbility.PerformAbility();
+        }
+
+        //Temporary way to switch abilities for testing purposes
+        if (Input.GetButtonDown("SwitchAbility")){
+            fieldAbility.SwitchAbility();
+        }
     }
 
     // Update is called once per frame
     protected override void OnUpdate()
     {
         inputDirection = getInputDirection();
-        currDirection = inputDirection;
+        ChangeCurrDirection(inputDirection);
         GetInputButtons();
 
         HandleAnimationAndSprite();

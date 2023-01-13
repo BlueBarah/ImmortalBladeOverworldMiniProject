@@ -12,11 +12,10 @@ public class NPC : Mover
     [SerializeField] public float roamRange = 10; //How far away from starting position will NPC roam from if in an action that involves random roaming
 
     //Navigation/AI stuff
-    public NavMeshPath currPath; //The current path that NPC is following/attempting to follow. 
-    public Vector3 startingPosition { get; set; } //Position mover orignally was placed in world
-    [field: SerializeField]
-    public Vector3 nextDest { get; set; } //The next overall destination mover is aiming to move to. 
+    private NavMeshPath currPath; //The current path that NPC is following/attempting to follow. 
     private Vector3 nextPathPoint; //Intermediate destinations along path to get to NextDest
+    public Vector3 startingPosition { get; set; } //Position mover orignally was placed in world
+    public Vector3 nextDest { get; set; } //The next overall destination mover is aiming to move to. 
 
     //For testing and inpsector purposes:
     public bool showRoamArea = true;
@@ -36,7 +35,7 @@ public class NPC : Mover
     protected override void OnUpdate()
     {
         base.OnUpdate();
-        startingPosition = tf.position;
+        startingPosition = transform.position;
     }
 
     //Gets and Sets the NPCs next overall destination point to a random position in range of startingPosition
@@ -81,29 +80,31 @@ public class NPC : Mover
     public void MoveAlongPathToPoint(Vector3 position)
     {
         NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), currPath); //Get a hopefully viable path from NavMesh
+        
+        //NPC thinks they can reach the position
         if (CanReachPosition(position))
         {
+            //Theres points on path before we get to final destination
             if (currPath.corners.Length > 1)
             {
                 nextPathPoint = currPath.corners[1]; //My next intermediate destination is the next point in the array
-                currDirection = (nextPathPoint - currPosition).normalized;
-                currDirection.y = 0;
                 
+                //
+                //Vector3 tempDir = (nextPathPoint - currPosition).normalized;
+                //tempDir.y = 0;
+                //ChangeCurrDirection(tempDir);
+
+                //We can reach the next point in the path
                 if (CanReachPosition(nextPathPoint))
                 {
                     //TODO: for some reason they get stuck here even though the path seems complete and viable
                     //basically need to fix CanReachPosition() somehow
-                    Debug.Log(this.name + " thinks they can get to " + nextPathPoint + " in order to get to next path point");
+                    //Debug.Log(this.name + " thinks they can get to " + nextPathPoint + " in order to get to next path point");
                     MoveTowardsPoint(nextPathPoint); //Move to it
                 }
-                else
-                {
-                    Debug.Log(this.name + " cant reach next path point");
-                }
             }
-            else
+            else //The final destinate is our next point in the path
             {
-                Debug.Log(this.name + " thinks they can reach " + position);
                 MoveTowardsPoint(position); //Only one point, path is straight, go go go
             }
         }
@@ -117,16 +118,18 @@ public class NPC : Mover
             //1. Position is on the navmesh but there is no path to it
             if(!(float.IsInfinity(closestPosition.x) && float.IsInfinity(closestPosition.y) && float.IsInfinity(closestPosition.z)))
             {
-                Debug.Log(this.name + "Doesnt have a good path, will try jumping/moving to this point instead: " + closestPosition);
-                Jump(); //lets try jumping to it lol
-                MoveTowardsPoint(closestPosition); 
+               //If the position NPC wants to reach is above them
+                if(closestPosition.y > currPosition.y)
+                {
+                    Jump(); //Try jumping to it
+                }
+                //If the point was below, gravity should naturally push them down
+
+                MoveTowardsPoint(closestPosition); //Now try moving towards the point
             }
             else //2. Position isnt on the navmesh at all
             {
-                //TODO: put something else here
-                Debug.Log("Destination isnt on the nav mesh. " + this.name + " Will just try to move towards the original position i guess?");
-                
-                MoveTowardsPoint(position);
+                MoveTowardsPoint(position); //Just try to move towards the original position
             }
         }
     }
@@ -185,48 +188,4 @@ public class NPC : Mover
         //Gizmos.color = Color.blue;
         //Gizmos.DrawLine(currPosition, nextDest); //Draw straigt line from current position to the next destination (not path)
     }
-
-    //#region Currently Unused Movement Methods
-    ////Travel along a path of points calculated by nav agent with use of transform.Translate()
-    //public void TranslateAlongPathToPoint(Vector3 position)
-    //{
-    //    NavMesh.CalculatePath(currPosition, position, NavMesh.AllAreas, currPath); //Calculate the path, put it into an array of vector points
-
-    //    if (currPath.corners.Length > 1)
-    //    {
-    //        nextPathPoint = currPath.corners[1]; //My next intermediate destination is the next point in the array
-    //        currDirection = (nextPathPoint - currPosition).normalized;
-    //        currDirection.y = 0;
-    //        TranslateTowardsPoint(nextPathPoint); //Move to it
-    //    }
-    //    else
-    //        TranslateTowardsPoint(position); //Only one point, path is straight
-    //}
-    ////Travel along a path of points calculated by nav agent with use of rb.MovePosition()
-    //public void MoveAlongPathToPointRB(Vector3 position)
-    //{
-    //    if (CanReachPosition(position))
-    //    {
-    //        NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), currPath);
-    //        //agent.CalculatePath(position, currPath); //Calculate the path, put it into an array of vector points
-
-    //        if (currPath.corners.Length > 1)
-    //        {
-    //            nextPathPoint = currPath.corners[1]; //My next intermediate destination is the next point in the array
-    //            currDirection = (nextPathPoint - currPosition).normalized;
-    //            currDirection.y = 0;
-    //            MoveTowardsPointRB(nextPathPoint); //Move to it
-    //        }
-    //        else
-    //            MoveTowardsPointRB(position); //Only one point, path is straight
-    //    }
-    //    else
-    //    {
-    //        //recalculate or something idk
-
-    //    }
-    //}
-    //#endregion
-
-    //For visualizing the current path of an NPC
 }

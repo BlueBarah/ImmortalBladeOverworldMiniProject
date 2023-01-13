@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Sensor : MonoBehaviour
 {
-
-    [SerializeField] public Transform t;
     [SerializeField] public Mover target;
     public Vector3 targetsPosition
     {
@@ -14,6 +12,5 @@ public class Sensor : MonoBehaviour
 
     protected virtual void Start()
     {
-        t = GetComponent<Transform>();
     }
 }
