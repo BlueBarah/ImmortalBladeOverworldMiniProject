@@ -81,14 +81,18 @@ public class NPC : Mover
     public void MoveAlongPathToPoint(Vector3 position)
     {
         NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), currPath); //Get a hopefully viable path from NavMesh
+        
+        //NPC thinks they can reach the position
         if (CanReachPosition(position))
         {
+            //Theres points on path before we get to final destination
             if (currPath.corners.Length > 1)
             {
                 nextPathPoint = currPath.corners[1]; //My next intermediate destination is the next point in the array
                 currDirection = (nextPathPoint - currPosition).normalized;
                 currDirection.y = 0;
                 
+                //We can reach the next point in the path
                 if (CanReachPosition(nextPathPoint))
                 {
                     //TODO: for some reason they get stuck here even though the path seems complete and viable
@@ -96,14 +100,9 @@ public class NPC : Mover
                     //Debug.Log(this.name + " thinks they can get to " + nextPathPoint + " in order to get to next path point");
                     MoveTowardsPoint(nextPathPoint); //Move to it
                 }
-                else
-                {
-                    //Debug.Log(this.name + " cant reach next path point");
-                }
             }
-            else
+            else //The final destinate is our next point in the path
             {
-                //Debug.Log(this.name + " thinks they can reach " + position);
                 MoveTowardsPoint(position); //Only one point, path is straight, go go go
             }
         }
@@ -117,17 +116,21 @@ public class NPC : Mover
             //1. Position is on the navmesh but there is no path to it
             if(!(float.IsInfinity(closestPosition.x) && float.IsInfinity(closestPosition.y) && float.IsInfinity(closestPosition.z)))
             {
-                //Debug.Log(this.name + "Doesnt have a good path, will try jumping/moving to this point instead: " + closestPosition);
-                
-                Jump(); //lets try jumping to it lol
+               //If the position NPC wants to reach is above them
+                if(closestPosition.y > currPosition.y)
+                {
+                    Jump(); //Try jumping to it
+                }
 
-                MoveTowardsPoint(closestPosition); 
+                //If the point was below, gravity should naturally push them down
+
+                MoveTowardsPoint(closestPosition); //Now try moving towards the point
             }
             else //2. Position isnt on the navmesh at all
             {
                 //TODO: put something else here
-                //Debug.Log("Destination isnt on the nav mesh. " + this.name + " Will just try to move towards the original position i guess?");
-                MoveTowardsPoint(position);
+                Debug.Log(this.name + "'s destination isnt on the nav mesh.");
+                MoveTowardsPoint(position); //Just try to move towards the original position
             }
         }
     }

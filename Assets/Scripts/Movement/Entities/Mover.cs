@@ -206,18 +206,6 @@ public class Mover : MonoBehaviour
     //Handles animation and sprite, flips when moving left/right, plays running animation if it exists and mover is running
     protected virtual void HandleAnimationAndSprite()
     {
-        //Animation bools can actally be set directly in states/actions now. If NPC is doing a moving action, it sets its bool as isRunning
-        //Players animations are handled in Player as they dont have FSM
-        //// Animation Conditions
-        //if (currDirection != Vector3.zero)
-        //{
-        //    isRunning = true;
-        //}
-        //else
-        //{
-        //    isRunning = false;
-        //}
-
         if (animator != null)
         {
             animator.SetBool("isRunning", isRunning);
@@ -238,7 +226,7 @@ public class Mover : MonoBehaviour
         }
     }
 
-    //#region Currently Unused Movement Methods:
+    #region Currently Unused Movement Methods:
 
     //virtual protected void collisionHandling(RaycastHit collision) { }
 
@@ -342,7 +330,7 @@ public class Mover : MonoBehaviour
     //    return boxHit;
     //}
 
-    //#endregion 
+    #endregion 
 
     //Draw box cast
     protected virtual void OnDrawGizmos()

@@ -30,9 +30,9 @@ public class Jump : MovementAbility
 
         if (mover.grounded)
         {
-            Debug.Log("jumping init: " + iniJumpVelocity);
-            Debug.Log("jumping height: " + jumpHeight);
-            Debug.Log("yvelocity: " + mover.yVelocity);
+            //Debug.Log("jumping init: " + iniJumpVelocity);
+            //Debug.Log("jumping height: " + jumpHeight);
+            //Debug.Log("yvelocity: " + mover.yVelocity);
 
             mover.yVelocity = iniJumpVelocity; //get the jumpVelocity 
             mover.jumping = true; //jumping bool
