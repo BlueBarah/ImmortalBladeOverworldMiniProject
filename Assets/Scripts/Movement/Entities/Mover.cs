@@ -102,11 +102,6 @@ public class Mover : MonoBehaviour
         }
     }
 
-    ////OnCollisionEnter is just called once at the start of a collision
-    //
-    //protected virtual void OnCollisionEnter(Collision collision)
-    //{
-    //}
     private void Handle_WaterCollision() {
         if (inWater != Flag_inWater) {
             Flag_inWater = inWater;
@@ -117,12 +112,9 @@ public class Mover : MonoBehaviour
             Vector3 currentPos = waterInteraction.transform.position;
             waterInteraction.transform.position = new Vector3(currentPos.x, waterCollisionY, currentPos.z);
         }
-
     }
 
-
     //Flip sprites Left if true, Right if false. Returns what it just flipped to
-
     public bool flipSprite(bool shouldIFlipToLeft)
     {
         sprite.flipX = shouldIFlipToLeft;

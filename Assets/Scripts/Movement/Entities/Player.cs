@@ -9,9 +9,12 @@ public class Player : Mover
     //Inputs
     Vector3 inputDirection;
 
+    Ability currAbility;
+
     protected override void Start()
     {
         isRunning = false;
+        currAbility = new Dash();
     }
 
     //Using CharacterControllers built in collision detection. 
@@ -60,6 +63,12 @@ public class Player : Mover
         if (Input.GetButtonDown("Jump"))
         {
             Jump();
+        }
+
+        if (Input.GetButtonDown("Ability"))
+        {
+            Debug.Log("do ability");
+            currAbility.Perform();
         }
     }
 
