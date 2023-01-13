@@ -41,7 +41,7 @@ namespace Battle {
             Debug.Log(logStr);
             UpdateState(BattleState.PlayerChoosingAction);
         }
-        public void UpdateState(BattleState in_state) {
+        private void UpdateState(BattleState in_state) {
             state = in_state;
             Event_OnStateChange?.Invoke(in_state);
             switch (in_state) {
@@ -58,11 +58,9 @@ namespace Battle {
                     Handle_Decide();
                     break;
                 case BattleState.Win:
-                    MenuEvents.ClearLog();
                     MenuEvents.Log("Win");
                     break;
                 case BattleState.Lose:
-                    MenuEvents.ClearLog();
                     MenuEvents.Log("Lose");
                     break;
                 default:
@@ -71,26 +69,47 @@ namespace Battle {
             }
 
         }
+        public async void AttackSelected(List<Unit> in_units, Attack in_action) {
+            UpdateState(BattleState.PlayerPerformingAction);
+
+            UnitActions currentUnitActions = currentUnit.GetComponent<UnitActions>();
+            List<Task> performActions = new List<Task>();
+            foreach (Unit unit in in_units) {
+                performActions.Add(currentUnitActions.PerformAttack(unit, in_action));
+            }
+            await Task.WhenAll(performActions);
+
+            UpdateState(BattleState.Decide);
+        }
 
         public void EndTurn() {
             int nextIndex = turnOrder.IndexOf(currentUnit) + 1;
             currentUnit = (nextIndex < turnOrder.Count) ? turnOrder[nextIndex] : turnOrder[0];
 
             Event_OnCurrentUnitChange?.Invoke(currentUnit);
-            UpdateState(BattleState.PlayerChoosingAction);
+            if (currentUnit.GetType() == typeof(PlayerUnit)) {
+                UpdateState(BattleState.PlayerChoosingAction);
+            }
+            else {
+                UpdateState(BattleState.EnemyTurn);
+            }
         }
         public List<Unit> GetEnemyUnits() {
             return turnOrder.FindAll(unit => unit.GetType() == typeof(EnemyUnit));
         }
-        private void Handle_PlayerChoosingAction() {
-            Debug.Log("Player Turn");
+        public List<Unit> GetPlayerUnits() {
+            return turnOrder.FindAll(unit => (unit.GetType() == typeof(PlayerUnit) && unit.HP_state != HP.Incapacitated));
         }
-        private async void Handle_PlayerPerformingAction() {
-            await Task.Delay(5000);
-            UpdateState(BattleState.Decide);
+        private void Handle_PlayerChoosingAction() {
+            if (currentUnit.HP_state == HP.Incapacitated) {
+                EndTurn();
+            }
+        }
+        private void Handle_PlayerPerformingAction() {
+            //UpdateState(BattleState.Decide);
         }
         private async void Handle_EnemyTurn() {
-            await Task.Delay(2000);
+            await currentUnit.gameObject.GetComponent<IEnemyUnitAI>().Act();
             UpdateState(BattleState.Decide);
         }
         private void Handle_Decide() {
@@ -118,7 +137,12 @@ namespace Battle {
                 UpdateState(BattleState.Win);
             }
             else {
-                UpdateState(BattleState.PlayerChoosingAction);
+                if (currentUnit.GetType() == typeof(EnemyUnit)) {
+                    EndTurn();
+                }
+                else {
+                    UpdateState(BattleState.PlayerChoosingAction);
+                }
             }
         }
     }

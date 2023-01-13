@@ -14,18 +14,15 @@ namespace Battle {
         [Space(10)][SerializeField] public float[] hits;
         [field:SerializeField] public float AP_cost { get; set; }
         [field:SerializeField] public float ESS_cost { get; set; }
-        [field:SerializeField] public float numTargets { get; set; }
+        [field:SerializeField] public ActionTargets actionTarget { get; set; }
         [SerializeField] private float baseAccuracy;
         [SerializeField] private float baseCritChance;
         [SerializeField] private float aggroPerHit;
         [SerializeField] private bool ignoreCounter;
         [SerializeField] private bool ignoreEvade;
         [SerializeField] private bool ignoreBlock;
-        public ActionTypes actionType { get; set; }
-
-        void Awake() {
-            actionType = ActionTypes.Attack;
-        }
+        [field:SerializeField] public int actionTime { get; set; } = 1000;
+        public ActionTypes actionType { get; set; } = ActionTypes.Attack;
         
         // Called once for each hit of the attack
         public DamageDealt DealDamage(float in_damage, Attributes in_ownerStats, Attributes in_targetStats, BonusList<DamageTypes> in_ownerDamageBonuses, BonusList<RateTypes> in_ownerRateBonuses, float in_ownerTN, float in_targetTN) {

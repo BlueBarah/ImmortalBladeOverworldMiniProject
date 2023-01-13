@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Battle {    
@@ -27,7 +28,7 @@ namespace Battle {
                     return null;
             }
         }
-        public void PerformAttack(Unit in_target, Attack in_attack) {
+        public Task PerformAttack(Unit in_target, Attack in_attack) {
             string logStr = $"{owner.name} used {in_attack.name} on {in_target.name}\n";
             foreach(float hit in in_attack.hits) {
                 // Run the attack code
@@ -49,8 +50,9 @@ namespace Battle {
                 else if (damageTaken.result == AttackResults.PartiallyBlocked) logStr += $"    {in_target.name} partially blocked the attack and took {damageTaken.damage}\n";
                 else if (damageTaken.result == AttackResults.Taken) logStr += $"    {in_target.name} took {damageTaken.damage}\n";
             }
-            MenuEvents.ClearLog();
             MenuEvents.Log(logStr);
+
+            return Task.Delay(in_attack.actionTime);
         }
     }
 

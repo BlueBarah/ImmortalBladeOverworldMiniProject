@@ -18,10 +18,11 @@ MonoBehaviour:
   - 10000
   <AP_cost>k__BackingField: 0
   <ESS_cost>k__BackingField: 0
-  <numTargets>k__BackingField: 1
+  <actionTarget>k__BackingField: 0
   baseAccuracy: 100
   baseCritChance: 100
   aggroPerHit: 100
   ignoreCounter: 1
   ignoreEvade: 1
   ignoreBlock: 1
+  <actionTime>k__BackingField: 3000

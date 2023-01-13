@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Battle {
-    public class EnemyUnit : Unit
+    public interface IEnemyUnitAI
     {
-        [SerializeField] private IEnemyUnitAI enemyUnitAI;
+        public Task Act();
     }
 }
+

@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Battle {
-    public class EnemyUnit : Unit
+    public enum ActionTargets
     {
-        [SerializeField] private IEnemyUnitAI enemyUnitAI;
+        Single,
+        Area,
+        Self
     }
 }
+
