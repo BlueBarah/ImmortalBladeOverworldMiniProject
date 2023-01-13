@@ -11,8 +11,8 @@ public class LineOfSight : ProximitySensor
 
     private Vector3 currPosition
     {
-        get{ return t.position; }
-        set{ t.position = value; }
+        get{ return transform.position; }
+        set{ transform.position = value; }
     }
 
     //currDirection of attached Mover and the subsequent sightLine vectors that make up a cone of vision
@@ -26,9 +26,9 @@ public class LineOfSight : ProximitySensor
     {
         base.Start();
 
-        if(t != null)
+        if(transform != null)
         {
-            direction = t.forward;
+            direction = transform.forward;
         }
 
     }

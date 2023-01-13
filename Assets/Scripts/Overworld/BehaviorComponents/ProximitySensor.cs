@@ -11,7 +11,7 @@ public class ProximitySensor : Sensor
     {
         //Vector3 targetsPosition = target.currPosition;
 
-        if (HelperFunctions.CheckProximity(t.position, targetsPosition, proximityRange))
+        if (HelperFunctions.CheckProximity(transform.position, targetsPosition, proximityRange))
         {
             return true;
         }

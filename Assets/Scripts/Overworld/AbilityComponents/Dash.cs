@@ -28,7 +28,6 @@ public class Dash : MovementAbility
     //Do the Dash by calculating a new point from Movers current position, and adding a Vector3 with magnitude of the dash length
     public override void StartAbility()
     {
-        Debug.Log("dashing!");
         doingAbility = true;
 
         dashStartPosition = mover.currPosition;
