@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -74,14 +75,23 @@ namespace Battle {
         private void PopulateEnemyTargets(Attack in_attack) {
             ClearMenuButtons();
 
-            UnitActions currentUnitActions = currentUnit.GetComponent<UnitActions>();
             List<Unit> enemyList = BattleSceneManager.instance.GetEnemyUnits();
-            foreach(Unit enemy in enemyList) {
-                InstantiateActionButton(enemy.name, () => {
-                    BattleSceneManager.instance.UpdateState(BattleState.PlayerPerformingAction);
-                    currentUnitActions.PerformAttack(enemy, in_attack);
+
+            // For single target attacks, make a unique button for each enemy
+            if (in_attack.actionTarget == ActionTargets.Single) {
+                foreach(Unit enemy in enemyList) {
+                    InstantiateActionButton(enemy.name, () => {
+                        BattleSceneManager.instance.AttackSelected(new List<Unit>() {enemy}, in_attack);
+                    });
+                }
+            }
+            // For area attacks, make a single button for all enemies
+            else if (in_attack.actionTarget == ActionTargets.Area) {
+                InstantiateActionButton("All Enemies", () => {
+                    BattleSceneManager.instance.AttackSelected(enemyList, in_attack);
                 });
             }
+
             InstantiateActionButton("Back", () => {
                 PopulateAttackButtons();
             });

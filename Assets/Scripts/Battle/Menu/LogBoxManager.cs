@@ -22,6 +22,9 @@ namespace Battle {
         } 
 
         private void EventSub_OnStateChange(BattleState in_state) {
+            // Clear the log whenever the state changes
+            ClearLog();
+            
             // Don't display the log box while the user is selecting actions
             if (in_state == BattleState.PlayerChoosingAction) {
                 gameObject.SetActive(false);
