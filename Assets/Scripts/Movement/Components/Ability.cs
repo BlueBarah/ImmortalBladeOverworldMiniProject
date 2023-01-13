@@ -4,7 +4,21 @@ using UnityEngine;
 
 public abstract class Ability : MonoBehaviour
 {
+    //public enum AbilityType
+    //{
+    //    Dash,
+    //    Highjump
+    //}
+    public enum AbilityType
+    {
+        Movement,
+        Action
+    }
 
-    public abstract void Perform();
+    public AbilityType type { get; protected set; } 
+
+    //public abstract AbilityType type { get; }
+
+    public abstract void DoAbility();
 
 }

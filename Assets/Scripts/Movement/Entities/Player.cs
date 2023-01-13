@@ -9,12 +9,31 @@ public class Player : Mover
     //Inputs
     Vector3 inputDirection;
 
-    Ability currAbility;
+    // public Ability currAbility;
+
+    //private Dash dashAbility;
+    //private HighJump highJumpAbility;
+
+    //private Jump jumpAbility;
+    private FollowerAbility followerAbility;
+
+    //enum AbilityType
+    //{
+    //    Dash,
+    //    HighJump
+    //}
+
+    //AbilityType currAbility;
 
     protected override void Start()
     {
         isRunning = false;
-        currAbility = new Dash();
+        //currAbility = GetComponent<Ability>();
+        //dashAbility = GetComponent<Dash>();
+        //highJumpAbility = GetComponent<HighJump>();
+
+        //jumpAbility = GetComponent<Jump>();
+        followerAbility = GetComponent<FollowerAbility>();
     }
 
     //Using CharacterControllers built in collision detection. 
@@ -62,15 +81,87 @@ public class Player : Mover
     {
         if (Input.GetButtonDown("Jump"))
         {
-            Jump();
+            jumpAbility.DoAbility();
         }
 
         if (Input.GetButtonDown("Ability"))
         {
-            Debug.Log("do ability");
-            currAbility.Perform();
+            if(followerAbility.currentType == Ability.AbilityType.Movement)
+            {
+                //currDirection += followerAbility.ReturnMoveVector();
+                followerAbility.PerformAbility();
+            }
+        }
+        if (Input.GetButtonDown("SwitchAbility")){
+            followerAbility.SwitchAbility();
         }
     }
+
+    //Given an abilityType and a boolean
+    //If true -> Turn on the ability, turn all other abilities to false
+    //If false -> Turn off the ability
+    //private void enableDisable(AbilityType newAbilityType, bool enabled)
+    //{
+    //    //Enable the given ability, disable all other abilities
+    //    if (enabled)
+    //    {
+    //        switch (newAbilityType)
+    //        {
+    //            case AbilityType.Dash:
+    //                dashAbility.enabled = true;
+    //                highJumpAbility.enabled = false;
+    //                break;
+
+    //            case AbilityType.HighJump:
+    //                highJumpAbility.enabled = true;
+    //                dashAbility.enabled = false;
+    //                break;
+
+    //            default:
+    //                break;
+    //        }
+    //    }
+    //    //Else, just disable the given ability
+    //    else
+    //    {
+    //        switch (newAbilityType)
+    //        {
+    //            case AbilityType.Dash:
+    //                dashAbility.enabled = false;
+    //                break;
+
+    //            case AbilityType.HighJump:
+    //                highJumpAbility.enabled = false;
+    //                break;
+
+    //            default:
+    //                break;
+    //        }
+    //    }
+    //}
+
+    //private void SwitchAbility(AbilityType newAbilityType)
+    //{
+    //    switch (newAbilityType)
+    //    {
+    //        case AbilityType.HighJump:
+    //            enableDisable(newAbilityType, true);
+    //            break;
+
+    //        case AbilityType.Dash:
+    //            enableDisable(newAbilityType, true);
+    //            break;
+    //    }
+    //    //if (currAbility != null)
+    //    //{
+    //    //    //Type type = newAbility.GetType();
+    //    //    Destroy(currAbility);
+    //    //    //gameObject.AddComponent(newAbilityType.GetType());
+    //    //    gameObject.AddComponent<>();
+    //    //    //currAbility = GetComponent(newAbility.GetType()) as Ability;
+    //    //    currAbility = GetComponent<HighJump>();
+    //    //}
+    //}
 
     // Update is called once per frame
     protected override void OnUpdate()

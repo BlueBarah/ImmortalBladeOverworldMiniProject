@@ -93,17 +93,17 @@ public class NPC : Mover
                 {
                     //TODO: for some reason they get stuck here even though the path seems complete and viable
                     //basically need to fix CanReachPosition() somehow
-                    Debug.Log(this.name + " thinks they can get to " + nextPathPoint + " in order to get to next path point");
+                    //Debug.Log(this.name + " thinks they can get to " + nextPathPoint + " in order to get to next path point");
                     MoveTowardsPoint(nextPathPoint); //Move to it
                 }
                 else
                 {
-                    Debug.Log(this.name + " cant reach next path point");
+                    //Debug.Log(this.name + " cant reach next path point");
                 }
             }
             else
             {
-                Debug.Log(this.name + " thinks they can reach " + position);
+                //Debug.Log(this.name + " thinks they can reach " + position);
                 MoveTowardsPoint(position); //Only one point, path is straight, go go go
             }
         }
@@ -117,15 +117,16 @@ public class NPC : Mover
             //1. Position is on the navmesh but there is no path to it
             if(!(float.IsInfinity(closestPosition.x) && float.IsInfinity(closestPosition.y) && float.IsInfinity(closestPosition.z)))
             {
-                Debug.Log(this.name + "Doesnt have a good path, will try jumping/moving to this point instead: " + closestPosition);
+                //Debug.Log(this.name + "Doesnt have a good path, will try jumping/moving to this point instead: " + closestPosition);
+                
                 Jump(); //lets try jumping to it lol
+
                 MoveTowardsPoint(closestPosition); 
             }
             else //2. Position isnt on the navmesh at all
             {
                 //TODO: put something else here
-                Debug.Log("Destination isnt on the nav mesh. " + this.name + " Will just try to move towards the original position i guess?");
-                
+                //Debug.Log("Destination isnt on the nav mesh. " + this.name + " Will just try to move towards the original position i guess?");
                 MoveTowardsPoint(position);
             }
         }

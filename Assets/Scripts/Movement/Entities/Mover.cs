@@ -15,7 +15,6 @@ public class Mover : MonoBehaviour
         set { transform.position = value; }
     }
 
-
     //Tweak feel of movement
     [SerializeField] public float maxSpeed = 8; //defualt speed Movers will aim to move at
     //[SerializeField] float ySpeed = 0; //for later
@@ -23,15 +22,15 @@ public class Mover : MonoBehaviour
     [SerializeField] protected float acceleration = .1f; //configurable acceleration, rate at which Mover gets to normal speed
 
     //For gravity/physics, and Jumping
-    [SerializeField] protected float jumpPower = .25f; //power of the jump, tweak to change how high jump goes
-    [SerializeField] private float gravityModifier = .06f; //To Tweak gravity 
-    public static float gravity = -9.8f; //
-    private float yVelocity; //current y velocity of Mover, will be applied to move direction in their Move()
+    //[SerializeField] protected float jumpPower = .25f; //power of the jump, tweak to change how high jump goes
+    //[SerializeField] private float gravityModifier = .06f; //To Tweak gravity 
+    public float yVelocity; //current y velocity of Mover, will be applied to move direction in their Move()
     public bool grounded;  //If character is on the ground or not, retrieved from CharacterController component
-    //{
-        //get { return controller.isGrounded; }
-    //}
     public bool jumping; //Use for jumping logic but can also be used for animation purposes
+
+    public float defualtGroundGravity = -1f;
+    public float defualtFallingGravity = -5f;
+    public float currGravity = -1f; //gets changed by jump, grounded, etc
 
     //Component stuff
     protected BoxCollider coll; //may be unneeded
@@ -49,6 +48,8 @@ public class Mover : MonoBehaviour
     GameObject waterInteraction;
     GameObject dropShadow;
 
+    protected Jump jumpAbility;
+
     ////For boxcasting
     //private Vector3 boxExtents;
     //private Vector3 boxPosition;
@@ -60,12 +61,17 @@ public class Mover : MonoBehaviour
         tf = GetComponent<Transform>();
         animator = GetComponent<Animator>();
         coll = GetComponent<BoxCollider>(); //may be unneeded
+
+        jumpAbility = GetComponent<Jump>();
+
         inWater = false;
         Flag_inWater = false;
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         waterInteraction = transform.Find("WaterInteraction").gameObject;
         dropShadow = gameObject.transform.Find("Drop Shadow").gameObject;
+
+
     }
 
     // Start is called before the first frame update
@@ -139,7 +145,10 @@ public class Mover : MonoBehaviour
         currDirection = direction.normalized;
         HandleAnimationAndSprite();
         Vector3 moveVector = (currDirection * Time.deltaTime * currentSpeed);
-        moveVector.y = yVelocity; //Fix the y amount last so any gravity or jumping can be applied
+
+        //Debug.Log("moveVelocity Before: " + yVelocity);
+        moveVector.y = yVelocity * Time.deltaTime; //Fix the y amount last so any gravity or jumping can be applied
+        //Debug.Log("moveVelocity After: " + yVelocity);
         //Debug.Log(this.name + " has a move vector y of " + moveVector.y);
         controller.Move(moveVector);
     }
@@ -151,26 +160,26 @@ public class Mover : MonoBehaviour
         {
             //Debug.Log(this.name + " is grounded");
             jumping = false; //We're on the ground, not jumping anymore
-            yVelocity = -.1f; //Apply a small amount of gravity to ensure isGrounded stays accurate
+            //yVelocity = -.1f; //Apply a small amount of gravity to ensure isGrounded stays accurate
             //yVelocity = fallForce;
+            currGravity = defualtGroundGravity;
+            yVelocity = -1f;
         }
-        else if (!grounded) //In the air, apply gravity so things fall
+        else if (!grounded && !jumping) //In the air but not from a jump, apply gravity so things fall
         {
-            yVelocity += gravity * gravityModifier * Time.deltaTime;
-            //Debug.Log(this.name + " is not grounded");
+            currGravity = defualtFallingGravity;
         }
+
+        yVelocity += currGravity * Time.deltaTime;
+
     }
 
     //Add an upwards velocity to Mover when Jumping is viable
     //Atm only player uses this
     public void Jump()
     {
-        if (grounded) //Can only jump when not already jumping and Mover is grounded
-        {
-            //Debug.Log("juuump!");
-            yVelocity += jumpPower; //get the jumpVelocity 
-            jumping = true; //jumping bool
-        }
+        if (jumpAbility != null)
+            jumpAbility.DoAbility();
     }
 
     //Handles changing speed of a Mover. If they're stopped and starting to move, they should speed up to their ideal speed.
