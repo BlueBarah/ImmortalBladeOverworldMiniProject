@@ -12,11 +12,10 @@ public class NPC : Mover
     [SerializeField] public float roamRange = 10; //How far away from starting position will NPC roam from if in an action that involves random roaming
 
     //Navigation/AI stuff
-    public NavMeshPath currPath; //The current path that NPC is following/attempting to follow. 
-    public Vector3 startingPosition { get; set; } //Position mover orignally was placed in world
-    [field: SerializeField]
-    public Vector3 nextDest { get; set; } //The next overall destination mover is aiming to move to. 
+    private NavMeshPath currPath; //The current path that NPC is following/attempting to follow. 
     private Vector3 nextPathPoint; //Intermediate destinations along path to get to NextDest
+    public Vector3 startingPosition { get; set; } //Position mover orignally was placed in world
+    public Vector3 nextDest { get; set; } //The next overall destination mover is aiming to move to. 
 
     //For testing and inpsector purposes:
     public bool showRoamArea = true;
@@ -36,7 +35,7 @@ public class NPC : Mover
     protected override void OnUpdate()
     {
         base.OnUpdate();
-        startingPosition = tf.position;
+        startingPosition = transform.position;
     }
 
     //Gets and Sets the NPCs next overall destination point to a random position in range of startingPosition
@@ -124,15 +123,12 @@ public class NPC : Mover
                 {
                     Jump(); //Try jumping to it
                 }
-
                 //If the point was below, gravity should naturally push them down
 
                 MoveTowardsPoint(closestPosition); //Now try moving towards the point
             }
             else //2. Position isnt on the navmesh at all
             {
-                //TODO: put something else here
-                //Debug.Log(this.name + "'s destination isnt on the nav mesh.");
                 MoveTowardsPoint(position); //Just try to move towards the original position
             }
         }
@@ -192,48 +188,4 @@ public class NPC : Mover
         //Gizmos.color = Color.blue;
         //Gizmos.DrawLine(currPosition, nextDest); //Draw straigt line from current position to the next destination (not path)
     }
-
-    //#region Currently Unused Movement Methods
-    ////Travel along a path of points calculated by nav agent with use of transform.Translate()
-    //public void TranslateAlongPathToPoint(Vector3 position)
-    //{
-    //    NavMesh.CalculatePath(currPosition, position, NavMesh.AllAreas, currPath); //Calculate the path, put it into an array of vector points
-
-    //    if (currPath.corners.Length > 1)
-    //    {
-    //        nextPathPoint = currPath.corners[1]; //My next intermediate destination is the next point in the array
-    //        currDirection = (nextPathPoint - currPosition).normalized;
-    //        currDirection.y = 0;
-    //        TranslateTowardsPoint(nextPathPoint); //Move to it
-    //    }
-    //    else
-    //        TranslateTowardsPoint(position); //Only one point, path is straight
-    //}
-    ////Travel along a path of points calculated by nav agent with use of rb.MovePosition()
-    //public void MoveAlongPathToPointRB(Vector3 position)
-    //{
-    //    if (CanReachPosition(position))
-    //    {
-    //        NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), currPath);
-    //        //agent.CalculatePath(position, currPath); //Calculate the path, put it into an array of vector points
-
-    //        if (currPath.corners.Length > 1)
-    //        {
-    //            nextPathPoint = currPath.corners[1]; //My next intermediate destination is the next point in the array
-    //            currDirection = (nextPathPoint - currPosition).normalized;
-    //            currDirection.y = 0;
-    //            MoveTowardsPointRB(nextPathPoint); //Move to it
-    //        }
-    //        else
-    //            MoveTowardsPointRB(position); //Only one point, path is straight
-    //    }
-    //    else
-    //    {
-    //        //recalculate or something idk
-
-    //    }
-    //}
-    //#endregion
-
-    //For visualizing the current path of an NPC
 }

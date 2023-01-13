@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HighJump : MovementAbility
 {
+    //TODO
+    //[SerializeField] private float highJumpAdd = 15f;
 
     protected override void Awake()
     {

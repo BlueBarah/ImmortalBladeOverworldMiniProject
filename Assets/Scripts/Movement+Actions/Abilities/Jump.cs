@@ -5,8 +5,11 @@ using UnityEngine;
 public class Jump : MovementAbility
 {
     //public float minJumpHeight = 3f; 
-    public float jumpHeight = 2f; 
-    public float iniJumpVelocity = 20f;
+    [SerializeField] private float jumpHeight = 2f;
+    [SerializeField] private float iniJumpVelocity = 20f;
+
+    //TODO: this will alter the amount gravity makes movers fall from peak of jump to ground
+    //public float jumpFallGravity; 
 
     protected override void Awake()
     {
@@ -22,15 +25,9 @@ public class Jump : MovementAbility
     public override void StartAbility()
     {
         float grav = CalculateGravity(jumpHeight, iniJumpVelocity);
-        Debug.Log("changing " + this.name + "'s gravity to " + grav);
         mover.currGravity = -grav;
 
-        if (mover.grounded)
-        {
-
-            mover.yVelocity = iniJumpVelocity; //get the jumpVelocity 
-            mover.jumping = true; //jumping bool
-        }
+        mover.yVelocity = iniJumpVelocity; //get the jumpVelocity 
     }
 
     public float CalculateGravity(float height, float initialVelocity)
@@ -45,14 +42,8 @@ public class Jump : MovementAbility
         return jumpVelocity;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public override void UpdateAbility()
     {
-        throw new System.NotImplementedException();
+
     }
 }

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Dash : MovementAbility
 {
-    public float dashAddSpeed = 15f;
-    public float maxDashDistance = 5f;
-    public float maxDashDuration = .5f;
+    [SerializeField] private float dashAddSpeed = 15f;
+    [SerializeField] private float maxDashDistance = 5f;
+    [SerializeField] private float maxDashDuration = .5f;
 
     private Vector3 dashStartPosition;
     private Vector3 dashEndPosition;
     private bool doingAbility;
-    Timer dashTimer;
+    private Timer dashTimer;
 
     protected override void Awake()
     {

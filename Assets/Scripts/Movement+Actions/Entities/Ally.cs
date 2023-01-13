@@ -12,8 +12,13 @@ public class Ally : NPC
     ProximitySensor sensor;
 
     //Needed for teleporting and following
-    [SerializeField] float followRange = 5; //How far away ally will try to stay following Player
-    [SerializeField] float teleportRange = 20; //how far away does Player have to get away from ally until ally teleports to player directly
+    [SerializeField] private float followRange = 5; //How far away ally will try to stay following Player
+    [SerializeField] private float teleportRange = 20; //how far away does Player have to get away from ally until ally teleports to player directly
+
+    //TODO: Allys will have a defined field ability tha they lend to player
+    //  prolly send with event or something idk
+    //  maybe have ally be child of Player, then Players fieldEquipper can just grab it
+    private Ability fieldAbility;
 
     //For testing and inpsector purposes:
     public bool showFollowRange = true;
@@ -31,6 +36,7 @@ public class Ally : NPC
 
     protected override void OnUpdate()
     {
+        //Temp. Assures proximity range will change with followRange if its changed while testing (serialized)
         sensor.proximityRange = followRange;
 
         //Ally has gotten too far away from Players position based on teleportRange, most likely stuck
