@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : Ability
+public class Stealth : Ability
 {
-    public override void StartAbility()
-    {
-        Debug.Log("bomb!");
-    }
+    float stealthDuration;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
-    public override void UpdateAbility()
+
+    public override void StartAbility()
     {
 
+    }
+
+    public override void UpdateAbility()
+    {
+        
     }
 
     // Update is called once per frame

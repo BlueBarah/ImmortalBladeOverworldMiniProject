@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HighJump : MovementAbility
 {
-    protected override Vector3 moveVector => throw new System.NotImplementedException();
 
     protected override void Awake()
     {
@@ -18,14 +17,13 @@ public class HighJump : MovementAbility
 
     }
 
-    public override Vector3 ReturnMovement()
-    {
-        return Vector3.zero;
-        //throw new System.NotImplementedException();
-    }
-
-    public override void DoAbility()
+    public override void StartAbility()
     {
         Debug.Log("HighJumping!");
+    }
+
+    public override void UpdateAbility()
+    {
+        
     }
 }

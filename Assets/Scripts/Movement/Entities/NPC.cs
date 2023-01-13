@@ -89,9 +89,12 @@ public class NPC : Mover
             if (currPath.corners.Length > 1)
             {
                 nextPathPoint = currPath.corners[1]; //My next intermediate destination is the next point in the array
-                currDirection = (nextPathPoint - currPosition).normalized;
-                currDirection.y = 0;
                 
+                //
+                //Vector3 tempDir = (nextPathPoint - currPosition).normalized;
+                //tempDir.y = 0;
+                //ChangeCurrDirection(tempDir);
+
                 //We can reach the next point in the path
                 if (CanReachPosition(nextPathPoint))
                 {
@@ -129,7 +132,7 @@ public class NPC : Mover
             else //2. Position isnt on the navmesh at all
             {
                 //TODO: put something else here
-                Debug.Log(this.name + "'s destination isnt on the nav mesh.");
+                //Debug.Log(this.name + "'s destination isnt on the nav mesh.");
                 MoveTowardsPoint(position); //Just try to move towards the original position
             }
         }

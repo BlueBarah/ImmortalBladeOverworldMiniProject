@@ -5,10 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class Mover : MonoBehaviour
 {
-
     //Stuff for movements/positions, etc
-    [SerializeField] public Vector3 currDirection; //Current direction the mover is Moving. For Player, this is more about his inputs
-    private float currentSpeed = 0; //the speed the Mover is currently going
+
+    //Current direction the mover is Moving/Facing
+    public Vector3 currDirection { get; private set; } //Gets set with ChangeCurrDirection()
+
+    public float currentSpeed = 0; //the speed the Mover is currently going. Altered by Dashing ability
+
     public Vector3 currPosition //The current position the Mover is at. Defined by transform
     {
         get { return transform.position; }
@@ -21,18 +24,21 @@ public class Mover : MonoBehaviour
     //[SerializeField] public float maxRunningSpeed = 9; //for later
     [SerializeField] protected float acceleration = .1f; //configurable acceleration, rate at which Mover gets to normal speed
 
-    //For gravity/physics, and Jumping
-    //[SerializeField] protected float jumpPower = .25f; //power of the jump, tweak to change how high jump goes
-    //[SerializeField] private float gravityModifier = .06f; //To Tweak gravity 
     public float yVelocity; //current y velocity of Mover, will be applied to move direction in their Move()
     public bool grounded;  //If character is on the ground or not, retrieved from CharacterController component
     public bool jumping; //Use for jumping logic but can also be used for animation purposes
 
-    public float defualtGroundGravity = -1f;
-    public float defualtFallingGravity = -5f;
-    public float currGravity = -1f; //gets changed by jump, grounded, etc
+    //Tweak feel of falling
+    public float defualtGroundGravity = -1f; //Gravity applied while a mover is standing on the ground
+    public float defualtFallingGravity = -5f; //Gravity applied while mover is falling from ledge/etc (not from a jump)
 
-    //Component stuff
+    public float jumpFallGravity; //TODO: this will alter the amount gravity makes movers from from the peak of jump to ground
+    public float currGravity = -1f; //The current gravity. Jump Abilities alter this during a jump
+
+    //Movement Abilities
+    protected Jump jumpAbility;
+
+    //Other Component stuff
     protected BoxCollider coll; //may be unneeded
     private Animator animator;
     public SpriteRenderer sprite { get; private set; }
@@ -48,7 +54,8 @@ public class Mover : MonoBehaviour
     GameObject waterInteraction;
     GameObject dropShadow;
 
-    protected Jump jumpAbility;
+    //Turn on to disallow the changing of currDirection (used by Dash)
+    public bool lockDirection;
 
     ////For boxcasting
     //private Vector3 boxExtents;
@@ -131,10 +138,20 @@ public class Mover : MonoBehaviour
     //Takes point, gets and set currDirection from current position going towards point, calls MoveInDirection() with new currDirection
     public void MoveTowardsPoint(Vector3 point)
     {
-        Debug.DrawLine(transform.position, point);
-        currDirection = point - currPosition;
-        currDirection.Normalize();
-        MoveInDirection(currDirection);
+        MoveInDirection(point - currPosition);
+    }
+
+    public void ChangeCurrDirection(Vector3 direction)
+    {
+        if (lockDirection) //locked direction doesnt allow curr direction to be changed (used for dash atm)
+            return;
+            
+        if (direction.magnitude > 1)
+        {
+            direction = direction.normalized;
+        }
+
+        currDirection = direction;
     }
 
     //Takes in direction (makess sure its normalized),
@@ -142,30 +159,26 @@ public class Mover : MonoBehaviour
     //gets a movement vector based on the desired direction, speed, and gravity
     public void MoveInDirection(Vector3 direction)
     {
-        currDirection = direction.normalized;
+        ChangeCurrDirection(direction);
         HandleAnimationAndSprite();
         Vector3 moveVector = (currDirection * Time.deltaTime * currentSpeed);
 
-        //Debug.Log("moveVelocity Before: " + yVelocity);
         moveVector.y = yVelocity * Time.deltaTime; //Fix the y amount last so any gravity or jumping can be applied
-        //Debug.Log("moveVelocity After: " + yVelocity);
-        //Debug.Log(this.name + " has a move vector y of " + moveVector.y);
         controller.Move(moveVector);
     }
 
     //Apply gravity whenever Mover is not on the ground, and a tiny bit of gravity when on ground
     public void ApplyGravity()
     {
+        //Grounded and we aren't trying to jump
         if (grounded && yVelocity < 0)
         {
-            //Debug.Log(this.name + " is grounded");
             jumping = false; //We're on the ground, not jumping anymore
-            //yVelocity = -.1f; //Apply a small amount of gravity to ensure isGrounded stays accurate
-            //yVelocity = fallForce;
             currGravity = defualtGroundGravity;
-            yVelocity = -1f;
+            yVelocity = -1f; //Apply a small amount of gravity to ensure isGrounded stays accurate
         }
-        else if (!grounded && !jumping) //In the air but not from a jump, apply gravity so things fall
+        //In the air but not from a jump, apply gravity so things fall
+        else if (!grounded && !jumping) 
         {
             currGravity = defualtFallingGravity;
         }
@@ -179,7 +192,7 @@ public class Mover : MonoBehaviour
     public void Jump()
     {
         if (jumpAbility != null)
-            jumpAbility.DoAbility();
+            jumpAbility.StartAbility();
     }
 
     //Handles changing speed of a Mover. If they're stopped and starting to move, they should speed up to their ideal speed.

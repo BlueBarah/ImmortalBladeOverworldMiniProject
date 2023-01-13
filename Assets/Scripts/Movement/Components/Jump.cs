@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Jump : MovementAbility
 {
-    //protected override Vector3 moveVector => throw new System.NotImplementedException();
-    protected override Vector3 moveVector { get; }
-
     //public float minJumpHeight = 3f; 
     public float jumpHeight = 2f; 
     public float iniJumpVelocity = 20f;
@@ -22,7 +19,7 @@ public class Jump : MovementAbility
         
     }
 
-    public override void DoAbility()
+    public override void StartAbility()
     {
         float grav = CalculateGravity(jumpHeight, iniJumpVelocity);
         Debug.Log("changing " + this.name + "'s gravity to " + grav);
@@ -30,9 +27,6 @@ public class Jump : MovementAbility
 
         if (mover.grounded)
         {
-            //Debug.Log("jumping init: " + iniJumpVelocity);
-            //Debug.Log("jumping height: " + jumpHeight);
-            //Debug.Log("yvelocity: " + mover.yVelocity);
 
             mover.yVelocity = iniJumpVelocity; //get the jumpVelocity 
             mover.jumping = true; //jumping bool
@@ -51,15 +45,14 @@ public class Jump : MovementAbility
         return jumpVelocity;
     }
 
-    public override Vector3 ReturnMovement()
-    {
-        return Vector3.zero;
-        //throw new System.NotImplementedException();
-    }
-
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public override void UpdateAbility()
+    {
+        throw new System.NotImplementedException();
     }
 }
