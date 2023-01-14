@@ -45,7 +45,7 @@ public class NPC : Mover
 
         if (CanReachPosition(possibleDest)) //Check if this destination is valid
         {
-            nextDest = possibleDest; //If it it, set as the nextDest and return it
+            nextDest = possibleDest; //If it is, set as the nextDest and return it
             return possibleDest;
         }
         else
@@ -77,6 +77,7 @@ public class NPC : Mover
     }
 
     //For travelling along a path to a final destination using CharacterController and NavMesh
+    //Called by Roam Action, Follow Target Action, Chase Action
     public void MoveAlongPathToPoint(Vector3 position)
     {
         NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), currPath); //Get a hopefully viable path from NavMesh
@@ -123,7 +124,8 @@ public class NPC : Mover
                 {
                     Jump(); //Try jumping to it
                 }
-                //If the point was below, gravity should naturally push them down
+
+                //If the point was below, gravity should naturally push them down??
 
                 MoveTowardsPoint(closestPosition); //Now try moving towards the point
             }

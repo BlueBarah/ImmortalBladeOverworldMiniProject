@@ -20,9 +20,7 @@ public class Mover : MonoBehaviour
     [SerializeField] public float maxSpeed = 8; //defualt speed Movers will aim to move at
     [SerializeField] protected float acceleration = .1f; //configurable acceleration, rate at which Mover gets to normal speed
 
-    //Tweak feel of falling
-    private float defualtGroundGravity = -1f; //Gravity applied while a mover is standing on the ground
-    private float defualtFallingGravity = -50f; //Gravity applied while mover is falling from ledge/etc (not from a jump)
+   
 
     //Inate Movement Abilities for any Mover
     protected Jump jumpAbility;
@@ -41,12 +39,13 @@ public class Mover : MonoBehaviour
     GameObject waterInteraction;
     GameObject dropShadow;
 
-    private bool grounded;  //If character is on the ground or not, retrieved from CharacterController component
-    private bool jumping; //Use for jumping logic but can also be used for animation purposes
+    public bool grounded;  //If character is on the ground or not, retrieved from CharacterController component
+    public bool jumping; //Use for jumping logic but can also be used for animation purposes
 
+    public bool lockGravity; //Turn on to disallow falling (used by dash)
     public bool lockDirection; //Turn on to disallow the changing of currDirection (used by Dash)
     public bool lockSpeed; //Turn on to disallow the changing of currSpeed (will be used by Stealth prolly)
-
+    
     ////For boxcasting
     //private Vector3 boxExtents;
     //private Vector3 boxPosition;
@@ -156,21 +155,27 @@ public class Mover : MonoBehaviour
     //Apply gravity whenever Mover is not on the ground, and a tiny bit of gravity when on ground
     public void ApplyGravity()
     {
-        //Grounded and we aren't trying to jump
-        if (grounded && yVelocity < 0)
-        {
-            jumping = false; //We're on the ground, not jumping anymore
-            currGravity = defualtGroundGravity;
-            yVelocity = -1f; //Apply a small amount of gravity to ensure isGrounded stays accurate
-        }
-        //In the air but not from a jump, apply gravity so things fall
-        else if (!grounded && !jumping) 
-        {
-            currGravity = defualtFallingGravity;
-        }
-
+        SetDefualtGravity();
         yVelocity += currGravity * Time.deltaTime;
 
+    }
+
+    public void SetDefualtGravity()
+    {
+        if (!lockGravity)
+        {
+            if (grounded && yVelocity < 0)
+            {
+                jumping = false; //We're on the ground, not jumping anymore
+                currGravity = OverworldConstants.Defualt_Ground_Gravity;
+                yVelocity = -1f; //Apply a small amount of gravity to ensure isGrounded stays accurate
+            }
+            //In the air but not from a jump, apply gravity so things fall
+            else if (!grounded && !jumping)
+            {
+                currGravity = OverworldConstants.Defualt_Falling_Gravity;
+            }
+        }
     }
 
     //Add an upwards velocity to Mover when Jumping is viable

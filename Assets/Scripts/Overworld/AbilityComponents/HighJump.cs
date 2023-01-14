@@ -6,6 +6,9 @@ public class HighJump : MovementAbility
 {
     //TODO
     //[SerializeField] private float highJumpAdd = 15f;
+    [SerializeField] protected float highJumpHeight = 5f;
+    [SerializeField] protected float highJumpForce = 40f;
+
 
     protected override void Awake()
     {
@@ -13,15 +16,20 @@ public class HighJump : MovementAbility
         moveType = MoveType.HighJump;
     }
 
-    //public override AbilityType type { get { return AbilityType.Highjump; } }
     private void Start()
     {
-
+        
     }
 
     public override void StartAbility()
     {
-        Debug.Log("HighJumping!");
+        if (mover.grounded)
+        {
+            float grav = JumpCalculator.CalculateGravityFromHeightVelocity(highJumpHeight, highJumpForce);
+            mover.currGravity = -grav;
+            mover.yVelocity = highJumpForce; //get the jumpVelocity 
+            mover.jumping = true;
+        }
     }
 
     public override void UpdateAbility()

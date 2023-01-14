@@ -10,6 +10,7 @@ public class Dash : MovementAbility
 
     private Vector3 dashStartPosition;
     private Vector3 dashEndPosition;
+
     private bool doingAbility;
     private Timer dashTimer;
 
@@ -30,6 +31,10 @@ public class Dash : MovementAbility
     {
         doingAbility = true;
 
+        //Lock our gravity so we dont fall during dash
+        mover.currGravity = 0; 
+        mover.lockGravity = true;
+
         dashStartPosition = mover.currPosition;
         dashEndPosition = mover.currPosition + mover.currDirection * maxDashDistance;
 
@@ -41,9 +46,13 @@ public class Dash : MovementAbility
         mover.currentSpeed += dashAddSpeed;
     }
 
-    public override void UpdateAbility()
+    public void StopAbility()
     {
-        mover.MoveTowardsPoint(dashEndPosition);
+        //Not dashing anymore
+        doingAbility = false;
+        mover.lockDirection = false;
+        mover.lockGravity = false;
+        mover.SetDefualtGravity(); //Fix the gravity back to defualt
     }
 
     public void Update()
@@ -51,14 +60,17 @@ public class Dash : MovementAbility
         //
         if (doingAbility)
         {
-            UpdateAbility();
+            UpdateAbility(); //Do dash
+
             //Dash timer ran out or we got to the end of the dash
             if (dashTimer.checkTime() || HelperFunctions.CheckProximity(dashStartPosition, dashEndPosition, 0.1f))
             {
-                doingAbility = false;
-                mover.lockDirection = false;
+               StopAbility(); //Stop dashing
             }
-            
         }
+    }
+    public override void UpdateAbility()
+    {
+        mover.MoveTowardsPoint(dashEndPosition);
     }
 }
