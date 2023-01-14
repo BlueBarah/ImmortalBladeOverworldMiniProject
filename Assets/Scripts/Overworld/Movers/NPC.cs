@@ -43,13 +43,26 @@ public class NPC : Mover
     {
         Vector3 possibleDest = HelperFunctions.GetRandomPositionInRange(startingPosition, roamRange);
 
+        //Path complete
         if (CanReachPosition(possibleDest)) //Check if this destination is valid
         {
+            
             nextDest = possibleDest; //If it is, set as the nextDest and return it
             return possibleDest;
         }
+        //Path is either partial or invalid
         else
-            return getNewRandomDest(); //Not valid, try the method again
+        {
+            //Path was partial because of height difference
+            if (possibleDest.y != currPosition.y)
+            {
+                return possibleDest; //try to get to it
+            }
+            //Path was invalid
+            else
+                return getNewRandomDest(); //Not valid, try the method again
+        }
+           
     }
 
     //Attempts to check if a position is reachable by the NPC
@@ -62,6 +75,11 @@ public class NPC : Mover
         //Debug.Log("Can " + this.name + " reach position " + position + "? : " + path.status );
 
         return path.status == NavMeshPathStatus.PathComplete; //Position is reachable if the path's status is defined as Complete
+        
+        //if (path.status == NavMeshPathStatus.PathComplete || path.status == NavMeshPathStatus.PathPartial)
+        //    return true;
+        //else
+        //    return false;
 
         //TODO check whether path.status or SamplePosition() works better
         /* Try this method again if getNewRandomDest() stops workng
