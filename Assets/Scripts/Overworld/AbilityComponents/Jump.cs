@@ -2,48 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jump : MovementAbility
+namespace Overworld
 {
-    //public float minJumpHeight = 3f; 
-    [SerializeField] private float jumpHeight = 2f;
-    [SerializeField] private float iniJumpVelocity = 20f;
-
-    //TODO: this will alter the amount gravity makes movers fall from peak of jump to ground
-    //public float jumpFallGravity; 
-
-    protected override void Awake()
+    public class Jump : MovementAbility
     {
-        base.Awake();
-        moveType = MoveType.Jump;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+        //TODO
+        //public float minJumpHeight = 3f; 
+        //public float maxJumpHeight
+        //public float jumpHeightRatio (min/max)
+        [SerializeField] private float jumpHeight = 2f;
+        [SerializeField] private float jumpForce = 20f;
 
-    public override void StartAbility()
-    {
-        float grav = CalculateGravity(jumpHeight, iniJumpVelocity);
-        mover.currGravity = -grav;
+        //TODO: this will alter the amount gravity makes movers fall from peak of jump to ground
+        //public float jumpFallGravity; 
 
-        mover.yVelocity = iniJumpVelocity; //get the jumpVelocity 
-    }
+        protected override void Awake()
+        {
+            base.Awake();
+            moveType = MoveType.Jump;
+        }
+        // Start is called before the first frame update
+        void Start()
+        {
 
-    public float CalculateGravity(float height, float initialVelocity)
-    {
-        float gravityVal = (initialVelocity * initialVelocity) / (2 * height);
-        return gravityVal;
-    }
+        }
 
-    public Vector3 returnVelocity()
-    {
-        Vector3 jumpVelocity = new Vector3(0, iniJumpVelocity, 0);
-        return jumpVelocity;
-    }
+        public override void StartAbility()
+        {
+            if (mover.grounded)
+            {
+                float grav = JumpCalculator.CalculateGravityFromHeightVelocity(jumpHeight, jumpForce);
+                mover.currGravity = -grav;
+                mover.yVelocity = jumpForce; //get the jumpVelocity 
+                mover.jumping = true;
+            }
+            //float grav = CalculateGravity(jumpHeight, iniJumpVelocity);
+        }
 
-    public override void UpdateAbility()
-    {
+        public override void UpdateAbility()
+        {
 
+        }
     }
 }

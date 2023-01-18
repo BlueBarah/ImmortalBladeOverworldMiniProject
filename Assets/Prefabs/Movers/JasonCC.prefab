@@ -178,12 +178,12 @@ GameObject:
   - component: {fileID: 6864847128049836725}
   - component: {fileID: 6864847128049836730}
   - component: {fileID: 6864847128049836724}
-  - component: {fileID: 6864847128049836721}
   - component: {fileID: 6864847128049836723}
-  - component: {fileID: 1905933408}
+  - component: {fileID: 6864847128049836721}
   - component: {fileID: 1905933409}
-  - component: {fileID: 1905933410}
   - component: {fileID: 1905933411}
+  - component: {fileID: 1905933410}
+  - component: {fileID: 1905933408}
   m_Layer: 8
   m_Name: JasonCC
   m_TagString: Player
@@ -280,31 +280,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6864847128049836721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6864847128049836728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07b3ad3f59e8bf64cb5e387fb6a9dbae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentSpeed: 0
-  maxSpeed: 12
-  acceleration: 0.2
-  yVelocity: 0
-  grounded: 0
-  jumping: 0
-  defualtGroundGravity: -1
-  defualtFallingGravity: -50
-  jumpFallGravity: 0
-  currGravity: -1
-  controller: {fileID: 0}
-  <isRunning>k__BackingField: 0
-  lockDirection: 0
 --- !u!143 &6864847128049836723
 CharacterController:
   m_ObjectHideFlags: 0
@@ -323,7 +298,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.39, z: 0}
---- !u!114 &1905933408
+--- !u!114 &6864847128049836721
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -332,10 +307,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6864847128049836728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 349f254715621c44f83657f94bd03ef7, type: 3}
+  m_Script: {fileID: 11500000, guid: 07b3ad3f59e8bf64cb5e387fb6a9dbae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currAbility: {fileID: 0}
+  currentSpeed: 0
+  yVelocity: 0
+  currGravity: -1
+  maxSpeed: 12
+  acceleration: 0.2
+  controller: {fileID: 0}
+  grounded: 0
+  jumping: 0
+  lockDirection: 0
+  lockSpeed: 0
 --- !u!114 &1905933409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,6 +332,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b15888d8ae08f9b45b6c66d76bf7370a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highJumpHeight: 5
+  highJumpForce: 40
+--- !u!114 &1905933411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6864847128049836728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 692a6ea1a79d26d4fb52474f5e9654da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpHeight: 2
+  jumpForce: 20
 --- !u!114 &1905933410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,7 +363,7 @@ MonoBehaviour:
   dashAddSpeed: 15
   maxDashDistance: 5
   maxDashDuration: 0.5
---- !u!114 &1905933411
+--- !u!114 &1905933408
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -372,8 +372,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6864847128049836728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 692a6ea1a79d26d4fb52474f5e9654da, type: 3}
+  m_Script: {fileID: 11500000, guid: 349f254715621c44f83657f94bd03ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 2
-  iniJumpVelocity: 20
+  currAbility: {fileID: 0}

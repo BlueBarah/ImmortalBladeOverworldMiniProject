@@ -2,28 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "FSM/Transitions/AnyOrTransition")]
-
-//Type of transition in which should transition when any condition returns true
-public class AnyOrTransition : AllAndTransition
+namespace Overworld
 {
-    public override void Decide(BaseStateMachine machine)
-    {
-        if (AnyConditionsTrue(machine))
-        {
-            machine.ChangeCurrentState(TrueState);
-        }else
-            machine.ChangeCurrentState(FalseState);
-    }
+    [CreateAssetMenu(menuName = "FSM/Transitions/AnyOrTransition")]
 
-    protected bool AnyConditionsTrue(BaseStateMachine stateMachine)
+    //Type of transition in which should transition when any condition returns true
+    public class AnyOrTransition : AllAndTransition
     {
-        foreach (Condition condition in Conditions)
+        public override void Decide(BaseStateMachine machine)
         {
-            if (condition.CheckCondition(stateMachine) == true) //Check all the conditions, if any return true
-                return true; //return true
+            if (AnyConditionsTrue(machine))
+            {
+                machine.ChangeCurrentState(TrueState);
+            }
+            else
+                machine.ChangeCurrentState(FalseState);
         }
 
-        return false;
+        protected bool AnyConditionsTrue(BaseStateMachine stateMachine)
+        {
+            foreach (Condition condition in Conditions)
+            {
+                if (condition.CheckCondition(stateMachine) == true) //Check all the conditions, if any return true
+                    return true; //return true
+            }
+
+            return false;
+        }
     }
 }

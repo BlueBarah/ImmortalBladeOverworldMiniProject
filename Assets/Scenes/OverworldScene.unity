@@ -183,7 +183,7 @@ Transform:
   - {fileID: 1851665802}
   - {fileID: 171490130}
   m_Father: {fileID: 1320428837}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6974766
 GameObject:
@@ -10710,7 +10710,7 @@ Transform:
   - {fileID: 5473729911464446193}
   - {fileID: 4718727249670474141}
   m_Father: {fileID: 1320428837}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &823826458 stripped
 Transform:
@@ -13722,7 +13722,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh39174
+  m_Name: pb_Mesh28826
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15136,8 +15136,8 @@ Transform:
   m_Children:
   - {fileID: 1138221463}
   - {fileID: 705507995}
-  - {fileID: 818387506}
   - {fileID: 5693784}
+  - {fileID: 818387506}
   - {fileID: 5478167992379811217}
   - {fileID: 1905933400}
   m_Father: {fileID: 0}
@@ -21125,7 +21125,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh38588
+  m_Name: pb_Mesh28286
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -25876,6 +25876,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreaterDemon
       objectReference: {fileID: 0}
+    - target: {fileID: 7551736197158529602, guid: 18e64d736a24fea409ed6a2d223f25ff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7551736197158529603, guid: 18e64d736a24fea409ed6a2d223f25ff, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -25924,6 +25928,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1905933404}
+    - target: {fileID: 7551736197158529617, guid: 18e64d736a24fea409ed6a2d223f25ff, type: 3}
+      propertyPath: showRoamArea
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18e64d736a24fea409ed6a2d223f25ff, type: 3}
 --- !u!1001 &3111477360954598922
@@ -26073,6 +26081,10 @@ PrefabInstance:
     - target: {fileID: 9084765677866485119, guid: b2123fe815a6d1d4aa2e8b85fdd8fea4, type: 3}
       propertyPath: m_Name
       value: Ariss
+      objectReference: {fileID: 0}
+    - target: {fileID: 9084765677866485119, guid: b2123fe815a6d1d4aa2e8b85fdd8fea4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2123fe815a6d1d4aa2e8b85fdd8fea4, type: 3}
@@ -26777,6 +26789,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 818387506}
     m_Modifications:
+    - target: {fileID: 4256935525222350604, guid: 565088b151ae4784090e7b7fc6eaae21, type: 3}
+      propertyPath: showRoamArea
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4256935525222350610, guid: 565088b151ae4784090e7b7fc6eaae21, type: 3}
       propertyPath: m_RootOrder
       value: 2
