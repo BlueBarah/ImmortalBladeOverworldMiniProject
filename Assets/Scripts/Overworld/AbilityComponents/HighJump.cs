@@ -2,38 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HighJump : MovementAbility
+namespace Overworld
 {
-    //TODO
-    //[SerializeField] private float highJumpAdd = 15f;
-    [SerializeField] protected float highJumpHeight = 5f;
-    [SerializeField] protected float highJumpForce = 40f;
-
-
-    protected override void Awake()
+    public class HighJump : MovementAbility
     {
-        base.Awake();
-        moveType = MoveType.HighJump;
-    }
+        //TODO
+        //[SerializeField] private float highJumpAdd = 15f;
+        [SerializeField] protected float highJumpHeight = 5f;
+        [SerializeField] protected float highJumpForce = 40f;
 
-    private void Start()
-    {
-        
-    }
 
-    public override void StartAbility()
-    {
-        if (mover.grounded)
+        protected override void Awake()
         {
-            float grav = JumpCalculator.CalculateGravityFromHeightVelocity(highJumpHeight, highJumpForce);
-            mover.currGravity = -grav;
-            mover.yVelocity = highJumpForce; //get the jumpVelocity 
-            mover.jumping = true;
+            base.Awake();
+            moveType = MoveType.HighJump;
         }
-    }
 
-    public override void UpdateAbility()
-    {
-        
+        private void Start()
+        {
+
+        }
+
+        public override void StartAbility()
+        {
+            if (mover.grounded)
+            {
+                float grav = JumpCalculator.CalculateGravityFromHeightVelocity(highJumpHeight, highJumpForce);
+                mover.currGravity = -grav;
+                mover.yVelocity = highJumpForce; //get the jumpVelocity 
+                mover.jumping = true;
+            }
+        }
+
+        public override void UpdateAbility()
+        {
+
+        }
     }
 }

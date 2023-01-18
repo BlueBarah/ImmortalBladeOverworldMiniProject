@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sensor : MonoBehaviour
+namespace Overworld
 {
-    [SerializeField] public Mover target;
-    public Vector3 targetsPosition
+    public class Sensor : MonoBehaviour
     {
-        get { return target.currPosition; }
-    }
+        [SerializeField] public Mover target;
+        public Vector3 targetsPosition
+        {
+            get { return target.currPosition; }
+        }
 
-    protected virtual void Start()
-    {
+        protected virtual void Start()
+        {
+        }
     }
 }

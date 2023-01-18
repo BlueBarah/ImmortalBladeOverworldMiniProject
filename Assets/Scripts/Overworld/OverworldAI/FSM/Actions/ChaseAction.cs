@@ -2,34 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "FSM/Actions/ChaseAction")]
-public class ChaseAction : MovingAction
+namespace Overworld
 {
-    //private LineOfSight los;
-
-    //For non physics movements
-    public override void Execute(BaseStateMachine machine)
+    [CreateAssetMenu(menuName = "FSM/Actions/ChaseAction")]
+    public class ChaseAction : MovingAction
     {
-        //machine.Mover.nextDest = los.lookTarget.currentPosition;
-        //machine.NPC.TranslateTowardsPoint(machine.sensor.target.position);
-        //machine.NPC.MoveTowardsPointRB(machine.sensor.target.position);
+        //private LineOfSight los;
 
-        machine.NPC.MoveAlongPathToPoint(machine.sensor.targetsPosition);
-    }
+        //For non physics movements
+        public override void Execute(BaseStateMachine machine)
+        {
+            //machine.Mover.nextDest = los.lookTarget.currentPosition;
+            //machine.NPC.TranslateTowardsPoint(machine.sensor.target.position);
+            //machine.NPC.MoveTowardsPointRB(machine.sensor.target.position);
 
-    //For rigidbody/built in physics movements only
-    public override void FixedExecute(BaseStateMachine machine)
-    {
-        //machine.NPC.MoveTowardsPointRB(machine.sensor.target.position);
-    }
+            machine.NPC.MoveAlongPathToPoint(machine.sensor.targetsPosition);
+        }
 
-    public override void OnEnter(BaseStateMachine machine)
-    {
-        base.OnEnter(machine);
-    }
+        //For rigidbody/built in physics movements only
+        public override void FixedExecute(BaseStateMachine machine)
+        {
+            //machine.NPC.MoveTowardsPointRB(machine.sensor.target.position);
+        }
 
-    public override void OnExit(BaseStateMachine machine)
-    {
+        public override void OnEnter(BaseStateMachine machine)
+        {
+            base.OnEnter(machine);
+        }
 
+        public override void OnExit(BaseStateMachine machine)
+        {
+
+        }
     }
 }
