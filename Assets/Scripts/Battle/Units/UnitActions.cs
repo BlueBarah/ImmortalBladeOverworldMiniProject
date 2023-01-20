@@ -35,6 +35,15 @@ namespace Battle {
                 DamageDealt damageDealt = in_attack.DealDamage(hit, owner.attributes, in_target.attributes, owner.damageBonuses, owner.rateBonuses, owner.TN_current,  in_target.TN_current);
                 DamageTaken damageTaken = in_target.TakeDamage(damageDealt);
 
+                // Update Aggro
+                float aggroMultiplier = 0;
+                if (damageTaken.result == AttackResults.PartiallyBlocked) aggroMultiplier = 0.5f;
+                else if (damageTaken.result == AttackResults.Taken) aggroMultiplier = 0.5f;
+
+                if (in_target.GetType() == typeof(EnemyUnit) && aggroMultiplier != 0) {
+                    in_target.gameObject.GetComponent<IEnemyUnitAI>().IncreaseAggro(owner, in_attack.aggroPerHit * aggroMultiplier);
+                }
+
                 // Log Attack Result
                 logStr += $" - ";
                 if (!damageDealt.hit) {

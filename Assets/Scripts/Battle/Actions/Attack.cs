@@ -15,9 +15,9 @@ namespace Battle {
         [field:SerializeField] public float AP_cost { get; set; }
         [field:SerializeField] public float ESS_cost { get; set; }
         [field:SerializeField] public ActionTargets actionTarget { get; set; }
+        [SerializeField] public float aggroPerHit;
         [SerializeField] private float baseAccuracy;
         [SerializeField] private float baseCritChance;
-        [SerializeField] private float aggroPerHit;
         [SerializeField] private bool ignoreCounter;
         [SerializeField] private bool ignoreEvade;
         [SerializeField] private bool ignoreBlock;

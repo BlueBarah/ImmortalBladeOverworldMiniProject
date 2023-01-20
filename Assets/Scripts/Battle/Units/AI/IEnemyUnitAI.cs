@@ -6,7 +6,9 @@ using UnityEngine;
 namespace Battle {
     public interface IEnemyUnitAI
     {
+        public List<AggroTableEntry> aggroTable { get; set; }
         public Task Act();
+        public void IncreaseAggro(Unit in_unit, float in_aggro);
     }
 }
 

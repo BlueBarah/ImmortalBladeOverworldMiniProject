@@ -3,5 +3,7 @@ namespace Battle {
         PhysicalAccuracy,
         MagicalAccuracy,
         CriticalRate,
+        AggroReduction,
+        AggroGain,
     }
 }
