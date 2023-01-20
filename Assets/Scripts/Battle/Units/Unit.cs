@@ -82,16 +82,13 @@ namespace Battle {
         // Flags
         private bool flag_changeEvasion = false;
         private bool flag_changeBlock = false;
-        private bool flag_changeHP = false;
-        private bool flag_changeTN = false;
+        public bool flag_init { get; private set; } = false;
         
 
         void Awake() {
-            attributes = new Attributes(_level, _strength, _willpower, _dexterity, _focus, _endurance, _agility);
-            resources = new Resources(_maxHP, _maxESS, _maxAP);
-            defenses = new Defenses(calculateEvasion(), calculateBlock());
-
-            InitializeResources();
+            if (!flag_init) {
+                Init();
+            }
         }
         void Update() {
             // Update calculated values if necessary
@@ -103,6 +100,14 @@ namespace Battle {
             // Use the unit's agility when sorting units in a list
             Unit otherUnit = obj as Unit;
             return attributes.agi.val.CompareTo(otherUnit.attributes.agi.val);
+        }
+        public void Init() {
+            attributes = new Attributes(_level, _strength, _willpower, _dexterity, _focus, _endurance, _agility);
+            resources = new Resources(_maxHP, _maxESS, _maxAP);
+            defenses = new Defenses(calculateEvasion(), calculateBlock());
+
+            InitializeResources();
+            flag_init = true;
         }
 
         public DamageTaken TakeDamage(DamageDealt in_damageData) {
@@ -127,7 +132,6 @@ namespace Battle {
         private HP calculateHPstate() {
             HP returnState;
             int HP_percent = Mathf.RoundToInt((HP_current / _maxHP) * 100);
-            Debug.Log($"{HP_percent} - {(int)HP.Full}");
 
             if (HP_percent >= (int)HP.Full) returnState = HP.Full;
             else if (HP_percent >= (int)HP.High) returnState = HP.High;

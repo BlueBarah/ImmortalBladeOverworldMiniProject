@@ -19,14 +19,11 @@ namespace Battle {
 
             // Initialize List
             foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Battle Unit")) {
+                if (!unit.GetComponent<Unit>().flag_init) unit.GetComponent<Unit>().Init();
                 turnOrder.Add(unit.GetComponent<Unit>());
             }
-        }
-        void Start() {
             turnOrder.Sort();
             turnOrder.Reverse();
-            currentUnit = turnOrder[0];
-            Event_OnCurrentUnitChange?.Invoke(currentUnit);
 
             // Log
             string logStr = "Turn Order: ";
@@ -39,7 +36,10 @@ namespace Battle {
                 logStr += $"{unit.name}, ";
             }
             Debug.Log(logStr);
-            UpdateState(BattleState.PlayerChoosingAction);
+        }
+        void Start() {
+            currentUnit = turnOrder[0];
+            StartTurn();
         }
         private void UpdateState(BattleState in_state) {
             state = in_state;
@@ -86,6 +86,9 @@ namespace Battle {
             int nextIndex = turnOrder.IndexOf(currentUnit) + 1;
             currentUnit = (nextIndex < turnOrder.Count) ? turnOrder[nextIndex] : turnOrder[0];
 
+            StartTurn();
+        }
+        public void StartTurn() {
             Event_OnCurrentUnitChange?.Invoke(currentUnit);
             if (currentUnit.GetType() == typeof(PlayerUnit)) {
                 UpdateState(BattleState.PlayerChoosingAction);
@@ -93,6 +96,7 @@ namespace Battle {
             else {
                 UpdateState(BattleState.EnemyTurn);
             }
+
         }
         public List<Unit> GetEnemyUnits() {
             return turnOrder.FindAll(unit => unit.GetType() == typeof(EnemyUnit));
@@ -122,11 +126,9 @@ namespace Battle {
                     Destroy(unit.gameObject);
                 }
                 if (unit.GetType() == typeof(EnemyUnit) && unit.HP_state != HP.Incapacitated) {
-                    Debug.Log("No Victory");
                     Flag_Victory = false;
                 }
                 else if (unit.GetType() == typeof(PlayerUnit) && unit.HP_state != HP.Incapacitated) {
-                    Debug.Log("No Game Over");
                     Flag_GameOver = false;
                 }
             }
