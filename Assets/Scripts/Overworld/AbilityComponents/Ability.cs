@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Ability : MonoBehaviour
+namespace Overworld
 {
-    public enum AbilityType
+    public abstract class Ability : MonoBehaviour
     {
-        Movement,
-        Action
+        public enum AbilityType
+        {
+            Movement,
+            Action
+        }
+
+        public AbilityType type { get; protected set; }
+
+        public abstract void StartAbility();
+        public abstract void UpdateAbility();
+
     }
-
-    public AbilityType type { get; protected set; } 
-
-    public abstract void StartAbility();
-    public abstract void UpdateAbility();
-
 }

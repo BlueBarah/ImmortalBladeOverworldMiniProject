@@ -2,33 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "FSM/Actions/MoveToSensorTargetAction")]
-public class MoveToSensorTargetAction : MovingAction
+namespace Overworld
 {
-    //private Sensor sensor;
-
-    //Moves a Mover with a Sensor to its Sensor target
-
-    public override void Execute(BaseStateMachine machine)
+    [CreateAssetMenu(menuName = "FSM/Actions/MoveToSensorTargetAction")]
+    public class MoveToSensorTargetAction : MovingAction
     {
-        machine.NPC.nextDest = machine.sensor.targetsPosition;
-        machine.NPC.MoveAlongPathToPoint(machine.NPC.nextDest);
+        //private Sensor sensor;
 
-    }
+        //Moves a Mover with a Sensor to its Sensor target
 
-    //For rigidbody/built in physics movements only
-    public override void FixedExecute(BaseStateMachine machine)
-    {
-        //machine.NPC.nextDest = machine.sensor.target.position;
-        //machine.NPC.MoveAlongPathToPoinRB(machine.NPC.nextDest);
-    }
+        public override void Execute(BaseStateMachine machine)
+        {
+            machine.NPC.nextDest = machine.sensor.targetsPosition;
+            machine.NPC.MoveAlongPathToPoint(machine.NPC.nextDest);
 
-    public override void OnEnter(BaseStateMachine machine)
-    {
-        base.OnEnter(machine);
-    }
+        }
 
-    public override void OnExit(BaseStateMachine machine)
-    {
+        //For rigidbody/built in physics movements only
+        public override void FixedExecute(BaseStateMachine machine)
+        {
+            //machine.NPC.nextDest = machine.sensor.target.position;
+            //machine.NPC.MoveAlongPathToPoinRB(machine.NPC.nextDest);
+        }
+
+        public override void OnEnter(BaseStateMachine machine)
+        {
+            base.OnEnter(machine);
+        }
+
+        public override void OnExit(BaseStateMachine machine)
+        {
+        }
     }
 }

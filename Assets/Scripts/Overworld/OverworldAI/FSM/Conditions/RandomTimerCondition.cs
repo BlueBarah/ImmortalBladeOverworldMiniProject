@@ -2,24 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "FSM/Conditions/RandomTimerCondition")]
-public class RandomTimerCondition : Condition
+namespace Overworld
 {
-    public float waitSecondsMin, waitSecondsMax;
-
-    private float waitTimestamp;
-
-    public override void OnEnter(BaseStateMachine machine)
+    [CreateAssetMenu(menuName = "FSM/Conditions/RandomTimerCondition")]
+    public class RandomTimerCondition : Condition
     {
-        waitTimestamp = Time.time + Random.Range(waitSecondsMin, waitSecondsMax);
-    }
+        public float waitSecondsMin, waitSecondsMax;
 
-    public override void OnExit(BaseStateMachine machine)
-    {
-    }
+        private float waitTimestamp;
 
-    public override bool CheckCondition(BaseStateMachine machine)
-    {
-        return waitTimestamp <= Time.time;
+        public override void OnEnter(BaseStateMachine machine)
+        {
+            waitTimestamp = Time.time + Random.Range(waitSecondsMin, waitSecondsMax);
+        }
+
+        public override void OnExit(BaseStateMachine machine)
+        {
+        }
+
+        public override bool CheckCondition(BaseStateMachine machine)
+        {
+            return waitTimestamp <= Time.time;
+        }
     }
 }

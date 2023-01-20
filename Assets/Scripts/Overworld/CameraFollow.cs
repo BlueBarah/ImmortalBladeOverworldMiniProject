@@ -2,31 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+namespace Overworld
 {
-    [SerializeField] private Transform target;
-    [SerializeField] private float smoothTime = 0.3f;
-    [SerializeField] private Vector3 offset;
-    [SerializeField] private bool spriteSortCameraDirection = true;
-    private Vector3 velocity = Vector3.zero;
-    private Camera cam;
-    void Awake()
+    public class CameraFollow : MonoBehaviour
     {
-        cam = transform.Find("Main Camera").GetComponent<Camera>();
-        cam.transparencySortMode = TransparencySortMode.CustomAxis;
-        if (spriteSortCameraDirection) {
-            cam.transparencySortAxis = cam.transform.rotation * Vector3.forward;
-        }
-        else {
-            cam.transparencySortAxis = new Vector3(0, 0, 1f);
-        }
-    }
-    private void FixedUpdate()
-    {
-        if (target != null)
+        [SerializeField] private Transform target;
+        [SerializeField] private float smoothTime = 0.3f;
+        [SerializeField] private Vector3 offset;
+        [SerializeField] private bool spriteSortCameraDirection = true;
+        private Vector3 velocity = Vector3.zero;
+        private Camera cam;
+        void Awake()
         {
-            Vector3 targetPos = target.position + offset;
-            transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
+            cam = transform.Find("Main Camera").GetComponent<Camera>();
+            cam.transparencySortMode = TransparencySortMode.CustomAxis;
+            if (spriteSortCameraDirection)
+            {
+                cam.transparencySortAxis = cam.transform.rotation * Vector3.forward;
+            }
+            else
+            {
+                cam.transparencySortAxis = new Vector3(0, 0, 1f);
+            }
+        }
+        private void FixedUpdate()
+        {
+            if (target != null)
+            {
+                Vector3 targetPos = target.position + offset;
+                transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
+            }
         }
     }
 }
