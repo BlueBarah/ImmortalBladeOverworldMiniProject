@@ -19,9 +19,9 @@ MonoBehaviour:
   <AP_cost>k__BackingField: 5
   <ESS_cost>k__BackingField: 10
   <actionTarget>k__BackingField: 1
+  aggroPerHit: 50
   baseAccuracy: 75
   baseCritChance: 15
-  aggroPerHit: 100
   ignoreCounter: 0
   ignoreEvade: 0
   ignoreBlock: 0
