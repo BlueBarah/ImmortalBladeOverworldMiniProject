@@ -77,7 +77,7 @@ Material:
     - _DstBlend: 10
     - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
-    - _GradientTransparency: 0.05
+    - _GradientTransparency: 0.01
     - _LightCorrection: 0.022
     - _OpaqueCullMode: 2
     - _QueueControl: 1
