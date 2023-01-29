@@ -30,6 +30,7 @@ namespace Battle {
         }
         public Task PerformAttack(Unit in_target, Attack in_attack) {
             string logStr = $"{owner.name} used {in_attack.name} on {in_target.name}\n";
+            IEnemyUnitAI enemyAI = null;
             foreach(float hit in in_attack.hits) {
                 // Run the attack code
                 DamageDealt damageDealt = in_attack.DealDamage(hit, owner.attributes, in_target.attributes, owner.damageBonuses, owner.rateBonuses, owner.TN_current,  in_target.TN_current);
@@ -38,10 +39,15 @@ namespace Battle {
                 // Update Aggro
                 float aggroMultiplier = 0;
                 if (damageTaken.result == AttackResults.PartiallyBlocked) aggroMultiplier = 0.5f;
-                else if (damageTaken.result == AttackResults.Taken) aggroMultiplier = 0.5f;
+                else if (damageTaken.result == AttackResults.Taken) aggroMultiplier = 1f;
 
                 if (in_target.GetType() == typeof(EnemyUnit) && aggroMultiplier != 0) {
-                    in_target.gameObject.GetComponent<IEnemyUnitAI>().IncreaseAggro(owner, in_attack.aggroPerHit * aggroMultiplier);
+                    enemyAI = in_target.gameObject.GetComponent<IEnemyUnitAI>();
+                    enemyAI.IncreaseAggro(owner, in_attack.aggroPerHit * aggroMultiplier);
+                }
+                else if (owner.GetType() == typeof(EnemyUnit) && aggroMultiplier != 0) {
+                    enemyAI = in_target.gameObject.GetComponent<IEnemyUnitAI>();
+                    owner.gameObject.GetComponent<IEnemyUnitAI>().DecreaseAggro(in_target, in_attack.aggroPerHit * aggroMultiplier);
                 }
 
                 // Log Attack Result
@@ -58,6 +64,9 @@ namespace Battle {
                 else if (damageTaken.result == AttackResults.Blocked) logStr += $"    {in_target.name} completely blocked the attack\n";
                 else if (damageTaken.result == AttackResults.PartiallyBlocked) logStr += $"    {in_target.name} partially blocked the attack and took {damageTaken.damage}\n";
                 else if (damageTaken.result == AttackResults.Taken) logStr += $"    {in_target.name} took {damageTaken.damage}\n";
+            }
+            if (enemyAI != null) {
+                enemyAI.UpdateTarget();
             }
             MenuEvents.Log(logStr);
 

@@ -12,7 +12,7 @@ namespace Overworld
 
         public LineOfSight los;
 
-        [SerializeField] private float fightRange = 5f;
+        [SerializeField] public float fightRange = 5f;
 
         //Line of Sight and Detection stuff
         [SerializeField] private float sightRange = 15f; //How far enemy can see with los/vision, literally from eyes of enemy to center of Player
@@ -20,7 +20,7 @@ namespace Overworld
         [SerializeField] private float awarenessRange = 5f; //How far away can Player be from Enemy until Enemy will become aware of Jason without line of sight/cone
                                                             //If player is near enemy, enemy can become aware even without line of sight
                                                             // Event Handler Variables
-        private bool isPlayerInFightRangeFlag = false; // Only fire the event if the flag changes
+        public bool isPlayerInFightRangeFlag { get; private set; } = false; // Only fire the event if the flag changes
 
         //For testing and inpsector purposes:
         public bool showCone = true;

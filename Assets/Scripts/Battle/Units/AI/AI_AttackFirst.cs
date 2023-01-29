@@ -27,8 +27,8 @@ namespace Battle {
             }
             else {
                 List<Task> performAttacks = new List<Task>();
-                foreach (AggroTableEntry target in aggroTable) {
-                    if (target.unit.HP_state != HP.Incapacitated) performAttacks.Add(ownerActions.PerformAttack(target.unit, selectedAttack));
+                for (int i = aggroTable.Count - 1; i >= 0; i--) {
+                    if (aggroTable[i].unit.HP_state != HP.Incapacitated) performAttacks.Add(ownerActions.PerformAttack(aggroTable[i].unit, selectedAttack));
                 }
                 return Task.WhenAll(performAttacks);
             }
@@ -52,10 +52,39 @@ namespace Battle {
         public void IncreaseAggro(Unit in_unit, float in_aggro) {
             foreach(AggroTableEntry target in aggroTable) {
                 if (target.unit == in_unit) {
+                    Debug.Log($"{gameObject.name} gained {in_aggro} aggro towards {target.unit.name}");
                     target.GainAggro(in_aggro);
-                    UpdateTarget();
                     return;
                 }
+            }
+        }
+        public void DecreaseAggro(Unit in_unit, float in_aggro) {
+            foreach(AggroTableEntry target in aggroTable) {
+                if (target.unit == in_unit) {
+                    Debug.Log($"{gameObject.name} lost {in_aggro} aggro towards {target.unit.name}");
+                    target.LoseAggro(in_aggro);
+                    return;
+                }
+            }
+        }
+        public void ManageAggro() {
+            float lowestAggro = -1;
+            float reductionPercentage = 0.1f;
+            foreach (AggroTableEntry target in aggroTable) {
+                Debug.Log($"(Before End Turn) {gameObject.name} - {target.unit.name}: {target.aggro}");
+                // Reduce aggro towards each character by a precentage
+                target.LoseAggro(target.aggro * reductionPercentage);
+                // Find the lowest aggro value in the table
+                if (lowestAggro == -1 || lowestAggro > target.aggro) {
+                    lowestAggro = target.aggro;
+                }
+            }
+            // Reduce the aggro of all characters so that the character with the lowest
+            //    value will have zero aggro
+            foreach (AggroTableEntry target in aggroTable) {
+                // Change aggro by a set amount
+                target.ModifyAggro(-lowestAggro);
+                Debug.Log($"(After End Turn) {gameObject.name} - {target.unit.name}: {target.aggro}");
             }
         }
     }

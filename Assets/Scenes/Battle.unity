@@ -9548,7 +9548,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh62310
+  m_Name: pb_Mesh158518
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10408,7 +10408,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-22730
+  m_Name: pb_Mesh-126186
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10696,7 +10696,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-22782
+  m_Name: pb_Mesh-126238
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17344,6 +17344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1521595925}
   - component: {fileID: 1521595924}
+  - component: {fileID: 1521595926}
   m_Layer: 0
   m_Name: BattleSceneManager
   m_TagString: Untagged
@@ -17389,6 +17390,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1521595926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521595923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 87bee5032cfe391408b1ce449be79813, type: 2}
 --- !u!1001 &1524085404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18225,7 +18243,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh63622
+  m_Name: pb_Mesh159846
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19140,7 +19158,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-23206
+  m_Name: pb_Mesh-126662
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

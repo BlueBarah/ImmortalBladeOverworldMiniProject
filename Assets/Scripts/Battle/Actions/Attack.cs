@@ -106,7 +106,6 @@ namespace Battle {
             // Calculate the total damage dealt by the attack
             float damage = in_hit * in_crit * Mathf.Sqrt(in_ownerAttackStat / in_targetEndurance) * in_damage * (in_ownerLevel / 2);
             Debug.Log($"{in_hit} * {in_crit} * SQRT({in_ownerAttackStat} / {in_targetEndurance}) * {in_damage} * ({in_ownerLevel} / 2) = {damage}");
-            Debug.Log($"Damage Bonuses: {in_damageBonuses}");
             damage = damage + (damage * in_damageBonuses);
             return Mathf.Round(damage);
         }
