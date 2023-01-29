@@ -65,9 +65,9 @@ Material:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
     - _BlendMode: 0
-    - _Brightness: 0.08
+    - _Brightness: 0.11
     - _ConservativeDepthOffsetEnable: 0
-    - _Contrast: 1.5
+    - _Contrast: 2
     - _CullMode: 0
     - _CullModeForward: 0
     - _DepthOffsetEnable: 0

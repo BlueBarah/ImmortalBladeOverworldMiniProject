@@ -24,6 +24,9 @@ namespace Battle {
         public void LoseAggro(float in_aggro) {
             aggro -= Mathf.Ceil(in_aggro + (in_aggro * unit.rateBonuses.GetSumOfBonuses(RateTypes.AggroReduction)));
         }
+        public void ModifyAggro(float in_aggro) {
+            aggro += in_aggro;
+        }
     }
 
 }

@@ -113,7 +113,9 @@ namespace Battle {
             //UpdateState(BattleState.Decide);
         }
         private async void Handle_EnemyTurn() {
-            await currentUnit.gameObject.GetComponent<IEnemyUnitAI>().Act();
+            IEnemyUnitAI enemyAI = currentUnit.gameObject.GetComponent<IEnemyUnitAI>();
+            await enemyAI.Act();
+            enemyAI.ManageAggro();
             UpdateState(BattleState.Decide);
         }
         private void Handle_Decide() {
