@@ -70,7 +70,17 @@ namespace Overworld
         // Start is called before the first frame update
         protected virtual void Start()
         {
-
+            WorldSceneTransitioner worldSceneTransitioner = GameObject.FindObjectOfType<WorldSceneTransitioner>();
+            if (worldSceneTransitioner.sceneData != null)
+            {
+                foreach (var moverDatum in worldSceneTransitioner.sceneData.moverData)
+                {
+                    if (moverDatum.moverID == this.name)
+                    {
+                        this.currPosition = moverDatum.worldPosition;
+                    }
+                }
+            }
         }
 
         protected void Update()

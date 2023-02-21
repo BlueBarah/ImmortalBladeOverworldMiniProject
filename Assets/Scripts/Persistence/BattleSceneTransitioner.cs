@@ -22,7 +22,10 @@ public class BattleSceneTransitioner : MonoBehaviour, iSceneTransitioner
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetButtonDown("TEMP_TRANSITION"))
+        {
+            TransitionToWorldScene();
+        }
     }
 
     public void TransitionToBattleScene()

@@ -17,6 +17,7 @@ namespace Overworld
 
         protected override void Start()
         {
+            base.Start();
             isRunning = false;
             fieldAbility = GetComponent<FieldAbilityEquipper>();
         }
