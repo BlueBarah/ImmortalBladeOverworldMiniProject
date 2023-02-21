@@ -29,6 +29,7 @@ public class GameDataManager : MonoBehaviour
             if(playerData != null)
             {
                 staticPlayerData = playerData;
+                staticPlayerData.RestoreHPToMax();
             }
         }
     }

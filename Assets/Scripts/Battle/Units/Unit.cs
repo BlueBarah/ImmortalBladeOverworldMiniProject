@@ -45,6 +45,8 @@ namespace Battle {
             } 
             set {
                 _hp = Mathf.Clamp(Mathf.Round(value), 0f, resources.HP_max.val);
+                if (battleData != null)
+                    battleData.currHP = _hp;
                 HP_state = calculateHPstate();
             } 
         }
@@ -110,6 +112,7 @@ namespace Battle {
                 attributes = new Attributes(battleData);
                 resources = new Resources(battleData);
 
+                _hp = battleData.currHP;
                 _level = battleData.level;
                 _strength = battleData.strength;
                 _willpower = battleData.willpower;

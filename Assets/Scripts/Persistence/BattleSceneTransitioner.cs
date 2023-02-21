@@ -99,6 +99,8 @@ public class BattleSceneTransitioner : MonoBehaviour, iSceneTransitioner
             {
                 var moverEncounter = sceneData.encounterList[moverDatum.moverID];
                 moverDatum.encounter = moverEncounter;
+
+                moverDatum.isDefeated = true;
                 //if (moverEncounter.IsEncounterDefeated())
                 //    moverDatum.isDefeated = true;
             }

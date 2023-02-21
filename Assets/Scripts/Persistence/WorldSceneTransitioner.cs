@@ -57,20 +57,35 @@ public class WorldSceneTransitioner : MonoBehaviour, iSceneTransitioner
 
     private void UpdateSceneData()
     {
-        sceneData.ResetMoverData();
-
-        Mover[] movers = GameObject.FindObjectsOfType<Mover>();
-        for (int i = 0; i < movers.Length; i++)
+        foreach (var mover in GameObject.FindObjectsOfType<Mover>())
         {
-            ActiveWorldMoverData temp = new ActiveWorldMoverData();
-            temp.moverID = movers[i].name;
-            temp.worldPosition = movers[i].currPosition;
-            if (movers[i] is Enemy)
+            bool moverDatumWasUpdated = false;
+            foreach (var moverDatum in sceneData.moverData)
             {
-                temp.encounter = ((Enemy)movers[i]).encounterData;
+                if (moverDatum.moverID == mover.name)
+                {
+                    moverDatum.worldPosition = mover.currPosition;
+                    moverDatumWasUpdated = true;
+                }
             }
 
-            sceneData.moverData.Add(temp);
+            if (!moverDatumWasUpdated)
+            {
+                ActiveWorldMoverData temp = new ActiveWorldMoverData();
+                temp.moverID = mover.name;
+                temp.worldPosition = mover.currPosition;
+                if (mover is Enemy)
+                {
+                    temp.encounter = ((Enemy)mover).encounterData;
+                    temp.isDefeated = !mover.gameObject.activeSelf;
+                }
+                else
+                {
+                    temp.isDefeated = false;
+                }
+
+                sceneData.moverData.Add(temp);
+            }
         }
     }
 

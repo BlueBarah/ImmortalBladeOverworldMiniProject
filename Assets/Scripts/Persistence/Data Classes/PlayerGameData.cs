@@ -32,4 +32,13 @@ public class PlayerGameData
 
         return null;
     }
+
+    public void RestoreHPToMax()
+    {
+        playerBattleData.currHP = playerBattleData.maxHP;
+        foreach (var allyBattleData in partyBattleData)
+        {
+            allyBattleData.currHP = allyBattleData.maxHP;
+        }
+    }
 }

@@ -8,6 +8,8 @@ public class UnitBattleData : ScriptableObject
 {
     [SerializeField] public string unitName; //for retreiving sprite, etc later in order to dynamically create in battle start
 
+    [SerializeField] public float currHP;
+
     [Header("Resources")]
     [SerializeField] public float maxHP;
     [SerializeField] public float maxESS;

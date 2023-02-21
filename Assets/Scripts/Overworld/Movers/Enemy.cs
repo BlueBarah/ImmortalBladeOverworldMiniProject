@@ -45,7 +45,7 @@ namespace Overworld
                 {
                     if (moverDatum.moverID == this.name && moverDatum.isDefeated)
                     {
-                        this.enabled = false;
+                        this.gameObject.SetActive(false);
                     }
                 }
             }
