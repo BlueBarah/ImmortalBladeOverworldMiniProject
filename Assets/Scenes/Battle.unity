@@ -790,6 +790,7 @@ MonoBehaviour:
   _focus: 30
   _endurance: 30
   _agility: 30
+  battleData: {fileID: 0}
 --- !u!212 &40490380
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1988,7 +1989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PolyMesh:
-    name: pb_Mesh32940
+    name: pb_Mesh183188
     vertices:
     - {x: -52.315033, y: -0.5154307, z: 21.993834}
     - {x: 52.315033, y: -0.5154307, z: 21.993834}
@@ -9592,7 +9593,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh32940
+  m_Name: pb_Mesh183188
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10061,6 +10062,7 @@ MonoBehaviour:
   _focus: 20
   _endurance: 20
   _agility: 20
+  battleData: {fileID: 0}
 --- !u!114 &839930085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10452,7 +10454,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-8812
+  m_Name: pb_Mesh-193258
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10701,6 +10703,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1f80a50a3c458c45acf7e7cb7cd13c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData:
+    name: player save
+    playerBattleData: {fileID: 0}
+    currentAlly: 
+    partyBattleData: []
 --- !u!4 &898529188
 Transform:
   m_ObjectHideFlags: 0
@@ -10784,7 +10791,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-8864
+  m_Name: pb_Mesh-193310
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12918,6 +12925,7 @@ MonoBehaviour:
   _focus: 20
   _endurance: 30
   _agility: 50
+  battleData: {fileID: 0}
 --- !u!1001 &1148725909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17745,6 +17753,7 @@ MonoBehaviour:
   _focus: 30
   _endurance: 20
   _agility: 50
+  battleData: {fileID: 0}
 --- !u!1001 &1538620211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18331,7 +18340,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34270
+  m_Name: pb_Mesh184530
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19246,7 +19255,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-9288
+  m_Name: pb_Mesh-193734
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19898,6 +19907,7 @@ MonoBehaviour:
   _focus: 22
   _endurance: 22
   _agility: 20
+  battleData: {fileID: 0}
 --- !u!114 &1750580427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22717,7 +22727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PolyMesh:
-    name: pb_Mesh34270
+    name: pb_Mesh184530
     vertices:
     - {x: 1.1995697, y: 7.6207204, z: -0.4911301}
     - {x: 2.3344002, y: 7.48404, z: -4.0362396}

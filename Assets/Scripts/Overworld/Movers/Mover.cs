@@ -22,8 +22,6 @@ namespace Overworld
         [SerializeField] public float maxSpeed = 8; //defualt speed Movers will aim to move at
         [SerializeField] protected float acceleration = .1f; //configurable acceleration, rate at which Mover gets to normal speed
 
-
-
         //Inate Movement Abilities for any Mover
         protected Jump jumpAbility;
 
@@ -47,11 +45,6 @@ namespace Overworld
         public bool lockGravity; //Turn on to disallow falling (used by dash)
         public bool lockDirection; //Turn on to disallow the changing of currDirection (used by Dash)
         public bool lockSpeed; //Turn on to disallow the changing of currSpeed (will be used by Stealth prolly)
-
-        ////For boxcasting
-        //private Vector3 boxExtents;
-        //private Vector3 boxPosition;
-        //private Vector3 rayVector;
 
         protected virtual void Awake()
         {

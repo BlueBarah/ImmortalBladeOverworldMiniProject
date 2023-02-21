@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class GameDataManager : MonoBehaviour
     public static ActiveWorldSceneData currentWorldSceneData;
     public static ActiveBattleSceneData currentBattleSceneData;
 
+    public PlayerGameData playerData;
+    public static PlayerGameData staticPlayerData;
+
     private void Awake()
     {
         if (instance != null)
@@ -19,6 +23,14 @@ public class GameDataManager : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(gameObject);
+
+        if(staticPlayerData == null)
+        {
+            if(playerData != null)
+            {
+                staticPlayerData = playerData;
+            }
+        }
     }
 
     // Start is called before the first frame update
@@ -26,6 +38,11 @@ public class GameDataManager : MonoBehaviour
     {
         currentWorldSceneData = null;
         currentBattleSceneData = null;
+    }
+
+    private void LoadPlayerData()
+    {
+        //TBD
     }
 
     // Update is called once per frame

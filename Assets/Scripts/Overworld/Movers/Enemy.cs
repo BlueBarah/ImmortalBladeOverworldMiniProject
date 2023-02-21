@@ -12,11 +12,11 @@ namespace Overworld
 
         public LineOfSight los;
 
-        [SerializeField] public float fightRange = 5f;
+        [SerializeField] public float fightRange = 7f;
 
         //Line of Sight and Detection stuff
         [SerializeField] private float sightRange = 15f; //How far enemy can see with los/vision, literally from eyes of enemy to center of Player
-        [SerializeField] private float sightAngle = 15f; //Angle of sight for enemies sight cone
+        [SerializeField] private float sightAngle = 20f; //Angle of sight for enemies sight cone
         [SerializeField] private float awarenessRange = 5f; //How far away can Player be from Enemy until Enemy will become aware of Jason without line of sight/cone
                                                             //If player is near enemy, enemy can become aware even without line of sight
                                                             // Event Handler Variables
@@ -36,6 +36,19 @@ namespace Overworld
         protected override void Start()
         {
             base.Start();
+
+            //TODO: Duplicated code from Mover
+            WorldSceneTransitioner worldSceneTransitioner = GameObject.FindObjectOfType<WorldSceneTransitioner>();
+            if (worldSceneTransitioner.sceneData != null)
+            {
+                foreach (var moverDatum in worldSceneTransitioner.sceneData.moverData)
+                {
+                    if (moverDatum.moverID == this.name && moverDatum.isDefeated)
+                    {
+                        this.enabled = false;
+                    }
+                }
+            }
 
             if (los.eyeHeight == 0)
             {
