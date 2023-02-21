@@ -13,7 +13,7 @@ namespace Overworld
         float currentIntensity;
         Color currentColor;
         Vector3 rotationVector;
-        static List<string> enemiesInRange = new List<string>();
+        public static List<string> enemiesInRange = new List<string>();
 
         public static void Event_PlayerFightRange(object in_sender, PlayerInRangeArgs in_args)
         {
@@ -40,6 +40,9 @@ namespace Overworld
                 logStr += enemy + ", ";
             }
             // Debug.Log(logStr);
+
+            WorldSceneTransitioner sceneTransitioner = GameObject.FindObjectOfType<WorldSceneTransitioner>();
+            sceneTransitioner.TransitionToBattleScene();
         }
 
         private void SetLightColor()

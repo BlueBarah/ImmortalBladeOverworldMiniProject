@@ -26,6 +26,8 @@ namespace Overworld
         public bool showCone = true;
         public bool showAwareArea = true;
 
+        public Encounter encounterData;
+
         protected override void Awake()
         {
             base.Awake();
