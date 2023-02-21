@@ -22,7 +22,10 @@ namespace Overworld {
         // Update is called once per frame
         void Update()
         {
-            if (owner.los.isTargetVisibleInCone()) {
+            if (owner.Flag_BattleStart) {
+                targetSize = Vector3.zero;
+            }
+            else if (owner.los.isTargetVisibleInCone()) {
                 transform.position = Vector3.Lerp(owner.currPosition, target.currPosition, 0.5f);
                 transform.LookAt(target.currPosition);
                 transform.rotation *= Quaternion.Euler(90f, 90f, 0);

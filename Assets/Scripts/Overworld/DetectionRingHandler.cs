@@ -24,7 +24,7 @@ public class DetectionRingHandler : MonoBehaviour
         // Update is called once per frame
         void Update()
         {
-            bool isInFightRange = HelperFunctions.CheckProximity(owner.currPosition, target.currPosition, owner.fightRange);
+            bool isInFightRange = (HelperFunctions.CheckProximity(owner.currPosition, target.currPosition, owner.fightRange) && !owner.Flag_BattleStart);
             Vector3 newSize = (isInFightRange) ? new Vector3(owner.fightRange * 2, owner.fightRange * 2, owner.fightRange * 2) : Vector3.zero;
             if (!HelperFunctions.CheckProximity(projector.size, newSize, 0.01f)) {
                 projector.size = Vector3.Lerp(projector.size, newSize, 0.05f);

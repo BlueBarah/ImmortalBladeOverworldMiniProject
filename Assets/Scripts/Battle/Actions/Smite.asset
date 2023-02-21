@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c1b9e6dee7fe447955a4b3395ba429, type: 3}
   m_Name: Smite
   m_EditorClassIdentifier: 
-  damageCategory: 0
-  damageType: 0
+  keywords: 02000000
   hits:
   - 10000
   <AP_cost>k__BackingField: 0
   <ESS_cost>k__BackingField: 0
   <actionTarget>k__BackingField: 0
+  aggroPerHit: 100
   baseAccuracy: 100
   baseCritChance: 100
-  aggroPerHit: 100
   ignoreCounter: 1
   ignoreEvade: 1
   ignoreBlock: 1
+  ailments: []
   <actionTime>k__BackingField: 3000

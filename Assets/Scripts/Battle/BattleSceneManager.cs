@@ -83,6 +83,8 @@ namespace Battle {
         }
 
         public void EndTurn() {
+            currentUnit.EndTurn();
+
             int nextIndex = turnOrder.IndexOf(currentUnit) + 1;
             currentUnit = (nextIndex < turnOrder.Count) ? turnOrder[nextIndex] : turnOrder[0];
 
@@ -90,6 +92,7 @@ namespace Battle {
         }
         public void StartTurn() {
             Event_OnCurrentUnitChange?.Invoke(currentUnit);
+            currentUnit.StartTurn();
             if (currentUnit.GetType() == typeof(PlayerUnit)) {
                 UpdateState(BattleState.PlayerChoosingAction);
             }

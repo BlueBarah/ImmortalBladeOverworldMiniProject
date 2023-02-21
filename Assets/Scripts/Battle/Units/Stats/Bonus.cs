@@ -14,6 +14,14 @@ namespace Battle {
             val = in_val;
             source = in_source;
         }
-        
+        public static bool AreEqual(Bonus<T> x, Bonus<T> y)
+        {
+            if (x == null || y == null) return false;
+            else return (CompareTypes(x.bonusType, y.bonusType) && x.val == y.val && x.source == y.source);
+        }
+
+        public static bool CompareTypes(T in_typeX, T in_typeY) {
+            return EqualityComparer<T>.Default.Equals(in_typeX, in_typeY);
+        }
     }
 }

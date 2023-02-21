@@ -7,10 +7,7 @@ namespace Battle {
     [CreateAssetMenu(fileName = "Attack", menuName = "ScriptableObjects/Actions")]
     public class Attack : ScriptableObject, IAction
     {
-        [Header("Category should either be 'Physical' or 'Magical'")]
-        [SerializeField] private DamageTypes damageCategory;
-        [Header("Type should not be 'Physical', 'Critical', or 'Magical'")]
-        [SerializeField] private DamageTypes damageType;
+        [SerializeField] public List<DamageTypes> keywords;
         [Space(10)][SerializeField] public float[] hits;
         [field:SerializeField] public float AP_cost { get; set; }
         [field:SerializeField] public float ESS_cost { get; set; }
@@ -21,6 +18,7 @@ namespace Battle {
         [SerializeField] private bool ignoreCounter;
         [SerializeField] private bool ignoreEvade;
         [SerializeField] private bool ignoreBlock;
+        [SerializeField] private List<SerializableAilmentEntry> ailments;
         [field:SerializeField] public int actionTime { get; set; } = 1000;
         public ActionTypes actionType { get; set; } = ActionTypes.Attack;
         
@@ -31,7 +29,7 @@ namespace Battle {
             float ownerAttackStat;
             float ownerAccuracyBonus;
             // Physical attacks use Strength and Dexterity
-            if (damageCategory == DamageTypes.Physical) {
+            if (keywords.Contains(DamageTypes.Physical)) {
                 ownerAimStat = in_ownerStats.dex.val;
                 ownerAttackStat = in_ownerStats.str.val;
                 ownerAccuracyBonus = in_ownerRateBonuses.GetSumOfBonuses(RateTypes.PhysicalAccuracy);
@@ -46,7 +44,7 @@ namespace Battle {
             // See if the attack hit (returns a damage multiplier)
             float hit = CalculateHit(ownerAimStat, ownerAccuracyBonus, in_ownerTN, in_targetStats.agi.val, in_targetTN);
             if (hit <= 0) {
-                return new DamageDealt(false, false, 0f, 0f, damageCategory, damageType, ignoreCounter, ignoreEvade, ignoreBlock);
+                return new DamageDealt(false, false, 0f, 0f, keywords, ignoreCounter, ignoreEvade, ignoreBlock, ailments);
             }
 
             // See if the attack crit (returns a damage multiplier)
@@ -54,11 +52,12 @@ namespace Battle {
             bool didCrit = (crit != 1); // A damage multiplier not equal to 1 means the attack was a critical hit
 
             // Calculate the base damage
-            float ownerDamageBonuses = in_ownerDamageBonuses.GetSumOfBonuses(damageType) + in_ownerDamageBonuses.GetSumOfBonuses(damageCategory);
-            float baseDamage = CalculateDamage(in_damage, hit, crit, ownerAttackStat, in_ownerStats.lvl.val, in_targetStats.end.val, ownerDamageBonuses);
+            float baseDamage = CalculateDamage(in_damage, hit, crit, ownerAttackStat, in_ownerStats.lvl.val, in_targetStats.end.val);
+            float damage = in_ownerDamageBonuses.ApplyPositiveBonus(keywords, baseDamage);
+            Debug.Log($"Modified Damage: {damage}");
 
             // Return all data from the attack
-            return new DamageDealt(true, didCrit, baseDamage, aggroPerHit, damageCategory, damageType, ignoreCounter, ignoreEvade, ignoreBlock);
+            return new DamageDealt(true, didCrit, damage, aggroPerHit, keywords, ignoreCounter, ignoreEvade, ignoreBlock, ailments);
 
         }
         private float CalculateHit(float in_ownerAimStat, float in_ownerAccuracyBonus, float in_ownerTN, float in_targetAgility, float in_targetTN) {
@@ -102,11 +101,10 @@ namespace Battle {
                 return 1f;
             }
         }
-        private float CalculateDamage(float in_damage, float in_hit, float in_crit, float in_ownerAttackStat, float in_ownerLevel, float in_targetEndurance, float in_damageBonuses) {
+        private float CalculateDamage(float in_damage, float in_hit, float in_crit, float in_ownerAttackStat, float in_ownerLevel, float in_targetEndurance) {
             // Calculate the total damage dealt by the attack
             float damage = in_hit * in_crit * Mathf.Sqrt(in_ownerAttackStat / in_targetEndurance) * in_damage * (in_ownerLevel / 2);
-            Debug.Log($"{in_hit} * {in_crit} * SQRT({in_ownerAttackStat} / {in_targetEndurance}) * {in_damage} * ({in_ownerLevel} / 2) = {damage}");
-            damage = damage + (damage * in_damageBonuses);
+            Debug.Log($"Damage Calculation: {in_hit} * {in_crit} * SQRT({in_ownerAttackStat} / {in_targetEndurance}) * {in_damage} * ({in_ownerLevel} / 2) = {damage}");
             return Mathf.Round(damage);
         }
     }

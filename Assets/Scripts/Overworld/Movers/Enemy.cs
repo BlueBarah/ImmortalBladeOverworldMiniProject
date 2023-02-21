@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 namespace Overworld
 {
@@ -20,7 +21,9 @@ namespace Overworld
         [SerializeField] private float awarenessRange = 5f; //How far away can Player be from Enemy until Enemy will become aware of Jason without line of sight/cone
                                                             //If player is near enemy, enemy can become aware even without line of sight
                                                             // Event Handler Variables
-        public bool isPlayerInFightRangeFlag { get; private set; } = false; // Only fire the event if the flag changes
+        public bool Flag_PlayerInRange { get; private set; } = false; // Only fire the event if the flag changes
+        public bool Flag_BattleStart { get; set; } = false;
+        public static event Action<Enemy, bool> Event_EnemyInRange; 
 
         //For testing and inpsector purposes:
         public bool showCone = true;
@@ -48,10 +51,11 @@ namespace Overworld
 
         protected override void OnUpdate()
         {
-            if (CheckFightRange() != isPlayerInFightRangeFlag)
+            if (CheckFightRange() != Flag_PlayerInRange)
             {
-                isPlayerInFightRangeFlag = CheckFightRange();
-                HelperFunctions.FirePlayerInRangeEvent(this, isPlayerInFightRangeFlag, gameObject.name);
+                Flag_PlayerInRange = CheckFightRange();
+                //HelperFunctions.FirePlayerInRangeEvent(this, Flag_PlayerInRange, gameObject.name);
+                Event_EnemyInRange?.Invoke(this, Flag_PlayerInRange);
             }
 
             //Update of LOS sensor every frame, mostly so you can alter it in inpsector from the same place as other vairables in NPC/Mover
