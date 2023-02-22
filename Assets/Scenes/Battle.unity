@@ -1988,7 +1988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PolyMesh:
-    name: pb_Mesh158518
+    name: pb_Mesh28380
     vertices:
     - {x: -52.315033, y: -0.5154307, z: 21.993834}
     - {x: 52.315033, y: -0.5154307, z: 21.993834}
@@ -9548,7 +9548,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh158518
+  m_Name: pb_Mesh28380
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12715,6 +12715,7 @@ GameObject:
   - component: {fileID: 1146013857}
   - component: {fileID: 1146013861}
   - component: {fileID: 1146013860}
+  - component: {fileID: 1146013862}
   - component: {fileID: 1146013859}
   m_Layer: 0
   m_Name: Jason
@@ -12830,6 +12831,20 @@ MonoBehaviour:
   _focus: 20
   _endurance: 30
   _agility: 50
+--- !u!114 &1146013862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146013856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c84a800d9cef49438fcc2231d171e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ruleList:
+  - rule: {fileID: 11400000, guid: 745e53569bad26e4aad9e99b4c3e3aa0, type: 2}
 --- !u!1001 &1148725909
 PrefabInstance:
   m_ObjectHideFlags: 0

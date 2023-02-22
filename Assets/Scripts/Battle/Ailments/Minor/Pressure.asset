@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bc8aeb82b76a449b77c7582310772e, type: 3}
   m_Name: Pressure
   m_EditorClassIdentifier: 
-  applyOnHit: 1
+  HP_loss: 0
+  TN_loss: 0
+  AP_loss: 0
+  ESS_loss: 0
+  bonuses:
+    damageBonuses: []
+    damageResistances: []
+    rateBonuses: []
+    ailmentResistances: []
+  applyOnEveryHit: 1
+  applyAtStartOfTurn: 0

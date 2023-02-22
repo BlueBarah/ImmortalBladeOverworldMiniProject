@@ -8,7 +8,7 @@ namespace Battle {
     public class MinorEffect : Effect
     {
         [Space]
-        [SerializeField] public bool applyOnHit;
+        [SerializeField] public bool applyOnEveryHit;
         [SerializeField] public bool applyAtStartOfTurn;
     }
 }

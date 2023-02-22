@@ -12,5 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 139cac3e161ce7743b8ce7b113efcb28, type: 3}
   m_Name: Electrified
   m_EditorClassIdentifier: 
-  persistent: 0
+  HP_loss: 0
+  TN_loss: 0
+  AP_loss: 0
+  ESS_loss: 0
+  bonuses:
+    damageBonuses:
+    - <value>k__BackingField: -0.5
+      <type>k__BackingField: 1
+    damageResistances: []
+    rateBonuses: []
+    ailmentResistances: []
+  conditions:
+    conditionList: []
   applyOnHit: 0
+  applyAtStartOfTurn: 0
+  persistent: 0

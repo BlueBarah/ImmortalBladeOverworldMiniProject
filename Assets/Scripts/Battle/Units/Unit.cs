@@ -30,6 +30,7 @@ namespace Battle {
         public BonusList<DamageTypes> damageBonuses = new BonusList<DamageTypes>();
         public BonusList<RateTypes> rateBonuses = new BonusList<RateTypes>();
         public AilmentList ailmentList;
+        // public SpecialRuleList specialRules;
 
         // States
         public HP HP_state { get; set; }
@@ -95,6 +96,7 @@ namespace Battle {
             // Update calculated values if necessary
             if (flag_changeEvasion) defenses.evasion.val = calculateEvasion();
             if (flag_changeBlock) defenses.block.val = calculateBlock();
+            //specialRules.CheckSpecialRules(this);
         }
         public int CompareTo(object obj)
         {

@@ -7,7 +7,7 @@ namespace Battle {
     public class MajorEffect : Effect
     {
         [Space]
-        [SerializeField] public bool applyOnHit;
+        [SerializeField] public bool applyOnEveryHit;
         [SerializeField] public bool applyAtStartOfTurn;
         [SerializeField] public bool persistent;
     }

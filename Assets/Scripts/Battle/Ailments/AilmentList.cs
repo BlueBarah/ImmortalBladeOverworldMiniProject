@@ -28,12 +28,12 @@ namespace Battle {
             }
 
             // Apply any on-hit major effects if buildup is at 100 and the major effect is not already active
-            if (ailments[index].ailment.major.applyOnHit && ailments[index].buildup >= 100 && !ailments[index].majorActive) {
+            if (ailments[index].ailment.major.applyOnEveryHit && ailments[index].buildup >= 100 && !ailments[index].majorActive) {
                 ailments[index].ailment.major.ApplyEffect(owner);
                 ailments[index].majorActive = true;
             }
             // Apply any on-hit minor effects if buildup is at or above 50 and the major effect is not active
-            else if (ailments[index].ailment.minor.applyOnHit && ailments[index].buildup >= 50 && !ailments[index].majorActive) {
+            else if (ailments[index].ailment.minor.applyOnEveryHit && ailments[index].buildup >= 50 && !ailments[index].majorActive) {
                 ailments[index].ailment.minor.ApplyEffect(owner);
                 ailments[index].minorActive = true;
             }
@@ -73,7 +73,7 @@ namespace Battle {
                 if (item.buildup >= 100 && !item.majorActive) {
                     item.majorActive = true;
                     // Apply the effect unless it is meant to be applied at a certain time
-                    if (!item.ailment.major.applyAtStartOfTurn && !item.ailment.major.applyOnHit) item.ailment.major.ApplyEffect(owner);
+                    if (!item.ailment.major.applyAtStartOfTurn && !item.ailment.major.applyOnEveryHit) item.ailment.major.ApplyEffect(owner);
                 }
                 // Else, make sure no major effect is applied
                 else if (item.majorActive && (item.buildup < 100 && !item.ailment.major.persistent) || (item.buildup < 50 && item.ailment.major.persistent)){
@@ -85,7 +85,7 @@ namespace Battle {
                 if (item.buildup >= 50 && !item.minorActive) {
                     item.minorActive = true;
                     // Apply the effect if it is not meant to be applied at a certain time
-                    if (!item.ailment.minor.applyOnHit && !item.ailment.minor.applyAtStartOfTurn) item.ailment.minor.ApplyEffect(owner);
+                    if (!item.ailment.minor.applyOnEveryHit && !item.ailment.minor.applyAtStartOfTurn) item.ailment.minor.ApplyEffect(owner);
                 }
                 // If buildup is below 50%, make sure no effects are active
                 else if (item.minorActive && item.buildup < 50) {
