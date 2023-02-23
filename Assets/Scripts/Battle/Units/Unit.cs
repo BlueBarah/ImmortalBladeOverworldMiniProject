@@ -32,6 +32,8 @@ namespace Battle {
         public AilmentList ailmentList;
         // public SpecialRuleList specialRules;
 
+        public UnitBattleData battleData;
+
         // States
         public HP HP_state { get; set; }
         public TN TN_state { get; set; }
@@ -45,6 +47,8 @@ namespace Battle {
             } 
             set {
                 _hp = Mathf.Clamp(Mathf.Round(value), 0f, resources.HP_max.val);
+                if (battleData != null)
+                    battleData.currHP = _hp;
                 HP_state = calculateHPstate();
             } 
         }
@@ -105,8 +109,30 @@ namespace Battle {
             return attributes.agi.val.CompareTo(otherUnit.attributes.agi.val);
         }
         public void Init() {
-            attributes = new Attributes(_level, _strength, _willpower, _dexterity, _focus, _endurance, _agility);
-            resources = new Resources(_maxHP, _maxESS, _maxAP);
+            //Grab the unit data values from persistant battle data
+            if (battleData != null)
+            {
+                attributes = new Attributes(battleData);
+                resources = new Resources(battleData);
+
+                _hp = battleData.currHP;
+                _level = battleData.level;
+                _strength = battleData.strength;
+                _willpower = battleData.willpower;
+                _dexterity = battleData.dexterity;
+                _focus = battleData.focus;
+                _endurance = battleData.endurance;
+                _agility = battleData.agility;
+                _maxHP = battleData.maxHP;
+                _maxESS = battleData.maxESS;
+                _maxAP = battleData.maxAP;
+            }
+            else
+            {
+                attributes = new Attributes(_level, _strength, _willpower, _dexterity, _focus, _endurance, _agility);
+                resources = new Resources(_maxHP, _maxESS, _maxAP);
+            }
+
             defenses = new Defenses(calculateEvasion(), calculateBlock());
             ailmentList = new AilmentList(this);
 

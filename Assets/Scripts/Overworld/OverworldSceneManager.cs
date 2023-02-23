@@ -40,7 +40,10 @@ namespace Overworld
                 logStr += enemy.name + ", ";
                 enemy.Flag_BattleStart = true;
             }
-            Debug.Log(logStr);
+            // Debug.Log(logStr);
+
+            WorldSceneTransitioner sceneTransitioner = GameObject.FindObjectOfType<WorldSceneTransitioner>();
+            sceneTransitioner.TransitionToBattleScene();
         }
 
         private void SetLightColor()

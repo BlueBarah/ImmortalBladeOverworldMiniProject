@@ -142,11 +142,11 @@ public class SimpleEnemyAI : AI
     //changes currState based on conditions
     protected override void CheckStateConditions()
     {
-        // Putting event handler here to run on Update(), maybe move to it's own function later?
-        if (CheckFightRange() != isPlayerInFightRangeFlag) {
-            isPlayerInFightRangeFlag = CheckFightRange();
-            HelperFunctions.FirePlayerInRangeEvent(this, isPlayerInFightRangeFlag, gameObject.name);
-        }
+        //// Putting event handler here to run on Update(), maybe move to it's own function later?
+        //if (CheckFightRange() != isPlayerInFightRangeFlag) {
+        //    isPlayerInFightRangeFlag = CheckFightRange();
+        //    HelperFunctions.FirePlayerInRangeEvent(this, isPlayerInFightRangeFlag, gameObject.name);
+        //}
 
 
         bool playerDetected = PlayerDetected();

@@ -17,6 +17,16 @@ namespace Battle {
             end = new Stat(in_end);
             agi = new Stat(in_agi);
         }
+        public Attributes(UnitBattleData battleData)
+        {
+            lvl = new Stat(battleData.level);
+            str = new Stat(battleData.strength);
+            will = new Stat(battleData.willpower);
+            dex = new Stat(battleData.dexterity);
+            foc = new Stat(battleData.focus);
+            end = new Stat(battleData.endurance);
+            agi = new Stat(battleData.agility);
+        }
     }
 
 }
