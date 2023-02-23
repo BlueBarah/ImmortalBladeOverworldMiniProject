@@ -13,7 +13,7 @@ namespace Overworld
         float currentIntensity;
         Color currentColor;
         Vector3 rotationVector;
-        static List<Enemy> enemiesInRange = new List<Enemy>();
+        public static List<Enemy> enemiesInRange = new List<Enemy>();
 
         public static void Event_PlayerFightRange(Enemy in_sender, bool in_flag)
         {

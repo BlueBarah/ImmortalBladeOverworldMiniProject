@@ -99,7 +99,7 @@ public class WorldSceneTransitioner : MonoBehaviour, iSceneTransitioner
             Encounter enemyEncounter = null;
             foreach (var moverDatum in sceneData.moverData)
             {
-                if (moverDatum.moverID == enemyInRange)
+                if (moverDatum.moverID == enemyInRange.name)
                 {
                     enemyEncounter = moverDatum.encounter;
                     break;
@@ -107,7 +107,7 @@ public class WorldSceneTransitioner : MonoBehaviour, iSceneTransitioner
             }
 
             if (enemyEncounter != null)
-                battleSceneData.encounterList.Add(enemyInRange, enemyEncounter);
+                battleSceneData.encounterList.Add(enemyInRange.name, enemyEncounter);
         }
 
         //Persist the created battle scene data to be loaded in the battle scene

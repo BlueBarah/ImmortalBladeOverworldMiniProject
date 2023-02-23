@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: GreaterDemonBattleData
   m_EditorClassIdentifier: 
   unitName: Greater Demon
+  currHP: 2000
   maxHP: 2000
   maxESS: 50
   maxAP: 9
-  level: 5
-  strength: 5
-  willpower: 5
-  dexterity: 5
-  focus: 5
-  endurance: 5
-  agility: 5
+  level: 20
+  strength: 20
+  willpower: 20
+  dexterity: 20
+  focus: 20
+  endurance: 20
+  agility: 20
   Attacks: []

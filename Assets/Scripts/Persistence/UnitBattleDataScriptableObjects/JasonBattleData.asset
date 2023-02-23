@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: JasonBattleData
   m_EditorClassIdentifier: 
   unitName: Jason
+  currHP: 4531
   maxHP: 4531.29
   maxESS: 55
   maxAP: 9
-  level: 1
+  level: 20
   strength: 20
   willpower: 20
   dexterity: 20
