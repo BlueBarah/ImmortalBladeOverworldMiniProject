@@ -115,5 +115,13 @@ namespace Battle {
             }
             CheckAilments();
         }
+
+        public List<string> GetAppliedAilments() {
+            List<string> ailmentEntries = new List<string>();
+            foreach (AilmentListItem item in ailments) {
+                ailmentEntries.Add($" - {item.ailment.name}: {item.buildup}%");
+            }
+            return ailmentEntries;
+        }
     }
 }

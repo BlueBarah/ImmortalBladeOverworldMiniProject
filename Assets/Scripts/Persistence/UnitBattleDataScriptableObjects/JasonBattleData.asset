@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Jason
   currHP: 4531
-  maxHP: 4531.29
+  maxHP: 4531
   maxESS: 55
   maxAP: 9
   level: 20

@@ -28,6 +28,14 @@ namespace Battle {
                 }
             }
         }
+
+        public List<string> GetAppliedRules() {
+            List<string> ruleEntries = new List<string>();
+            foreach (SerializableRuleEntry entry in ruleList) {
+                if (entry.applied) ruleEntries.Add($" - {entry.rule.name}");
+            }
+            return ruleEntries;
+        }
     }
 }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,6 +61,17 @@ namespace Battle {
                 sumOfResistances += this.GetSumOfBonuses(type);
             }
             return Mathf.Round(in_value - (in_value * sumOfResistances));
+        }
+
+        public List<string> GetAppliedBonuses() {
+            List<string> bonusLogStr = new List<string>();
+            foreach (T enumVal in Enum.GetValues(typeof(T))) {
+                float bonusVal = GetSumOfBonuses(enumVal);
+                if (bonusVal != 0) {
+                    bonusLogStr.Add($" - {enumVal.ToString()}: {bonusVal * 100}%");
+                }
+            }
+            return bonusLogStr;
         }
         
     }
