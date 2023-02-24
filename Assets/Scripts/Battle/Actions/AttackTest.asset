@@ -12,18 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c1b9e6dee7fe447955a4b3395ba429, type: 3}
   m_Name: AttackTest
   m_EditorClassIdentifier: 
-  damageCategory: 1
-  damageType: 3
+  keywords: 0100000003000000
   hits:
   - 50
   - 60
   <AP_cost>k__BackingField: 4
   <ESS_cost>k__BackingField: 10
   <actionTarget>k__BackingField: 0
+  aggroPerHit: 50
   baseAccuracy: 80
   baseCritChance: 25
-  aggroPerHit: 50
   ignoreCounter: 0
   ignoreEvade: 0
   ignoreBlock: 0
+  ailments:
+  - ailment: {fileID: 11400000, guid: 6a25138a320a0ec468e241bb7d112345, type: 2}
+    buildup: 30
+  - ailment: {fileID: 11400000, guid: f860d323dcd0bb240ac9de106fc88040, type: 2}
+    buildup: 5
   <actionTime>k__BackingField: 3000

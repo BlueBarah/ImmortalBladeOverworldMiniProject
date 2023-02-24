@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace Overworld
 {
@@ -14,9 +15,11 @@ namespace Overworld
         Vector3 inputDirection;
 
         private FieldAbilityEquipper fieldAbility;
+        public static event Action<Player> Event_BattleStart;
 
         protected override void Start()
         {
+            base.Start();
             isRunning = false;
             fieldAbility = GetComponent<FieldAbilityEquipper>();
         }
@@ -28,7 +31,8 @@ namespace Overworld
 
             if (collision.collider.tag == "Enemy")
             {
-                HelperFunctions.FireBattleStartEvent(this, gameObject.name);
+                //HelperFunctions.FireBattleStartEvent(this, gameObject.name);
+                Event_BattleStart?.Invoke(this);
 
             }
             else if (collision.gameObject.tag != "Ground")

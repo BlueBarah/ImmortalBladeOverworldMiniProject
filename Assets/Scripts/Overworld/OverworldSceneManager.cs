@@ -13,33 +13,37 @@ namespace Overworld
         float currentIntensity;
         Color currentColor;
         Vector3 rotationVector;
-        static List<string> enemiesInRange = new List<string>();
+        public static List<Enemy> enemiesInRange = new List<Enemy>();
 
-        public static void Event_PlayerFightRange(object in_sender, PlayerInRangeArgs in_args)
+        public static void Event_PlayerFightRange(Enemy in_sender, bool in_flag)
         {
-            if (in_args.inRange && !enemiesInRange.Contains(in_args.enemyName))
+            if (in_flag && !enemiesInRange.Contains(in_sender))
             {
-                enemiesInRange.Add(in_args.enemyName);
+                enemiesInRange.Add(in_sender);
             }
-            else if (!in_args.inRange && enemiesInRange.Contains(in_args.enemyName))
+            else if (!in_flag && enemiesInRange.Contains(in_sender))
             {
-                enemiesInRange.Remove(in_args.enemyName);
+                enemiesInRange.Remove(in_sender);
             }
             string logStr = "";
-            foreach (string enemy in enemiesInRange)
+            foreach (Enemy enemy in enemiesInRange)
             {
-                logStr += enemy + ", ";
+                logStr += enemy.name + ", ";
             }
-            //Debug.Log(logStr);
+            Debug.Log(logStr);
         }
-        public static void Event_BattleStart(object in_sender, BattleStartArgs in_args)
+        public static void Event_BattleStart(Player in_player)
         {
-            string logStr = in_args.playerName + " started a battle with ";
-            foreach (string enemy in enemiesInRange)
+            string logStr = in_player.name + " started a battle with ";
+            foreach (Enemy enemy in enemiesInRange)
             {
-                logStr += enemy + ", ";
+                logStr += enemy.name + ", ";
+                enemy.Flag_BattleStart = true;
             }
             // Debug.Log(logStr);
+
+            WorldSceneTransitioner sceneTransitioner = GameObject.FindObjectOfType<WorldSceneTransitioner>();
+            sceneTransitioner.TransitionToBattleScene();
         }
 
         private void SetLightColor()
@@ -72,9 +76,9 @@ namespace Overworld
 
 
             // Initialize PlayerInRange Event
-            HelperFunctions.PlayerInRange += Event_PlayerFightRange;
+            Enemy.Event_EnemyInRange += Event_PlayerFightRange;
             //Initialize BattleStartEvent
-            HelperFunctions.BattleStart += Event_BattleStart;
+            Player.Event_BattleStart += Event_BattleStart;
         }
 
         // Update is called once per frame
@@ -88,6 +92,14 @@ namespace Overworld
             {
                 SetLightColor();
             }
+
+        }
+
+        void OnDestroy() {
+            // Initialize PlayerInRange Event
+            Enemy.Event_EnemyInRange -= Event_PlayerFightRange;
+            //Initialize BattleStartEvent
+            Player.Event_BattleStart -= Event_BattleStart;
 
         }
     }

@@ -10,7 +10,6 @@ namespace Overworld
     public class Ally : NPC
     {
         //Stuff specific for Ally movement
-
         ProximitySensor sensor;
 
         //Needed for teleporting and following

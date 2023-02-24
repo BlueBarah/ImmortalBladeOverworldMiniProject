@@ -30,6 +30,7 @@ namespace Battle {
         }
         public Task PerformAttack(Unit in_target, Attack in_attack) {
             string logStr = $"{owner.name} used {in_attack.name} on {in_target.name}\n";
+            Debug.Log($" -=|| {owner.name} used {in_attack.name} on {in_target.name} ||- ");
             IEnemyUnitAI enemyAI = null;
             foreach(float hit in in_attack.hits) {
                 // Run the attack code
@@ -64,6 +65,9 @@ namespace Battle {
                 else if (damageTaken.result == AttackResults.Blocked) logStr += $"    {in_target.name} completely blocked the attack\n";
                 else if (damageTaken.result == AttackResults.PartiallyBlocked) logStr += $"    {in_target.name} partially blocked the attack and took {damageTaken.damage}\n";
                 else if (damageTaken.result == AttackResults.Taken) logStr += $"    {in_target.name} took {damageTaken.damage}\n";
+
+                Debug.Log($"Result: {damageDealt.baseDamage} -> {damageTaken.result} ({damageTaken.damage})");
+                Debug.Log("-------");
             }
             if (enemyAI != null) {
                 enemyAI.UpdateTarget();

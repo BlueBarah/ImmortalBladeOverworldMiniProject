@@ -29,6 +29,10 @@ namespace Battle {
         public BonusList<DamageTypes> damageResistances = new BonusList<DamageTypes>();
         public BonusList<DamageTypes> damageBonuses = new BonusList<DamageTypes>();
         public BonusList<RateTypes> rateBonuses = new BonusList<RateTypes>();
+        public AilmentList ailmentList;
+        // public SpecialRuleList specialRules;
+
+        public UnitBattleData battleData;
 
         // States
         public HP HP_state { get; set; }
@@ -43,6 +47,8 @@ namespace Battle {
             } 
             set {
                 _hp = Mathf.Clamp(Mathf.Round(value), 0f, resources.HP_max.val);
+                if (battleData != null)
+                    battleData.currHP = _hp;
                 HP_state = calculateHPstate();
             } 
         }
@@ -94,6 +100,7 @@ namespace Battle {
             // Update calculated values if necessary
             if (flag_changeEvasion) defenses.evasion.val = calculateEvasion();
             if (flag_changeBlock) defenses.block.val = calculateBlock();
+            //specialRules.CheckSpecialRules(this);
         }
         public int CompareTo(object obj)
         {
@@ -102,9 +109,32 @@ namespace Battle {
             return attributes.agi.val.CompareTo(otherUnit.attributes.agi.val);
         }
         public void Init() {
-            attributes = new Attributes(_level, _strength, _willpower, _dexterity, _focus, _endurance, _agility);
-            resources = new Resources(_maxHP, _maxESS, _maxAP);
+            //Grab the unit data values from persistant battle data
+            if (battleData != null)
+            {
+                attributes = new Attributes(battleData);
+                resources = new Resources(battleData);
+
+                _hp = battleData.currHP;
+                _level = battleData.level;
+                _strength = battleData.strength;
+                _willpower = battleData.willpower;
+                _dexterity = battleData.dexterity;
+                _focus = battleData.focus;
+                _endurance = battleData.endurance;
+                _agility = battleData.agility;
+                _maxHP = battleData.maxHP;
+                _maxESS = battleData.maxESS;
+                _maxAP = battleData.maxAP;
+            }
+            else
+            {
+                attributes = new Attributes(_level, _strength, _willpower, _dexterity, _focus, _endurance, _agility);
+                resources = new Resources(_maxHP, _maxESS, _maxAP);
+            }
+
             defenses = new Defenses(calculateEvasion(), calculateBlock());
+            ailmentList = new AilmentList(this);
 
             InitializeResources();
             flag_init = true;
@@ -114,7 +144,25 @@ namespace Battle {
             DamageTaken damageTaken = StaticUnitFunctions.CalculateDamage(in_damageData, damageResistances, defenses, _maxHP);
             HP_current -= damageTaken.damage;
             TN_current += damageTaken.TN_change;
+            if (in_damageData.ailments.Count > 0) {
+                foreach (SerializableAilmentEntry item in damageTaken.ailments) {
+                    ailmentList.AddAilment(item, false);
+                }
+                ailmentList.CheckAilments();
+            }
             return damageTaken;
+        }
+        public void StartTurn() {
+            Debug.Log($"START TURN: {name}");
+            ailmentList.CheckAilments();
+            // Apply any ailments that are meant to be applied at the start of the turn
+            foreach (AilmentListItem item in ailmentList.ailments) {
+                if (item.majorActive && item.ailment.major.applyAtStartOfTurn) item.ailment.major.ApplyEffect(this);
+                else if (item.minorActive && item.ailment.minor.applyAtStartOfTurn) item.ailment.minor.ApplyEffect(this);
+            }
+        }
+        public void EndTurn() {
+            ailmentList.ManageAilments();
         }
 
         private void InitializeResources() {

@@ -71,7 +71,6 @@ namespace Battle {
             float lowestAggro = -1;
             float reductionPercentage = 0.1f;
             foreach (AggroTableEntry target in aggroTable) {
-                Debug.Log($"(Before End Turn) {gameObject.name} - {target.unit.name}: {target.aggro}");
                 // Reduce aggro towards each character by a precentage
                 target.LoseAggro(target.aggro * reductionPercentage);
                 // Find the lowest aggro value in the table
@@ -84,7 +83,6 @@ namespace Battle {
             foreach (AggroTableEntry target in aggroTable) {
                 // Change aggro by a set amount
                 target.ModifyAggro(-lowestAggro);
-                Debug.Log($"(After End Turn) {gameObject.name} - {target.unit.name}: {target.aggro}");
             }
         }
     }

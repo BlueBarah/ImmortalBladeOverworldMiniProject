@@ -10,6 +10,7 @@ namespace Battle {
         public static BattleSceneManager instance;
         public static event Action<BattleState> Event_OnStateChange;
         public static event Action<Unit> Event_OnCurrentUnitChange;
+        public event EventHandler Event_BattleEnd;
         [SerializeField] private Material UI_Material;
         public BattleState state;
         public Unit currentUnit { get; set; }
@@ -59,9 +60,11 @@ namespace Battle {
                     break;
                 case BattleState.Win:
                     MenuEvents.Log("Win");
+                    Event_BattleEnd(this, new EventArgs());
                     break;
                 case BattleState.Lose:
                     MenuEvents.Log("Lose");
+                    Event_BattleEnd(this, new EventArgs());
                     break;
                 default:
                     Debug.Log($"Unknown State: {nameof(in_state)}");
@@ -83,6 +86,8 @@ namespace Battle {
         }
 
         public void EndTurn() {
+            currentUnit.EndTurn();
+
             int nextIndex = turnOrder.IndexOf(currentUnit) + 1;
             currentUnit = (nextIndex < turnOrder.Count) ? turnOrder[nextIndex] : turnOrder[0];
 
@@ -90,6 +95,7 @@ namespace Battle {
         }
         public void StartTurn() {
             Event_OnCurrentUnitChange?.Invoke(currentUnit);
+            currentUnit.StartTurn();
             if (currentUnit.GetType() == typeof(PlayerUnit)) {
                 UpdateState(BattleState.PlayerChoosingAction);
             }
