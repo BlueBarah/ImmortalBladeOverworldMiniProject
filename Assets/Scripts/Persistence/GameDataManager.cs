@@ -13,6 +13,10 @@ public class GameDataManager : MonoBehaviour
     public PlayerGameData playerData;
     public static PlayerGameData staticPlayerData;
 
+    public List<OverworldUnitData> unitsInBattle = new List<OverworldUnitData>();
+    public List<OverworldUnitData> unitsNotInBattle = new List<OverworldUnitData>();
+    public bool Flag_InitialSceneLoad;
+
     private void Awake()
     {
         if (instance != null)
@@ -22,8 +26,10 @@ public class GameDataManager : MonoBehaviour
         }
 
         instance = this;
+        Flag_InitialSceneLoad = true;
         DontDestroyOnLoad(gameObject);
 
+        /*
         if(staticPlayerData == null)
         {
             if(playerData != null)
@@ -32,13 +38,13 @@ public class GameDataManager : MonoBehaviour
                 staticPlayerData.RestoreHPToMax();
             }
         }
+        */
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        currentWorldSceneData = null;
-        currentBattleSceneData = null;
+        Debug.Log(unitsNotInBattle.Count);
     }
 
     private void LoadPlayerData()

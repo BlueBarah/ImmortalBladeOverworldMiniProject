@@ -100,7 +100,7 @@ namespace Overworld
         //Called by Roam Action, Follow Target Action, Chase Action
         public void MoveAlongPathToPoint(Vector3 position)
         {
-            NavMesh.CalculatePath(currPosition, position, NavMesh.GetAreaFromName("walkable"), currPath); //Get a hopefully viable path from NavMesh
+            NavMesh.CalculatePath(transform.position, position, NavMesh.GetAreaFromName("walkable"), currPath); //Get a hopefully viable path from NavMesh
 
             //NPC thinks they can reach the position
             if (CanReachPosition(position))

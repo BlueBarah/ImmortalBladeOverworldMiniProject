@@ -7,7 +7,7 @@ namespace Overworld {
     public class DetectionLineHandler : MonoBehaviour
     {
         private Enemy owner;
-        private Mover target;
+        private Transform target;
         private DecalProjector projector;
         private Vector3 targetSize = Vector3.zero;
         // Start is called before the first frame update
@@ -19,18 +19,22 @@ namespace Overworld {
 
         }
 
-        // Update is called once per frame
+        void FixedUpdate() {
+            if (target == null) {
+                target = owner.los.target;
+            }
+        }
         void Update()
         {
             if (owner.Flag_BattleStart) {
                 targetSize = Vector3.zero;
             }
             else if (owner.los.isTargetVisibleInCone()) {
-                transform.position = Vector3.Lerp(owner.currPosition, target.currPosition, 0.5f);
-                transform.LookAt(target.currPosition);
+                transform.position = Vector3.Lerp(owner.currPosition, target.position, 0.5f);
+                transform.LookAt(target.position);
                 transform.rotation *= Quaternion.Euler(90f, 90f, 0);
-                float lineLength = Vector3.Distance(owner.currPosition, target.currPosition) - 2.5f;
-                targetSize = (lineLength > 0) ? new Vector3(Vector3.Distance(owner.currPosition, target.currPosition) - 2.5f, 0.1f, 10f) : Vector3.zero;
+                float lineLength = Vector3.Distance(owner.currPosition, target.position) - 2.5f;
+                targetSize = (lineLength > 0) ? new Vector3(Vector3.Distance(owner.currPosition, target.position) - 2.5f, 0.1f, 10f) : Vector3.zero;
             }
             else if (targetSize != Vector3.zero) {
                 targetSize = Vector3.zero;

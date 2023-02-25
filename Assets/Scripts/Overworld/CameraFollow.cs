@@ -10,6 +10,7 @@ namespace Overworld
         [SerializeField] private float smoothTime = 0.3f;
         [SerializeField] private Vector3 offset;
         [SerializeField] private bool spriteSortCameraDirection = true;
+        [SerializeField] private bool shouldHaveFollowTarget;
         private Vector3 velocity = Vector3.zero;
         private Camera cam;
         void Awake()
@@ -31,6 +32,9 @@ namespace Overworld
             {
                 Vector3 targetPos = target.position + offset;
                 transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
+            }
+            else if (shouldHaveFollowTarget){
+                target = GameObject.FindGameObjectWithTag("Player").transform;
             }
         }
     }
