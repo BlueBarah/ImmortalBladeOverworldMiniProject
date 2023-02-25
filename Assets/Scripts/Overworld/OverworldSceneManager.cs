@@ -102,8 +102,9 @@ namespace Overworld
             currentRotation = directionalLight.transform.rotation;
             rotationVector = directionalLight.transform.rotation * Vector3.forward;
 
+            Transform unitContainer = transform.Find("Units");
+
             if (!GameDataManager.instance.Flag_InitialSceneLoad) {
-                Transform unitContainer = transform.Find("Units");
 
                 // Clear out the existing units
                 foreach (Transform overworldUnit in unitContainer) {
@@ -116,7 +117,9 @@ namespace Overworld
                     unitInstance.transform.SetParent(unitContainer);
                     unitInstance.transform.localScale = new Vector3(1,1,1);
                     unitInstance.transform.localPosition = overworldUnit.ownerPosition;
+                    
                     unitInstance.GetComponent<Mover>().Init();
+                    unitInstance.GetComponent<Mover>().unitData = overworldUnit;
                 }
                 // Initialize the units from the Game Data Manager
                 foreach (OverworldUnitData overworldUnit in GameDataManager.instance.unitsNotInBattle) {
@@ -125,12 +128,23 @@ namespace Overworld
                     unitInstance.transform.SetParent(unitContainer);
                     unitInstance.transform.localScale = new Vector3(1,1,1);
                     unitInstance.transform.localPosition = overworldUnit.ownerPosition;
+
                     unitInstance.GetComponent<Mover>().Init();
+                    unitInstance.GetComponent<Mover>().unitData = overworldUnit;
                 }
 
             }
             else {
                 Debug.Log("Initial Load");
+
+                foreach (Transform unit in unitContainer) {
+                    Mover unitMover = unit.GetComponent<Mover>();
+                    foreach (BattleUnitData entry in unitMover.unitData.encounter) {
+                        Battle.Unit battleUnit = entry.prefab.GetComponent<Battle.Unit>();
+                        entry.currentHealth = battleUnit._maxHP;
+                    }
+                }
+
                 GameDataManager.instance.Flag_InitialSceneLoad = false;
             }
             GameDataManager.instance.unitsInBattle.Clear();

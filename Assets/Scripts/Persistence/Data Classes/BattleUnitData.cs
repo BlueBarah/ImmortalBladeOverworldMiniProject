@@ -7,4 +7,5 @@ public class BattleUnitData
 {
     [SerializeField] public GameObject prefab;
     [SerializeField] public float currentHealth;
+    public Battle.Unit instance {get; set;}
 }

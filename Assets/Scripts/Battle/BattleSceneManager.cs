@@ -71,8 +71,7 @@ namespace Battle {
                     Handle_Decide();
                     break;
                 case BattleState.Win:
-                    MenuEvents.Log("Win");
-                    SceneManager.LoadScene("OverworldScene");
+                    Handle_Win();
                     //Event_BattleEnd(this, new EventArgs());
                     break;
                 case BattleState.Lose:
@@ -122,6 +121,19 @@ namespace Battle {
         }
         public List<Unit> GetPlayerUnits() {
             return turnOrder.FindAll(unit => (unit.GetType() == typeof(PlayerUnit) && unit.HP_state != HP.Incapacitated));
+        }
+        private void Handle_Win() {
+            MenuEvents.Log("Win");
+
+            
+            foreach (OverworldUnitData overworldUnit in GameDataManager.instance.unitsInBattle) {
+                foreach (BattleUnitData battleUnit in overworldUnit.encounter){
+                    battleUnit.currentHealth = battleUnit.instance.HP_current;
+                }
+            }
+
+            SceneManager.LoadScene("OverworldScene");
+
         }
         private void Handle_PlayerChoosingAction() {
             if (currentUnit.HP_state == HP.Incapacitated) {
@@ -188,9 +200,13 @@ namespace Battle {
                         unitInstance.transform.localScale = new Vector3(1,1,1);
                         unitInstance.transform.position = Vector3.zero;
                         unitInstance.name = unitInstance.name.Replace("(Clone)", "");
-                        unitInstance.GetComponent<Unit>().Init();
 
-                        units.Add(unitInstance.GetComponent<Unit>());
+                        Unit unit = unitInstance.GetComponent<Unit>();
+                        unit.Init();
+                        unit.HP_current = battleUnit.currentHealth;
+                        battleUnit.instance = unit;
+
+                        units.Add(unit);
                     }
                     else if (battleUnit.prefab.GetComponent<Unit>().GetType() == typeof(EnemyUnit)) {
                         GameObject unitInstance = GameObject.Instantiate(battleUnit.prefab);
@@ -199,9 +215,13 @@ namespace Battle {
                         unitInstance.transform.localScale = new Vector3(1,1,1);
                         unitInstance.transform.position = Vector3.zero;
                         unitInstance.name = unitInstance.name.Replace("(Clone)", "");
-                        unitInstance.GetComponent<Unit>().Init();
-                        
-                        units.Add(unitInstance.GetComponent<Unit>());
+
+                        Unit unit = unitInstance.GetComponent<Unit>();
+                        unit.Init();
+                        unit.HP_current = battleUnit.currentHealth;
+                        battleUnit.instance = unit;
+
+                        units.Add(unit);
                     }
                 }
             }
