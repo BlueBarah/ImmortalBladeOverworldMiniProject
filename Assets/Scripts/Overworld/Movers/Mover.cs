@@ -12,7 +12,9 @@ namespace Overworld
         public float currentSpeed = 0; //the speed the Mover is currently going. Altered by Dashing ability
         public Vector3 currPosition //The current position the Mover is at. Defined by transform
         {
-            get { return transform.position; }
+            get { 
+                    return transform.position;
+                }
             set { transform.position = value; }
         }
         public float yVelocity; //current y velocity of Mover, will be applied to move direction in their Move()
@@ -46,23 +48,22 @@ namespace Overworld
         public bool lockDirection; //Turn on to disallow the changing of currDirection (used by Dash)
         public bool lockSpeed; //Turn on to disallow the changing of currSpeed (will be used by Stealth prolly)
 
+        // Scene Transition Data
+        [SerializeField] public OverworldUnitData unitData;
+        public bool Flag_isInitialized {get; set;} = false;
+
         protected virtual void Awake()
         {
-            sprite = GetComponent<SpriteRenderer>();
-            animator = GetComponent<Animator>();
-            controller = GetComponent<CharacterController>();
+            if (!Flag_isInitialized) {
+                Init();
+            }
 
-            jumpAbility = GetComponent<Jump>();
-
-            inWater = false;
-            Flag_inWater = false;
-            waterInteraction = transform.Find("WaterInteraction").gameObject;
-            dropShadow = gameObject.transform.Find("Drop Shadow").gameObject;
         }
 
         // Start is called before the first frame update
         protected virtual void Start()
         {
+            /*
             WorldSceneTransitioner worldSceneTransitioner = GameObject.FindObjectOfType<WorldSceneTransitioner>();
             if (worldSceneTransitioner.sceneData != null)
             {
@@ -74,6 +75,7 @@ namespace Overworld
                     }
                 }
             }
+            */
         }
 
         protected void Update()
@@ -95,6 +97,21 @@ namespace Overworld
         virtual protected void OnUpdate() { }
         virtual protected void OnFixedUpdate() { }
 
+        public virtual void Init() {
+            sprite = GetComponent<SpriteRenderer>();
+            animator = GetComponent<Animator>();
+            controller = GetComponent<CharacterController>();
+
+            jumpAbility = GetComponent<Jump>();
+
+            inWater = false;
+            Flag_inWater = false;
+            waterInteraction = transform.Find("WaterInteraction").gameObject;
+            dropShadow = gameObject.transform.Find("Drop Shadow").gameObject;
+
+            Flag_isInitialized = true;
+
+        }
         //A Collision handling method for all Movers using CharacterController
         protected virtual void OnControllerColliderHit(ControllerColliderHit collision)
         {

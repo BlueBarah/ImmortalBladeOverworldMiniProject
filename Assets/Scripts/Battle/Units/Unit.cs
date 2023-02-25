@@ -10,8 +10,8 @@ namespace Battle {
     {
         public Resources resources;
         [Header("Resources")]
-        [SerializeField] private float _maxHP;
-        [SerializeField] private float _maxESS;
+        [SerializeField] public float _maxHP;
+        [SerializeField] public float _maxESS;
         [SerializeField] private float _maxAP;
         
         public Attributes attributes;

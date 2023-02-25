@@ -94,7 +94,7 @@ public class WorldSceneTransitioner : MonoBehaviour, iSceneTransitioner
         //Create battle scene data to be loaded into the upcoming battle scene
         ActiveBattleSceneData battleSceneData = new ActiveBattleSceneData("Battle");
         //Loop through all enemy names in range and add their name and associated encounter data into the battle scene data
-        foreach (var enemyInRange in OverworldSceneManager.enemiesInRange)
+        foreach (var enemyInRange in OverworldSceneManager.unitsInRange)
         {
             Encounter enemyEncounter = null;
             foreach (var moverDatum in sceneData.moverData)

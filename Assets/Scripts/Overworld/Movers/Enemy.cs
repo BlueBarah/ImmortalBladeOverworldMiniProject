@@ -34,12 +34,14 @@ namespace Overworld
         protected override void Awake()
         {
             base.Awake();
-            los = GetComponent<LineOfSight>();
         }
         protected override void Start()
         {
             base.Start();
+            
+            Event_EnemyInRange?.Invoke(this, false);
 
+            /*
             //TODO: Duplicated code from Mover
             WorldSceneTransitioner worldSceneTransitioner = GameObject.FindObjectOfType<WorldSceneTransitioner>();
             if (worldSceneTransitioner.sceneData != null)
@@ -52,6 +54,7 @@ namespace Overworld
                     }
                 }
             }
+            */
 
             if (los.eyeHeight == 0)
             {
@@ -59,9 +62,15 @@ namespace Overworld
             }
         }
 
+        public override void Init()
+        {
+            base.Init();
+            los = GetComponent<LineOfSight>();
+        }
+
         private bool CheckFightRange()
         {
-            return los.isTargetVisibleInCone() || HelperFunctions.CheckProximity(currPosition, los.target.currPosition, fightRange);
+            return los.isTargetVisibleInCone() || HelperFunctions.CheckProximity(currPosition, los.target.position, fightRange);
         }
 
         protected override void OnUpdate()

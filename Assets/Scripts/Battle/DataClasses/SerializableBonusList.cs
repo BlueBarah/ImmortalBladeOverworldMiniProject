@@ -11,16 +11,16 @@ namespace Battle {
         [SerializeField] private List<RateBonusEntry> rateBonuses;
         [SerializeField] private List<AilmentResistanceEntry> ailmentResistances;
         public void ApplyBonuses(object in_source, Unit in_unit) {
-            foreach (DamageBonusEntry bonus in damageBonuses) {
+            if (damageBonuses != null) foreach (DamageBonusEntry bonus in damageBonuses) {
                 bonus.ApplyBonus(in_source, in_unit);
             }
-            foreach (DamageResistanceEntry bonus in damageResistances) {
+            if (damageResistances != null) foreach (DamageResistanceEntry bonus in damageResistances) {
                 bonus.ApplyBonus(in_source, in_unit);
             }
-            foreach (RateBonusEntry bonus in rateBonuses) {
+            if (rateBonuses != null) foreach (RateBonusEntry bonus in rateBonuses) {
                 bonus.ApplyBonus(in_source, in_unit);
             }
-            foreach (AilmentResistanceEntry bonus in ailmentResistances) {
+            if (ailmentResistances != null) foreach (AilmentResistanceEntry bonus in ailmentResistances) {
                 bonus.ApplyBonus(in_source, in_unit);
             }
         }

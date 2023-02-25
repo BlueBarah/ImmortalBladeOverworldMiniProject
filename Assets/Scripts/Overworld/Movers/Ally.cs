@@ -27,12 +27,12 @@ namespace Overworld
         protected override void Awake()
         {
             base.Awake();
-            sensor = GetComponent<ProximitySensor>();
         }
         protected override void Start()
         {
             base.Start();
             sensor.proximityRange = followRange;
+            OverworldSceneManager.unitsInRange.Add(this);
         }
 
         protected override void OnUpdate()
@@ -45,6 +45,12 @@ namespace Overworld
             {
                 teleportToPosition(sensor.targetsPosition - Vector3.back); //Teleport behind player
             }
+        }
+
+        public override void Init()
+        {
+            base.Init();
+            sensor = GetComponent<ProximitySensor>();
         }
 
         //Teleports Ally to a position

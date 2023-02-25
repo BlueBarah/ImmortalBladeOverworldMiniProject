@@ -45,7 +45,7 @@ namespace Overworld
             }
 
             //Vector3 targetsPosition = target.currPosition;
-            Vector3 targetsCenter = new Vector3(targetsPosition.x, targetsPosition.y + target.height / 2, targetsPosition.z);
+            Vector3 targetsCenter = new Vector3(targetsPosition.x, targetsPosition.y + target.GetComponent<Mover>().height / 2, targetsPosition.z);
 
             //Check if there is something inbetween Enemy and Player
             //Cast just one ray from enemies "eye level" height to Jason's center, if it hits Jason, hes in sight

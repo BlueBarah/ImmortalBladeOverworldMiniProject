@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Battle {
     public class BattleSceneManager : MonoBehaviour
@@ -15,14 +16,25 @@ namespace Battle {
         public BattleState state;
         public Unit currentUnit { get; set; }
         public List<Unit> turnOrder = new List<Unit>();
+        private Transform characterContainer;
+        private Transform enemyContainer;
         void Awake() {
             instance = this;
 
+            characterContainer = transform.Find("Units").Find("Characters");
+            enemyContainer = transform.Find("Units").Find("Enemies");
+
             // Initialize List
-            foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Battle Unit")) {
-                if (!unit.GetComponent<Unit>().flag_init) unit.GetComponent<Unit>().Init();
-                turnOrder.Add(unit.GetComponent<Unit>());
+            if (GameDataManager.instance.unitsInBattle.Count > 0) {
+                turnOrder = PopulateUnits();
             }
+            else {
+                foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Battle Unit")) {
+                    if (!unit.GetComponent<Unit>().flag_init) unit.GetComponent<Unit>().Init();
+                    turnOrder.Add(unit.GetComponent<Unit>());
+                }
+            }
+
             turnOrder.Sort();
             turnOrder.Reverse();
 
@@ -59,12 +71,12 @@ namespace Battle {
                     Handle_Decide();
                     break;
                 case BattleState.Win:
-                    MenuEvents.Log("Win");
-                    Event_BattleEnd(this, new EventArgs());
+                    Handle_Win();
+                    //Event_BattleEnd(this, new EventArgs());
                     break;
                 case BattleState.Lose:
                     MenuEvents.Log("Lose");
-                    Event_BattleEnd(this, new EventArgs());
+                    //Event_BattleEnd(this, new EventArgs());
                     break;
                 default:
                     Debug.Log($"Unknown State: {nameof(in_state)}");
@@ -110,6 +122,19 @@ namespace Battle {
         public List<Unit> GetPlayerUnits() {
             return turnOrder.FindAll(unit => (unit.GetType() == typeof(PlayerUnit) && unit.HP_state != HP.Incapacitated));
         }
+        private void Handle_Win() {
+            MenuEvents.Log("Win");
+
+            
+            foreach (OverworldUnitData overworldUnit in GameDataManager.instance.unitsInBattle) {
+                foreach (BattleUnitData battleUnit in overworldUnit.encounter){
+                    battleUnit.currentHealth = battleUnit.instance.HP_current;
+                }
+            }
+
+            SceneManager.LoadScene("OverworldScene");
+
+        }
         private void Handle_PlayerChoosingAction() {
             if (currentUnit.HP_state == HP.Incapacitated) {
                 EndTurn();
@@ -154,6 +179,54 @@ namespace Battle {
                     UpdateState(BattleState.PlayerChoosingAction);
                 }
             }
+        }
+
+        private List<Unit> PopulateUnits() {
+            List<Unit> units = new List<Unit>();
+
+            foreach (Transform entry in characterContainer) {
+                Destroy(entry.gameObject);
+            }
+            foreach (Transform entry in enemyContainer) {
+                Destroy(entry.gameObject);
+            }
+
+            foreach (OverworldUnitData overworldUnit in GameDataManager.instance.unitsInBattle) {
+                foreach (BattleUnitData battleUnit in overworldUnit.encounter){
+                    if (battleUnit.prefab.GetComponent<Unit>().GetType() == typeof(PlayerUnit)) {
+                        GameObject unitInstance = GameObject.Instantiate(battleUnit.prefab);
+                        
+                        unitInstance.transform.SetParent(characterContainer);
+                        unitInstance.transform.localScale = new Vector3(1,1,1);
+                        unitInstance.transform.position = Vector3.zero;
+                        unitInstance.name = unitInstance.name.Replace("(Clone)", "");
+
+                        Unit unit = unitInstance.GetComponent<Unit>();
+                        unit.Init();
+                        unit.HP_current = battleUnit.currentHealth;
+                        battleUnit.instance = unit;
+
+                        units.Add(unit);
+                    }
+                    else if (battleUnit.prefab.GetComponent<Unit>().GetType() == typeof(EnemyUnit)) {
+                        GameObject unitInstance = GameObject.Instantiate(battleUnit.prefab);
+                        
+                        unitInstance.transform.SetParent(enemyContainer);
+                        unitInstance.transform.localScale = new Vector3(1,1,1);
+                        unitInstance.transform.position = Vector3.zero;
+                        unitInstance.name = unitInstance.name.Replace("(Clone)", "");
+
+                        Unit unit = unitInstance.GetComponent<Unit>();
+                        unit.Init();
+                        unit.HP_current = battleUnit.currentHealth;
+                        battleUnit.instance = unit;
+
+                        units.Add(unit);
+                    }
+                }
+            }
+
+            return units;
         }
     }
 
