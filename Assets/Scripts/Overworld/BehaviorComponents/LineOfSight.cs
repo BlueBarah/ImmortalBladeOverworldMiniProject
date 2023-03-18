@@ -39,18 +39,18 @@ namespace Overworld
         //Returns true if target is visible by a straight Line of Sight, defined by sight range
         public bool isTargetVisible()
         {
-            if (!HelperFunctions.CheckProximity(currPosition, targetsPosition, losRange)) //farther than sight range
+            if (!HelperFunctions.CheckProximity(transform.position, targetsPosition, losRange)) //farther than sight range
             {
                 return false; //no need to check LOS, target is simply too far
             }
 
             //Vector3 targetsPosition = target.currPosition;
-            Vector3 targetsCenter = new Vector3(targetsPosition.x, targetsPosition.y + target.GetComponent<Mover>().height / 2, targetsPosition.z);
+            Vector3 targetsCenter = new Vector3(targetsPosition.x, targetsPosition.y + target.GetComponent<Mover>().height / 4, targetsPosition.z);
 
             //Check if there is something inbetween Enemy and Player
             //Cast just one ray from enemies "eye level" height to Jason's center, if it hits Jason, hes in sight
             RaycastHit sightHit;
-            Vector3 originPoint = new Vector3(currPosition.x, currPosition.y + eyeHeight, currPosition.z); //Origin of ray is from position shifted up to eye level height
+            Vector3 originPoint = new Vector3(transform.position.x, transform.position.y + eyeHeight, transform.position.z); //Origin of ray is from position shifted up to eye level height
             Vector3 directionToTarget = targetsCenter - originPoint; //Direction is towards targets Center (position shifted up by height/2)
             Ray sightRay = new Ray(originPoint, directionToTarget);
 
@@ -75,7 +75,7 @@ namespace Overworld
         //Also uses IsTargetVisible() to assure it also only returns true if target is not obscured by obstacles
         public bool isTargetVisibleInCone()
         {
-            if (!HelperFunctions.CheckProximity(currPosition, targetsPosition, losRange)) //farther than sight range
+            if (!HelperFunctions.CheckProximity(transform.position, targetsPosition, losRange)) //farther than sight range
             {
                 return false; //no need to check LOS, target is simply too far 
             }
@@ -94,8 +94,7 @@ namespace Overworld
             //Check if Jason is within the cone of vision by both:
             //Checking the Angle betweem enemies current sightline vector (his direction), and the vector between Enemys and Jasons position
             //Check if Jason's distance is also within the detection range 
-            if (Vector3.Angle(direction, targetsPosition - currPosition) < sightAngle &&
-                HelperFunctions.CheckProximity(currPosition, targetsPosition, losRange))
+            if (Vector3.Angle(direction, targetsPosition - transform.position) < sightAngle)
             {
                 if (isTargetVisible()) //Targetis within the cone, but still make sure the target is visible
                 {
@@ -110,9 +109,9 @@ namespace Overworld
 
         public void drawCone(Color color)
         {
-            Debug.DrawRay(currPosition, directionLineLeft, color);
-            Debug.DrawRay(currPosition, directionLineRight, color);
-            Debug.DrawRay(currPosition, direction * losRange, color);
+            Debug.DrawRay(transform.position, directionLineLeft, color);
+            Debug.DrawRay(transform.position, directionLineRight, color);
+            Debug.DrawRay(transform.position, direction * losRange, color);
         }
 
     }

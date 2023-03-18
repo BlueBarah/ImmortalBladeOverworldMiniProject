@@ -12,6 +12,9 @@ namespace Overworld
         [SerializeField] private bool spriteSortCameraDirection = true;
         [SerializeField] private bool shouldHaveFollowTarget;
         private Vector3 velocity = Vector3.zero;
+        private Vector3 truePosition;
+        private float wallContactZ;
+        private bool flag_wallContact = false;
         private Camera cam;
         void Awake()
         {
@@ -31,10 +34,26 @@ namespace Overworld
             if (target != null)
             {
                 Vector3 targetPos = target.position + offset;
+                truePosition = targetPos;
+                if (flag_wallContact && truePosition.z <= wallContactZ) targetPos.z = wallContactZ;
                 transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref velocity, smoothTime);
             }
             else if (shouldHaveFollowTarget){
                 target = GameObject.FindGameObjectWithTag("Player").transform;
+            }
+        }
+
+        void OnTriggerEnter(Collider in_collider) {
+            Debug.Log("Camera Collision");
+            if (in_collider.gameObject.name == "4th Wall") {
+                flag_wallContact = true;
+                wallContactZ = in_collider.ClosestPoint(transform.position).z;
+            }
+        }
+        void OnTriggerExit(Collider in_collider) {
+            
+            if (in_collider.gameObject.name == "4th Wall") {
+                flag_wallContact = false;
             }
         }
     }

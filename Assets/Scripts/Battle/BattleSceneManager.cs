@@ -20,6 +20,7 @@ namespace Battle {
         private Transform enemyContainer;
         void Awake() {
             instance = this;
+            turnOrder = new List<Unit>();
 
             characterContainer = transform.Find("Units").Find("Characters");
             enemyContainer = transform.Find("Units").Find("Enemies");
@@ -191,14 +192,16 @@ namespace Battle {
                 Destroy(entry.gameObject);
             }
 
+            float numPlayers = 1;
+            float numEnemies = 1;
             foreach (OverworldUnitData overworldUnit in GameDataManager.instance.unitsInBattle) {
                 foreach (BattleUnitData battleUnit in overworldUnit.encounter){
                     if (battleUnit.prefab.GetComponent<Unit>().GetType() == typeof(PlayerUnit)) {
                         GameObject unitInstance = GameObject.Instantiate(battleUnit.prefab);
                         
                         unitInstance.transform.SetParent(characterContainer);
-                        unitInstance.transform.localScale = new Vector3(1,1,1);
-                        unitInstance.transform.position = Vector3.zero;
+                        unitInstance.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                        unitInstance.transform.position = new Vector3(-(3.5f * numPlayers), 0.5f, (numPlayers % 2) * 2f);
                         unitInstance.name = unitInstance.name.Replace("(Clone)", "");
 
                         Unit unit = unitInstance.GetComponent<Unit>();
@@ -207,13 +210,14 @@ namespace Battle {
                         battleUnit.instance = unit;
 
                         units.Add(unit);
+                        numPlayers += 1;
                     }
                     else if (battleUnit.prefab.GetComponent<Unit>().GetType() == typeof(EnemyUnit)) {
                         GameObject unitInstance = GameObject.Instantiate(battleUnit.prefab);
                         
                         unitInstance.transform.SetParent(enemyContainer);
-                        unitInstance.transform.localScale = new Vector3(1,1,1);
-                        unitInstance.transform.position = Vector3.zero;
+                        unitInstance.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                        unitInstance.transform.position = new Vector3(3.5f * numEnemies, 0.5f, (numEnemies % 2) * 2f);
                         unitInstance.name = unitInstance.name.Replace("(Clone)", "");
 
                         Unit unit = unitInstance.GetComponent<Unit>();
@@ -222,6 +226,7 @@ namespace Battle {
                         battleUnit.instance = unit;
 
                         units.Add(unit);
+                        numEnemies += 1;
                     }
                 }
             }

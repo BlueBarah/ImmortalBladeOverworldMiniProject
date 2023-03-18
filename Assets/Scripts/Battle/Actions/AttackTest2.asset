@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c1b9e6dee7fe447955a4b3395ba429, type: 3}
   m_Name: AttackTest2
   m_EditorClassIdentifier: 
-  keywords: 0200000006000000
+  keywords: 0100000006000000
   hits:
   - 100
   <AP_cost>k__BackingField: 5
   <ESS_cost>k__BackingField: 10
   <actionTarget>k__BackingField: 1
   aggroPerHit: 50
-  baseAccuracy: 75
+  baseAccuracy: 100
   baseCritChance: 15
   ignoreCounter: 0
   ignoreEvade: 0

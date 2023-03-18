@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c1b9e6dee7fe447955a4b3395ba429, type: 3}
+  m_Name: Basic Attack
+  m_EditorClassIdentifier: 
+  keywords: 01000000
+  hits:
+  - 50
+  - 60
+  <AP_cost>k__BackingField: 5
+  <ESS_cost>k__BackingField: 40
+  <actionTarget>k__BackingField: 1
+  aggroPerHit: 5
+  baseAccuracy: 80
+  baseCritChance: 20
+  ignoreCounter: 0
+  ignoreEvade: 1
+  ignoreBlock: 1
+  ailments: []
+  <actionTime>k__BackingField: 1000

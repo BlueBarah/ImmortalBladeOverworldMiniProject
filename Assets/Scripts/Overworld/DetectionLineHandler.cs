@@ -26,7 +26,7 @@ namespace Overworld {
         }
         void Update()
         {
-            if (owner.Flag_BattleStart) {
+            if (owner.flag_battleStart) {
                 targetSize = Vector3.zero;
             }
             else if (owner.los.isTargetVisibleInCone()) {
