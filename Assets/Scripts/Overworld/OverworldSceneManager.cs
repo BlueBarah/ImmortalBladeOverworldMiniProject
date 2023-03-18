@@ -16,8 +16,9 @@ namespace Overworld
         Vector3 rotationVector;
         public static List<Mover> unitsInRange = new List<Mover>();
         public static List<Mover> unitsNotInRange = new List<Mover>();
+        public static bool flag_battleStart = false;
 
-        public static void Event_PlayerFightRange(Enemy in_sender, bool in_flag)
+        public void Event_PlayerFightRange(Enemy in_sender, bool in_flag)
         {
             if (in_flag)
             {
@@ -34,37 +35,72 @@ namespace Overworld
             {
                 logStr += unit.name + ", ";
             }
-            Debug.Log(logStr);
+            Debug.Log("In Battle: " + logStr);
+            logStr = "";
+            foreach (Mover unit in unitsNotInRange)
+            {
+                logStr += unit.name + ", ";
+            }
+            Debug.Log("Not In Battle: " + logStr);
         }
-        public static void Event_BattleStart(Player in_player)
-        {
-            string logStr = in_player.name + " started a battle with ";
-            // Empty the current list
-            GameDataManager.instance.unitsInBattle = new List<OverworldUnitData>();
-            // Add the player
-            in_player.unitData.ownerPosition = in_player.transform.localPosition;
-            in_player.unitData.prefab = LoadPrefab(in_player.name);
-            GameDataManager.instance.unitsInBattle.Add(in_player.unitData);
-
-            // Add all enemies
+        public void Event_AllyInRange(FieldAlly in_sender, bool in_flag) {
+            if (in_flag)
+            {
+                if (!unitsInRange.Contains(in_sender)) unitsInRange.Add(in_sender);
+                if (unitsNotInRange.Contains(in_sender)) unitsNotInRange.Remove(in_sender);
+            }
+            else
+            {
+                if (unitsInRange.Contains(in_sender)) unitsInRange.Remove(in_sender);
+                if (!unitsNotInRange.Contains(in_sender)) unitsNotInRange.Add(in_sender);
+            }
+            string logStr = "";
             foreach (Mover unit in unitsInRange)
             {
-                unit.unitData.ownerPosition = unit.transform.localPosition;
-                unit.unitData.prefab = LoadPrefab(unit.name);
-                GameDataManager.instance.unitsInBattle.Add(unit.unitData);
                 logStr += unit.name + ", ";
-                if (unit.GetType() == typeof(Enemy)) {
-                    Enemy enemy = (Enemy)unit;
-                    enemy.Flag_BattleStart = true;
+            }
+            Debug.Log("In Battle: " + logStr);
+            logStr = "";
+            foreach (Mover unit in unitsNotInRange)
+            {
+                logStr += unit.name + ", ";
+            }
+            Debug.Log("Not In Battle: " + logStr);
+
+        }
+        public void Event_BattleStart(Player in_player)
+        {
+            if (!flag_battleStart) {
+                flag_battleStart = true;
+                string logStr = in_player.name + " started a battle with ";
+                // Empty the current list
+                GameDataManager.instance.unitsInBattle = new List<OverworldUnitData>();
+                GameDataManager.instance.unitsNotInBattle = new List<OverworldUnitData>();
+                // Add the player
+                in_player.unitData.ownerPosition = in_player.transform.localPosition;
+                in_player.unitData.prefab = LoadPrefab(in_player.name);
+                GameDataManager.instance.unitsInBattle.Add(in_player.unitData);
+
+                // Add all enemies
+                foreach (Mover unit in unitsInRange)
+                {
+                    unit.unitData.ownerPosition = unit.transform.localPosition;
+                    unit.unitData.prefab = LoadPrefab(unit.name);
+                    GameDataManager.instance.unitsInBattle.Add(unit.unitData);
+                    logStr += unit.name + ", ";
+                    if (unit.GetType() == typeof(Enemy) || unit.GetType() == typeof(FieldAlly)) {
+                        IDetectPlayer enemy = (IDetectPlayer)unit;
+                        enemy.flag_battleStart = true;
+                    }
                 }
+                foreach (Mover unit in unitsNotInRange) {
+                    unit.unitData.ownerPosition = unit.transform.localPosition;
+                    unit.unitData.prefab = LoadPrefab(unit.name);
+                    GameDataManager.instance.unitsNotInBattle.Add(unit.unitData);
+                }
+                // Debug.Log(logStr);
+                StartCoroutine(GameDataManager.instance.SwitchScene("Battle"));
             }
-            foreach (Mover unit in unitsNotInRange) {
-                unit.unitData.ownerPosition = unit.transform.localPosition;
-                unit.unitData.prefab = LoadPrefab(unit.name);
-                GameDataManager.instance.unitsNotInBattle.Add(unit.unitData);
-            }
-            // Debug.Log(logStr);
-            SceneManager.LoadScene("Battle");
         }
 
         private void SetLightColor()
@@ -85,11 +121,13 @@ namespace Overworld
 
         void Awake() {
             // Initialize PlayerInRange Event
-            Enemy.Event_EnemyInRange += Event_PlayerFightRange;
+            Enemy.event_enemyInRange += Event_PlayerFightRange;
+            FieldAlly.event_allyInRange += Event_AllyInRange;
             //Initialize BattleStartEvent
             Player.Event_BattleStart += Event_BattleStart;
             unitsInRange.Clear();
             unitsNotInRange.Clear();
+            flag_battleStart = false;
 
         }
         void Start()
@@ -115,7 +153,7 @@ namespace Overworld
                     GameObject unitInstance = GameObject.Instantiate(overworldUnit.prefab);
                     unitInstance.name = unitInstance.name.Replace("(Clone)", "");
                     unitInstance.transform.SetParent(unitContainer);
-                    unitInstance.transform.localScale = new Vector3(1,1,1);
+                    unitInstance.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                     unitInstance.transform.localPosition = overworldUnit.ownerPosition;
                     
                     unitInstance.GetComponent<Mover>().Init();
@@ -126,7 +164,7 @@ namespace Overworld
                     GameObject unitInstance = GameObject.Instantiate(overworldUnit.prefab);
                     unitInstance.name = unitInstance.name.Replace("(Clone)", "");
                     unitInstance.transform.SetParent(unitContainer);
-                    unitInstance.transform.localScale = new Vector3(1,1,1);
+                    unitInstance.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                     unitInstance.transform.localPosition = overworldUnit.ownerPosition;
 
                     unitInstance.GetComponent<Mover>().Init();
@@ -169,7 +207,8 @@ namespace Overworld
 
         void OnDestroy() {
             // Initialize PlayerInRange Event
-            Enemy.Event_EnemyInRange -= Event_PlayerFightRange;
+            Enemy.event_enemyInRange -= Event_PlayerFightRange;
+            FieldAlly.event_allyInRange -= Event_AllyInRange;
             //Initialize BattleStartEvent
             Player.Event_BattleStart -= Event_BattleStart;
 

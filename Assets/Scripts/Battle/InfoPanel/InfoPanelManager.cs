@@ -62,11 +62,12 @@ namespace Battle {
                 newLog.Add("Ailments");
                 newLog.AddRange(temp);
             }
-
-            temp = owner.transform.GetComponent<SpecialRuleList>().GetAppliedRules();
-            if (temp.Count != 0) {
-                newLog.Add("Special Rules");
-                newLog.AddRange(temp);
+            if (owner.transform.GetComponent<SpecialRuleList>() != null) {
+                temp = owner.transform.GetComponent<SpecialRuleList>().GetAppliedRules();
+                if (temp.Count != 0) {
+                    newLog.Add("Special Rules");
+                    newLog.AddRange(temp);
+                }
             }
 
             if (newLog != bonusLog) {

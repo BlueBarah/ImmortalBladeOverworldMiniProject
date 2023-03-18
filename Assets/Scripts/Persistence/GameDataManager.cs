@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameDataManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class GameDataManager : MonoBehaviour
 
     public static ActiveWorldSceneData currentWorldSceneData;
     public static ActiveBattleSceneData currentBattleSceneData;
+
+    [SerializeField] private float waitTime = 1;
+    [SerializeField] private float transitionTime = 1;
 
     public PlayerGameData playerData;
     public static PlayerGameData staticPlayerData;
@@ -28,33 +32,17 @@ public class GameDataManager : MonoBehaviour
         instance = this;
         Flag_InitialSceneLoad = true;
         DontDestroyOnLoad(gameObject);
-
-        /*
-        if(staticPlayerData == null)
-        {
-            if(playerData != null)
-            {
-                staticPlayerData = playerData;
-                staticPlayerData.RestoreHPToMax();
-            }
-        }
-        */
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log(unitsNotInBattle.Count);
-    }
+    public IEnumerator SwitchScene(string in_scene) {
+        Debug.Log("Check 1");
+        yield return new WaitForSeconds(waitTime);
+        Debug.Log("Check 2");
 
-    private void LoadPlayerData()
-    {
-        //TBD
-    }
+        // Play Animation
+        yield return new WaitForSeconds(transitionTime);
+        Debug.Log("Check 3");
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SceneManager.LoadScene(in_scene);
     }
 }

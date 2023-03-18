@@ -150,9 +150,9 @@ MonoBehaviour:
   m_UVScale: {x: 1, y: 1}
   m_UVBias: {x: -0.03, y: -0.01}
   m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0, z: 1.5}
-  m_Size: {x: 2, y: 2, z: 3}
-  m_FadeFactor: 0.9
+  m_Offset: {x: 0, y: 0, z: 7.5}
+  m_Size: {x: 2, y: 2, z: 15}
+  m_FadeFactor: 0.6
 --- !u!114 &6864847127130245051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,8 +200,8 @@ Transform:
   m_GameObject: {fileID: 6864847128049836728}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.1, y: 0.00999999, z: -28.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6864847127130245049}
   - {fileID: 34227099}
@@ -248,8 +248,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 75b0654a555010c44b9cf673dd6ccd80, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 0fadc1277f1aaa9488b15a63038dc49f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -291,13 +291,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2.76
-  m_Radius: 0.46
+  m_Height: 5.6
+  m_Radius: 1
   m_SlopeLimit: 50
   m_StepOffset: 0.4
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.39, z: 0}
+  m_Center: {x: 0, y: 2.8, z: 0}
 --- !u!114 &6864847128049836721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,7 +313,7 @@ MonoBehaviour:
   currentSpeed: 0
   yVelocity: 0
   currGravity: -1
-  maxSpeed: 12
+  maxSpeed: 8
   acceleration: 0.2
   controller: {fileID: 0}
   grounded: 0
